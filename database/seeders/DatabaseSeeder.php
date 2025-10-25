@@ -16,6 +16,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(LookupTableSeeder::class);
+        
+        // Seed ingredient categories and ingredients
+        $this->call([
+            IngredientCategorySeeder::class,
+            IngredientSeeder::class,
+        ]);
 
         User::factory()->create([
             'name' => 'Test User',
