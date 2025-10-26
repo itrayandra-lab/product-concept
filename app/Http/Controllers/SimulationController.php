@@ -46,8 +46,18 @@ class SimulationController extends Controller
         try {
             $user = Auth::user();
 
+            // Require authentication for simulation generation
+            if (!$user) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Authentication required to generate simulation',
+                    'error' => 'AUTHENTICATION_REQUIRED',
+                    'auth_required' => true,
+                ], 401);
+            }
+
             // Check user quota
-            if ($user && !$this->checkUserQuota($user)) {
+            if (!$this->checkUserQuota($user)) {
                 $this->auditLogService->logRateLimitHit($user, $request, 'api.simulations.store');
 
                 return response()->json([
@@ -64,7 +74,7 @@ class SimulationController extends Controller
 
             // Create simulation record
             $simulation = SimulationHistory::create([
-                'user_id' => $user?->id,
+                'user_id' => $user->id,
                 'guest_session_id' => $request->input('guest_session_id'),
                 'input_data' => $request->validated(),
                 'status' => 'pending',
@@ -512,7 +522,7 @@ class SimulationController extends Controller
 
         // Validate export format
         $format = $request->input('format', 'pdf');
-        if (!in_array($format, ['pdf', 'docx', 'json'])) {
+        if (!in_array($format, ['pdf', 'docx', 'json', 'png'])) {
             return response()->json([
                 'success' => false,
                 'message' => 'Invalid export format. Supported: pdf, docx, json',
@@ -538,6 +548,7 @@ class SimulationController extends Controller
                 'pdf' => $this->exportService->exportPdf($simulation, $options),
                 'docx' => $this->exportService->exportWord($simulation, $options),
                 'json' => $this->exportService->exportJson($simulation, $options),
+                'png' => $this->exportService->exportImage($simulation, $options),
             };
 
             Log::info('Simulation exported', [

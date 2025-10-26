@@ -126,6 +126,59 @@ class ExportService
     }
 
     /**
+     * Export simulation to image format (PNG)
+     *
+     * @param SimulationHistory $simulation
+     * @param array $options
+     * @return array
+     */
+    public function exportImage(SimulationHistory $simulation, array $options = []): array
+    {
+        if (!extension_loaded('gd')) {
+            throw new \RuntimeException('Image export requires GD extension');
+        }
+
+        try {
+            if (!$simulation->output_data || $simulation->status !== 'completed') {
+                throw new \Exception('Simulation must be completed before export');
+            }
+
+            $data = $this->prepareExportData($simulation, $options);
+
+            $filename = $this->generateFilename($simulation, 'png');
+            $filepath = "{$this->exportPath}/{$filename}";
+
+            $content = $this->generateImageContent($data);
+            Storage::disk('local')->put($filepath, $content);
+
+            $downloadUrl = $this->generateDownloadUrl($filename);
+            $expiresAt = now()->addHours($this->expirationHours);
+
+            Log::info('Image export created', [
+                'simulation_id' => $simulation->id,
+                'filename' => $filename,
+                'expires_at' => $expiresAt,
+            ]);
+
+            return [
+                'success' => true,
+                'download_url' => $downloadUrl,
+                'filename' => $filename,
+                'format' => 'png',
+                'file_size_bytes' => Storage::disk('local')->size($filepath),
+                'expires_at' => $expiresAt->toIso8601String(),
+            ];
+        } catch (\Exception $e) {
+            Log::error('Image export failed', [
+                'simulation_id' => $simulation->id,
+                'error' => $e->getMessage(),
+            ]);
+
+            throw $e;
+        }
+    }
+
+    /**
      * Export simulation to JSON format
      *
      * @param SimulationHistory $simulation
@@ -512,6 +565,86 @@ class ExportService
         $content .= "Report generated on: " . now()->format('F j, Y \a\t g:i A') . "\n";
 
         return $content;
+    }
+
+    /**
+     * Generate simple PNG content summarizing the simulation
+     *
+     * @param array $data
+     * @return string
+     */
+    protected function generateImageContent(array $data): string
+    {
+        $width = 1200;
+        $height = 1600;
+        $image = imagecreatetruecolor($width, $height);
+
+        $background = imagecolorallocate($image, 249, 250, 251);
+        $headingColor = imagecolorallocate($image, 249, 115, 22);
+        $textColor = imagecolorallocate($image, 15, 23, 42);
+        $mutedColor = imagecolorallocate($image, 100, 116, 139);
+
+        imagefill($image, 0, 0, $background);
+        imagestring($image, 5, 40, 30, 'AI SKINCARE PRODUCT SIMULATOR', $headingColor);
+
+        $y = 80;
+        $lineHeight = 22;
+
+        $this->drawWrappedText($image, "Simulation ID: " . ($data['simulation_id'] ?? 'N/A'), 4, 40, $y, $lineHeight, $mutedColor);
+        $this->drawWrappedText($image, "Generated At: " . ($data['generated_at'] ?? now()->toDateTimeString()), 4, 40, $y, $lineHeight, $mutedColor);
+        $y += $lineHeight;
+
+        $productName = $data['product_overview']['product_name'] ?? 'Unnamed Concept';
+        $this->drawWrappedText($image, "Product: {$productName}", 5, 40, $y, $lineHeight, $textColor);
+
+        if (!empty($data['product_overview']['tagline'])) {
+            $this->drawWrappedText($image, $data['product_overview']['tagline'], 4, 40, $y, $lineHeight, $mutedColor);
+        }
+
+        $y += $lineHeight;
+        $description = $data['product_overview']['description'] ?? 'Description pending...';
+        $this->drawWrappedText($image, $description, 3, 40, $y, $lineHeight, $textColor, 90);
+
+        $y += 3 * $lineHeight;
+        $this->drawWrappedText($image, 'Ingredients Highlights:', 4, 40, $y, $lineHeight, $textColor);
+        $ingredients = $data['ingredients']['items'] ?? [];
+        foreach (array_slice($ingredients, 0, 6) as $ingredient) {
+            $line = sprintf('- %s: %s', $ingredient['name'] ?? 'Ingredient', $ingredient['effect'] ?? 'Effect TBD');
+            $this->drawWrappedText($image, $line, 3, 60, $y, $lineHeight, $mutedColor, 85);
+        }
+
+        $y += 2 * $lineHeight;
+        $this->drawWrappedText($image, 'Pricing Summary:', 4, 40, $y, $lineHeight, $textColor);
+        if (isset($data['pricing']['estimated_cost']['total_hpp'])) {
+            $this->drawWrappedText($image, 'HPP: ' . $data['pricing']['estimated_cost']['total_hpp'], 3, 60, $y, $lineHeight, $mutedColor);
+        }
+        if (isset($data['pricing']['recommended_retail'])) {
+            $this->drawWrappedText($image, 'SRP: ' . $data['pricing']['recommended_retail'], 3, 60, $y, $lineHeight, $mutedColor);
+        }
+
+        $y += 2 * $lineHeight;
+        $this->drawWrappedText($image, 'Generated automatically by AI Skincare Product Simulator.', 3, 40, $y, $lineHeight, $mutedColor);
+
+        ob_start();
+        imagepng($image);
+        $content = ob_get_clean();
+        imagedestroy($image);
+
+        return $content;
+    }
+
+    /**
+     * Helper to draw wrapped text on GD image
+     *
+     * @param resource $image
+     */
+    protected function drawWrappedText($image, string $text, int $font, int $x, int &$y, int $lineHeight, int $color, int $wrap = 70): void
+    {
+        $wrapped = wordwrap($text, $wrap);
+        foreach (explode("\n", $wrapped) as $line) {
+            imagestring($image, $font, $x, $y, $line, $color);
+            $y += $lineHeight;
+        }
     }
 
     /**

@@ -16,6 +16,7 @@ class N8nService
     protected ?string $apiKey;
     protected int $timeout;
     protected array $failoverConfig;
+    protected bool $mockEnabled;
     protected WhatsAppService $whatsAppService;
     protected SimulationAnalyticsService $simulationAnalyticsService;
 
@@ -28,6 +29,7 @@ class N8nService
         $this->webhookUrl = config('services.n8n.webhook_url');
         $this->apiKey = config('services.n8n.api_key');
         $this->timeout = config('services.n8n.timeout', 150);
+        $this->mockEnabled = config('services.n8n.mock_enabled', true);
         $this->failoverConfig = config('services.n8n.failover', [
             'enabled' => true,
             'provider_order' => [],
@@ -47,6 +49,12 @@ class N8nService
      */
     public function triggerWorkflow(SimulationHistory $simulation, array $context = []): array
     {
+        // Check if mock mode is enabled
+        if ($this->mockEnabled) {
+            return $this->triggerMockWorkflow($simulation, $context);
+        }
+        
+        // Original implementation
         try {
             $workflowId = Str::uuid()->toString();
             
@@ -97,6 +105,38 @@ class N8nService
 
             throw $e;
         }
+    }
+
+    /**
+     * Mock workflow trigger for development
+     *
+     * @param SimulationHistory $simulation
+     * @param array<string, mixed> $context
+     * @return array
+     */
+    protected function triggerMockWorkflow(SimulationHistory $simulation, array $context = []): array
+    {
+        $workflowId = 'mock_' . Str::uuid()->toString();
+        
+        // Update simulation with mock workflow ID
+        $simulation->update([
+            'n8n_workflow_id' => $workflowId,
+            'status' => 'pending', // Keep as pending
+            'processing_started_at' => null, // Not started yet
+        ]);
+        
+        Log::info('[MOCK] n8n workflow triggered', [
+            'simulation_id' => $simulation->id,
+            'workflow_id' => $workflowId,
+            'note' => 'Using mock mode - N8n service not called',
+        ]);
+        
+        return [
+            'success' => true,
+            'workflow_id' => $workflowId,
+            'message' => 'Workflow triggered successfully (mock mode)',
+            'mock' => true,
+        ];
     }
 
     /**

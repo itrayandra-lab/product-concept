@@ -54,6 +54,7 @@ return [
         'webhook_url' => env('N8N_WEBHOOK_URL', 'http://localhost:5678/webhook/skincare-simulation'),
         'api_key' => env('N8N_API_KEY'),
         'timeout' => env('N8N_TIMEOUT', 150),
+        'mock_enabled' => env('N8N_MOCK_ENABLED', true),
         'failover' => [
             'enabled' => env('N8N_FAILOVER_ENABLED', true),
             'provider_order' => array_values(array_filter(array_map(
