@@ -4,6 +4,51 @@
 
 ### Added
 
+#### **Guest Form Management** - Complete implementation of guest user form auto-save and session management
+- **Backend API** - Dedicated GuestSessionController with 4 endpoints
+  - `POST /api/guest/save-form-data` - Save guest form data with progress tracking (public)
+  - `GET /api/guest/session/{session_id}` - Retrieve session data (public)
+  - `DELETE /api/guest/session/{session_id}` - Delete session (public)
+  - `POST /api/simulations/generate-from-guest` - Restore & generate simulation (auth required)
+  - `GET /api/guest/stats` - Admin statistics (auth required)
+
+- **Auto-Save System** - Intelligent dual-storage auto-save with Alpine.js
+  - Automatic localStorage save every 2 seconds (debounced)
+  - Backend API save with retry logic (max 3 attempts, exponential backoff)
+  - Visual status indicators (Saving... / Saved with timestamp / Error)
+  - Before-unload warning when unsaved changes detected
+  - Progress tracking based on 18 form fields (0-100%)
+  - Step completion tracking (basic, target, ingredients, advanced)
+
+- **Session Management**
+  - 24-hour session expiration with automatic cleanup
+  - Session restoration after authentication (login/registration)
+  - Form data persistence across browser sessions
+  - Automatic session ID generation and storage
+
+- **Data Repository** - Enhanced GuestSessionRepository
+  - Form progress calculation (percentage completion)
+  - Completed steps tracking
+  - Form data validation (18 required fields)
+  - Session expiration handling
+  - Statistics aggregation
+
+- **Testing**
+  - 11 comprehensive feature tests (all passing, 36 assertions)
+  - API endpoint validation
+  - Expiration handling
+  - Progress calculation accuracy
+  - Authentication requirements
+  - Session cleanup verification
+
+- **Frontend Integration** - Alpine.js component
+  - Form data model binding for 18 fields
+  - Real-time progress tracking
+  - Save status management (idle, saving, saved, error)
+  - Retry logic with exponential backoff
+  - Offline support with localStorage fallback
+  - Error handling and user notifications
+
 #### **Ingredient Database System** - Complete implementation of ingredient management API
 - **Models & Database**
   - 6 Eloquent models with comprehensive relationships: `Ingredient`, `IngredientCategory`, `ScientificReference`, `IngredientReference`, `SimulationIngredient`, `SimulationHistory`
@@ -72,6 +117,15 @@
 - Documentation of the migration order, maintenance jobs, and seeding strategy in `docs/database-foundation.md` to guide downstream proposals.
 
 ### Technical Details
+
+#### Guest Form Management
+- **Architecture**: Dedicated GuestSessionController with separation of concerns, progress tracking in repository layer
+- **Data Flow**: Dual storage (localStorage + API) with retry logic and offline fallback
+- **Session Lifecycle**: Auto-generate session ID, 24-hour expiration, automatic cleanup
+- **Progress Tracking**: Real-time calculation based on 18 form fields with step completion
+- **Error Handling**: Exponential backoff retry, graceful degradation, user-friendly error messages
+- **Testing**: 11 feature tests covering all scenarios including edge cases
+- **Security**: Public endpoints for guest operations, authentication required for simulation generation
 
 #### Ingredient Database
 - **Architecture**: Service layer pattern with controllers, API resource transformers, and repository pattern via Eloquent scopes

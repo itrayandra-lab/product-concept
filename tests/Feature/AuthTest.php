@@ -171,20 +171,23 @@ class AuthTest extends TestCase
             'competitive_analysis' => 'premium_brands',
         ];
 
-        $response = $this->postJson('/api/simulations/save-guest', [
-            'session_id' => $sessionId,
+        $response = $this->postJson('/api/guest/save-form-data', [
             'form_data' => $formData,
         ]);
 
         $response->assertStatus(200)
             ->assertJsonStructure([
+                'success',
                 'message',
-                'session_id',
-                'expires_at',
+                'data' => [
+                    'guest_session_id',
+                    'form_progress',
+                    'expires_at',
+                ],
             ]);
 
         $this->assertDatabaseHas('guest_sessions', [
-            'session_id' => $sessionId,
+            'session_id' => $response->json('data.guest_session_id'),
         ]);
     }
 
@@ -224,15 +227,18 @@ class AuthTest extends TestCase
 
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $token,
-        ])->postJson('/api/simulations/from-guest', [
+        ])->postJson('/api/simulations/generate-from-guest', [
             'session_id' => $sessionId,
         ]);
 
         $response->assertStatus(200)
             ->assertJsonStructure([
+                'success',
                 'message',
-                'form_data',
-                'user',
+                'data' => [
+                    'form_data',
+                    'user',
+                ],
             ]);
 
         // Check audit log
@@ -252,7 +258,7 @@ class AuthTest extends TestCase
 
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $token,
-        ])->postJson('/api/simulations/from-guest', [
+        ])->postJson('/api/simulations/generate-from-guest', [
             'session_id' => 'test-session',
         ]);
 

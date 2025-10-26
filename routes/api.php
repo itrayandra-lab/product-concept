@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SimulationController;
+use App\Http\Controllers\GuestSessionController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\IngredientCategoryController;
 
@@ -28,20 +29,23 @@ Route::prefix('auth')->group(function () {
     });
 });
 
+// Guest session routes (public access)
+Route::prefix('guest')->group(function () {
+    Route::post('/save-form-data', [GuestSessionController::class, 'save']);
+    Route::get('/session/{session_id}', [GuestSessionController::class, 'show']);
+    Route::delete('/session/{session_id}', [GuestSessionController::class, 'destroy']);
+    
+    // Admin stats (requires authentication)
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('/stats', [GuestSessionController::class, 'stats']);
+    });
+});
+
 // Simulation routes
 Route::prefix('simulations')->group(function () {
-    // Guest session routes (public)
-    Route::post('/save-guest', [SimulationController::class, 'saveGuestSession']);
-    Route::get('/guest/{session_id}', [SimulationController::class, 'getGuestSession']);
-    Route::delete('/guest/{session_id}', [SimulationController::class, 'deleteGuestSession']);
-    
-    // Protected routes
+    // Protected routes - generate from guest session (requires authentication)
     Route::middleware(['auth:sanctum', 'simulation.rate.limit'])->group(function () {
-        Route::post('/from-guest', [SimulationController::class, 'fromGuest']);
-    });
-    
-    Route::middleware('auth:sanctum')->group(function () {
-        Route::get('/guest-stats', [SimulationController::class, 'getGuestSessionStats']);
+        Route::post('/generate-from-guest', [GuestSessionController::class, 'generateFromGuest']);
     });
 });
 

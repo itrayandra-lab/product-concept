@@ -9,18 +9,30 @@ use Carbon\Carbon;
 class GuestSessionRepository
 {
     /**
-     * Store guest session data
+     * Store guest session data with progress tracking
      */
-    public function store(string $sessionId, array $formData): GuestSession
+    public function store(string $sessionId, array $formData, ?string $formStep = null, ?array $completedSteps = null): GuestSession
     {
+        $progress = $this->calculateProgress($formData);
+        
+        $data = [
+            'form_data' => $formData,
+            'form_progress' => $progress,
+            'expires_at' => now()->addHours(24),
+            'updated_at' => now(),
+        ];
+        
+        if ($formStep !== null) {
+            $data['form_step'] = $formStep;
+        }
+        
+        if ($completedSteps !== null) {
+            $data['completed_steps'] = $completedSteps;
+        }
+        
         return GuestSession::updateOrCreate(
             ['session_id' => $sessionId],
-            [
-                'form_data' => $formData,
-                'expires_at' => now()->addHours(24),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]
+            $data
         );
     }
 
@@ -139,5 +151,73 @@ class GuestSessionRepository
         }
 
         return $formData;
+    }
+    
+    /**
+     * Calculate form progress based on completed fields
+     */
+    public function calculateProgress(array $formData): float
+    {
+        $totalFields = 18;
+        $completedFields = 0;
+        
+        $fields = [
+            'product_name',
+            'target_demographic',
+            'skin_type',
+            'skin_concerns',
+            'ingredients',
+            'product_type',
+            'packaging_type',
+            'price_range',
+            'brand_positioning',
+            'marketing_message',
+            'target_market',
+            'regulatory_requirements',
+            'sustainability_goals',
+            'innovation_focus',
+            'budget_constraints',
+            'timeline',
+            'success_metrics',
+            'competitive_analysis',
+        ];
+        
+        foreach ($fields as $field) {
+            if (isset($formData[$field]) && !empty($formData[$field])) {
+                $completedFields++;
+            }
+        }
+        
+        return round(($completedFields / $totalFields) * 100, 2);
+    }
+    
+    /**
+     * Get completed steps from form data
+     */
+    public function getCompletedSteps(array $formData): array
+    {
+        $steps = [];
+        
+        // Basic Info Step
+        if (!empty($formData['product_name']) && !empty($formData['product_type'])) {
+            $steps[] = 'basic';
+        }
+        
+        // Target Market Step
+        if (!empty($formData['target_demographic']) && !empty($formData['target_market'])) {
+            $steps[] = 'target';
+        }
+        
+        // Ingredients Step
+        if (!empty($formData['ingredients']) && !empty($formData['skin_concerns'])) {
+            $steps[] = 'ingredients';
+        }
+        
+        // Advanced Step
+        if (!empty($formData['regulatory_requirements']) && !empty($formData['budget_constraints'])) {
+            $steps[] = 'advanced';
+        }
+        
+        return $steps;
     }
 }
