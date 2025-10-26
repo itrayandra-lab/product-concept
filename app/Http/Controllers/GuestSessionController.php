@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Repositories\GuestSessionRepository;
 use App\Services\AuditLogService;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class GuestSessionController extends Controller
 {
@@ -137,6 +139,26 @@ class GuestSessionController extends Controller
         $user = Auth::user();
         $sessionId = $request->input('session_id');
 
+        if (!$this->hasQuotaAvailable($user)) {
+            $this->auditLogService->logRateLimitHit($user, $request, 'api.simulations.generate-from-guest');
+            Log::info('generate-from-guest quota block', [
+                'user_id' => $user?->id,
+                'count' => $user?->daily_simulation_count,
+                'limit' => $this->getDailyQuota($user),
+            ]);
+
+            return response()->json([
+                'message' => 'Daily simulation quota exceeded',
+                'error' => 'QUOTA_EXCEEDED',
+                'details' => ['MAX_DAILY_SIMULATIONS_REACHED'],
+                'quota_info' => [
+                    'daily_limit' => $this->getDailyQuota($user),
+                    'used_today' => $user->daily_simulation_count,
+                    'tier' => $user->subscription_tier,
+                ],
+            ], 429);
+        }
+
         // Get and validate guest session data
         $formData = $this->guestSessionRepository->getValidatedFormData($sessionId);
 
@@ -194,6 +216,27 @@ class GuestSessionController extends Controller
             'message' => 'Guest session statistics retrieved successfully',
             'data' => $stats,
         ], 200);
+    }
+
+    protected function hasQuotaAvailable(User $user): bool
+    {
+        if ($user->last_simulation_date && !$user->last_simulation_date->isSameDay(today())) {
+            $user->update([
+                'daily_simulation_count' => 0,
+                'last_simulation_date' => today(),
+            ]);
+        }
+
+        return $user->daily_simulation_count < $this->getDailyQuota($user);
+    }
+
+    protected function getDailyQuota(User $user): int
+    {
+        return match ($user->subscription_tier) {
+            'premium' => 200,
+            'enterprise' => 1000,
+            default => 50,
+        };
     }
 }
 
