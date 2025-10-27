@@ -50,10 +50,11 @@ return [
     ],
 
     'n8n' => [
-        'base_url' => env('N8N_BASE_URL', 'http://localhost:5678'),
-        'webhook_url' => env('N8N_WEBHOOK_URL', 'http://localhost:5678/webhook/skincare-simulation'),
+        'base_url' => env('N8N_BASE_URL', 'https://n8n-gczfssttvtzs.nasgor.sumopod.my.id'),
+        'webhook_url' => env('N8N_WEBHOOK_URL', 'https://n8n-gczfssttvtzs.nasgor.sumopod.my.id/webhook/lbf_product'),
         'api_key' => env('N8N_API_KEY'),
         'timeout' => env('N8N_TIMEOUT', 150),
+        'mock_enabled' => env('N8N_MOCK_ENABLED', false),
         'failover' => [
             'enabled' => env('N8N_FAILOVER_ENABLED', true),
             'provider_order' => array_values(array_filter(array_map(

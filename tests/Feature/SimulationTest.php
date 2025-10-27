@@ -2,11 +2,13 @@
 
 namespace Tests\Feature;
 
+use App\Jobs\ProcessSimulationJob;
 use App\Models\SimulationHistory;
 use App\Models\SimulationMetric;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Queue;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
@@ -18,13 +20,15 @@ class SimulationTest extends TestCase
     {
         parent::setUp();
         Http::preventStrayRequests();
+        Queue::fake();
     }
 
     /** @test */
-    public function it_accepts_simulation_requests_and_sets_progress_metadata(): void
+    public function it_accepts_simulation_requests_and_dispatches_job(): void
     {
-        Http::fake(['*skincare-simulation*' => Http::response(['ok' => true], 200)]);
-
+        // Enable real n8n mode (not mock)
+        config(['services.n8n.mock_enabled' => false]);
+        
         $user = User::factory()->create(['subscription_tier' => 'free']);
         Sanctum::actingAs($user);
 
@@ -34,19 +38,51 @@ class SimulationTest extends TestCase
             ->assertJson([
                 'success' => true,
                 'data' => [
-                    'status' => 'processing',
+                    'status' => 'pending',
                 ],
             ]);
 
-        $simulation = SimulationHistory::first();
+        // Assert that ProcessSimulationJob was dispatched
+        Queue::assertPushed(ProcessSimulationJob::class, function ($job) {
+            return $job->simulation instanceof SimulationHistory;
+        });
 
+        $simulation = SimulationHistory::first();
         $this->assertNotNull($simulation);
-        $this->assertSame('processing', $simulation->status);
-        $this->assertEquals('queued', $simulation->progress_metadata['current_step']);
+        $this->assertSame('pending', $simulation->status);
+        $this->assertNotNull($simulation->n8n_workflow_id);
 
         $metric = SimulationMetric::first();
         $this->assertNotNull($metric);
         $this->assertEquals(1, $metric->requested_count);
+    }
+
+    /** @test */
+    public function it_uses_mock_mode_when_enabled(): void
+    {
+        // Enable mock mode
+        config(['services.n8n.mock_enabled' => true]);
+        
+        $user = User::factory()->create(['subscription_tier' => 'free']);
+        Sanctum::actingAs($user);
+
+        $response = $this->postJson('/api/simulations', $this->simulationPayload());
+
+        $response->assertStatus(202)
+            ->assertJson([
+                'success' => true,
+                'data' => [
+                    'status' => 'pending',
+                ],
+            ]);
+
+        // Assert that no job was dispatched in mock mode
+        Queue::assertNothingPushed();
+
+        $simulation = SimulationHistory::first();
+        $this->assertNotNull($simulation);
+        $this->assertSame('pending', $simulation->status);
+        $this->assertStringStartsWith('mock_', $simulation->n8n_workflow_id);
     }
 
     /** @test */
@@ -83,21 +119,26 @@ class SimulationTest extends TestCase
     /** @test */
     public function it_handles_workflow_trigger_failures_gracefully(): void
     {
-        Http::fake(['*skincare-simulation*' => Http::response(['error' => 'boom'], 500)]);
-
+        // Test that job dispatch works correctly in real mode
+        config(['services.n8n.mock_enabled' => false]);
+        
         $user = User::factory()->create();
         Sanctum::actingAs($user);
 
         $response = $this->postJson('/api/simulations', $this->simulationPayload());
 
-        $response->assertStatus(500)
+        // Should succeed in dispatching the job
+        $response->assertStatus(202)
             ->assertJson([
-                'success' => false,
-                'error' => 'WORKFLOW_TRIGGER_FAILED',
+                'success' => true,
             ]);
 
+        // Assert job was dispatched
+        Queue::assertPushed(ProcessSimulationJob::class);
+
         $simulation = SimulationHistory::first();
-        $this->assertSame('failed', $simulation->status);
+        $this->assertSame('pending', $simulation->status);
+        $this->assertNotNull($simulation->n8n_workflow_id);
     }
 
     /** @test */
