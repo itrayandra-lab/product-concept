@@ -23,7 +23,8 @@ class SimulationErrorTest extends TestCase
     /** @test */
     public function it_handles_n8n_workflow_failures_gracefully(): void
     {
-        // Simulate n8n workflow failure
+        // Disable mock mode and simulate n8n workflow failure
+        config(['services.n8n.mock_enabled' => false]);
         Http::fake(['*skincare-simulation*' => Http::response(['error' => 'Workflow failed'], 500)]);
 
         $user = User::factory()->create();
@@ -45,7 +46,8 @@ class SimulationErrorTest extends TestCase
     /** @test */
     public function it_handles_n8n_timeout_errors(): void
     {
-        // Simulate n8n timeout
+        // Disable mock mode and simulate n8n timeout
+        config(['services.n8n.mock_enabled' => false]);
         Http::fake(['*skincare-simulation*' => function () {
             return Http::response(['timeout' => true], 408);
         }]);
@@ -111,7 +113,8 @@ class SimulationErrorTest extends TestCase
     /** @test */
     public function it_handles_ai_provider_failures_with_fallback(): void
     {
-        // Simulate AI provider failure
+        // Disable mock mode and simulate AI provider failure
+        config(['services.n8n.mock_enabled' => false]);
         Http::fake([
             '*openai*' => Http::response(['error' => 'API key invalid'], 401),
             '*gemini*' => Http::response(['error' => 'Quota exceeded'], 429),

@@ -23,11 +23,11 @@
         @if ($simulation->status === 'completed')
             <div class="grid gap-6 lg:grid-cols-3">
                 <div class="space-y-6 lg:col-span-2">
-                    <x-results.product-overview :result="$simulationResult" :simulation-id="$simulation->id" />
-                    <x-results.ingredients-table :result="$simulationResult" />
+                    <x-results.product-overview :result="$result" :simulation-id="$simulation->id" />
+                    <x-results.ingredients-table :result="$result" />
                 </div>
                 <div class="space-y-6">
-                    <x-results.market-analysis :result="$simulationResult" />
+                    <x-results.market-analysis :result="$result" />
                     <section class="card space-y-4">
                         <h3 class="section-title">Langkah Selanjutnya</h3>
                         <ul class="space-y-3 text-sm text-slate-600">

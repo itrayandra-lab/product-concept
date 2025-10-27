@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Jobs\ProcessSimulationJob;
 use App\Models\SimulationHistory;
 use App\Services\SimulationAnalyticsService;
 use App\Services\WhatsAppService;
@@ -54,30 +55,20 @@ class N8nService
             return $this->triggerMockWorkflow($simulation, $context);
         }
         
-        // Original implementation
+        // Real n8n workflow - dispatch queue job
         try {
             $workflowId = Str::uuid()->toString();
             
             // Update simulation with workflow ID
             $simulation->update([
                 'n8n_workflow_id' => $workflowId,
-                'status' => 'processing',
-                'processing_started_at' => now(),
+                'status' => 'pending', // Will be updated to 'processing' by the job
             ]);
 
-            // Prepare payload for n8n
-            $payload = $this->preparePayload($simulation, $workflowId, $context);
+            // Dispatch the queue job for async processing
+            ProcessSimulationJob::dispatch($simulation);
 
-            // Send to n8n webhook
-            $response = Http::timeout($this->timeout)
-                ->withHeaders($this->getHeaders())
-                ->post($this->webhookUrl, $payload);
-
-            if (!$response->successful()) {
-                throw new \Exception('n8n workflow trigger failed: ' . $response->body());
-            }
-
-            Log::info('n8n workflow triggered', [
+            Log::info('n8n workflow job dispatched', [
                 'simulation_id' => $simulation->id,
                 'workflow_id' => $workflowId,
             ]);
@@ -85,11 +76,11 @@ class N8nService
             return [
                 'success' => true,
                 'workflow_id' => $workflowId,
-                'message' => 'Workflow triggered successfully',
+                'message' => 'Workflow job dispatched successfully',
             ];
 
         } catch (\Exception $e) {
-            Log::error('Failed to trigger n8n workflow', [
+            Log::error('Failed to dispatch n8n workflow job', [
                 'simulation_id' => $simulation->id,
                 'error' => $e->getMessage(),
             ]);
@@ -98,7 +89,7 @@ class N8nService
             $simulation->update([
                 'status' => 'failed',
                 'error_details' => [
-                    'error' => 'n8n_trigger_failed',
+                    'error' => 'n8n_job_dispatch_failed',
                     'message' => $e->getMessage(),
                 ],
             ]);
@@ -148,12 +139,32 @@ class N8nService
     public function handleWebhook(array $data): bool
     {
         try {
-            // Validate webhook signature
-            if (!$this->validateWebhookSignature($data)) {
-                Log::warning('Invalid webhook signature', ['data' => $data]);
-                return false;
+            // For real n8n workflow, the response comes directly as the result
+            // No need for workflow_id lookup since n8n returns the complete response
+            
+            Log::info('Received n8n webhook response', [
+                'data_keys' => array_keys($data),
+                'has_product_names' => isset($data['product_names']),
+                'has_ingredients_analysis' => isset($data['ingredients_analysis']),
+            ]);
+
+            // Find simulation by checking if this looks like a completed response
+            if (isset($data['product_names']) && isset($data['ingredients_analysis'])) {
+                // This is a completed response from n8n
+                $simulation = $this->findSimulationForCompletedResponse($data);
+                
+                if (!$simulation) {
+                    Log::warning('Could not find simulation for completed response', [
+                        'data_keys' => array_keys($data),
+                    ]);
+                    return false;
+                }
+
+                $this->handleSuccess($simulation, $data, $data);
+                return true;
             }
 
+            // Handle other response types (progress, errors, etc.)
             $workflowId = $data['workflow_id'] ?? null;
             $status = $data['status'] ?? null;
             $resultData = $data['result_data'] ?? null;
@@ -462,6 +473,37 @@ class N8nService
         $expectedSignature = hash_hmac('sha256', $payload, $this->apiKey);
 
         return hash_equals($expectedSignature, $signature);
+    }
+
+    /**
+     * Find simulation for completed response from n8n
+     * Since n8n doesn't send workflow_id in the response, we need to find by other means
+     *
+     * @param array $data
+     * @return SimulationHistory|null
+     */
+    protected function findSimulationForCompletedResponse(array $data): ?SimulationHistory
+    {
+        // Try to find by simulation_id if present in the response
+        if (isset($data['simulation_id'])) {
+            return SimulationHistory::find($data['simulation_id']);
+        }
+
+        // Try to find by user_id and recent processing simulations
+        if (isset($data['user_id'])) {
+            return SimulationHistory::where('user_id', $data['user_id'])
+                ->where('status', 'processing')
+                ->whereNotNull('processing_started_at')
+                ->orderBy('processing_started_at', 'desc')
+                ->first();
+        }
+
+        // Fallback: find any processing simulation from the last hour
+        return SimulationHistory::where('status', 'processing')
+            ->whereNotNull('processing_started_at')
+            ->where('processing_started_at', '>=', now()->subHour())
+            ->orderBy('processing_started_at', 'desc')
+            ->first();
     }
 
     /**

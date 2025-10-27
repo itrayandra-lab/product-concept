@@ -8,8 +8,8 @@
     <header class="flex flex-wrap items-center justify-between gap-4">
         <div>
             <p class="text-sm uppercase tracking-[0.3em] text-orange-400">Hasil AI</p>
-            <h2 class="text-2xl font-semibold text-slate-900">{{ data_get($result, 'product_name', 'Nama Produk Belum Tersedia') }}</h2>
-            <p class="mt-2 text-base text-slate-600">{{ data_get($result, 'tagline', 'Tagline akan muncul setelah simulasi selesai.') }}</p>
+            <h2 class="text-2xl font-semibold text-slate-900">{{ data_get($result, 'selected_name', 'Nama Produk Belum Tersedia') }}</h2>
+            <p class="mt-2 text-base text-slate-600">{{ data_get($result, 'selected_tagline', 'Tagline akan muncul setelah simulasi selesai.') }}</p>
         </div>
         <div class="flex flex-wrap gap-3">
             <button

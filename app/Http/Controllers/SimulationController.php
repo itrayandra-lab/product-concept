@@ -297,13 +297,38 @@ class SimulationController extends Controller
             return (int) max(0, min(100, $simulation->progress_metadata['percentage']));
         }
 
+        // Enhanced progress calculation for async processing
         return match ($simulation->status) {
             'pending' => 0,
-            'processing' => 50, // Could be enhanced with real-time progress
+            'processing' => $this->calculateProcessingProgress($simulation),
             'completed' => 100,
             'failed' => 0,
             default => 0,
         };
+    }
+
+    /**
+     * Calculate progress for processing simulations
+     */
+    protected function calculateProcessingProgress(SimulationHistory $simulation): int
+    {
+        if (!$simulation->processing_started_at) {
+            return 10; // Job dispatched but not started
+        }
+
+        $elapsed = now()->diffInSeconds($simulation->processing_started_at);
+        
+        // Estimate progress based on elapsed time
+        // n8n workflow typically takes 60-120 seconds
+        if ($elapsed < 30) {
+            return 25; // Initial processing
+        } elseif ($elapsed < 60) {
+            return 50; // Mid processing
+        } elseif ($elapsed < 90) {
+            return 75; // Near completion
+        } else {
+            return 90; // Almost done
+        }
     }
 
     /**
@@ -324,11 +349,22 @@ class SimulationController extends Controller
         }
 
         if (!$simulation->processing_started_at) {
+            // Job not started yet, estimate 2-3 minutes total
             return now()->addMinutes(2)->toIso8601String();
         }
 
         $elapsed = now()->diffInSeconds($simulation->processing_started_at);
-        $remaining = max(120 - $elapsed, 10); // Assume 120 seconds total, minimum 10 seconds remaining
+        
+        // Enhanced estimation based on n8n workflow timing
+        if ($elapsed < 30) {
+            $remaining = 90; // Still early, estimate 90 seconds remaining
+        } elseif ($elapsed < 60) {
+            $remaining = 60; // Mid-way, estimate 60 seconds remaining
+        } elseif ($elapsed < 90) {
+            $remaining = 30; // Near completion, estimate 30 seconds remaining
+        } else {
+            $remaining = 10; // Should be done soon, minimum 10 seconds
+        }
 
         return now()->addSeconds($remaining)->toIso8601String();
     }

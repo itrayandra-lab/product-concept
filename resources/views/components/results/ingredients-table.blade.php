@@ -1,7 +1,7 @@
 @props(['result' => []])
 
 @php
-    $ingredients = collect(data_get($result, 'ingredients', []));
+    $ingredients = collect(data_get($result, 'ingredients_analysis.active_ingredients', []));
 @endphp
 
 <section class="card space-y-5">
@@ -29,9 +29,9 @@
                             <p class="font-semibold text-slate-900">{{ data_get($ingredient, 'name') }}</p>
                             <p class="text-xs text-slate-400">{{ data_get($ingredient, 'inci_name') }}</p>
                         </td>
-                        <td class="px-4 py-3">{{ data_get($ingredient, 'effect') }}</td>
+                        <td class="px-4 py-3">{{ data_get($ingredient, 'function') }}</td>
                         <td class="px-4 py-3 font-semibold text-slate-900">
-                            {{ data_get($ingredient, 'recommended_concentration') ?? data_get($ingredient, 'concentration') ?? '—' }}
+                            {{ data_get($ingredient, 'concentration') ?? '—' }}
                         </td>
                     </tr>
                 @empty
@@ -46,10 +46,10 @@
     <div class="space-y-3">
         <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">Referensi Penelitian</p>
         <div class="space-y-3">
-            @forelse (collect(data_get($result, 'references', [])) as $reference)
+            @forelse (collect(data_get($result, 'scientific_references', [])) as $reference)
                 <div class="rounded-2xl border border-slate-100 p-4 text-sm">
                     <p class="font-semibold text-slate-900">{{ data_get($reference, 'title') }}</p>
-                    <p class="text-xs text-slate-500">{{ data_get($reference, 'authors') }} · {{ data_get($reference, 'year') }}</p>
+                    <p class="text-xs text-slate-500">{{ implode(', ', data_get($reference, 'authors', [])) }} · {{ data_get($reference, 'year') }}</p>
                     @if ($doi = data_get($reference, 'doi'))
                         <a href="https://doi.org/{{ $doi }}" target="_blank" class="mt-1 inline-flex items-center gap-2 text-xs font-semibold text-orange-600">
                             DOI {{ $doi }}

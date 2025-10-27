@@ -18,6 +18,7 @@ class SimulationLoadTest extends TestCase
     {
         parent::setUp();
         Http::preventStrayRequests();
+        config(['services.n8n.mock_enabled' => true]); // Use mock mode for load testing
     }
 
     /** @test */
