@@ -53,7 +53,7 @@ The **AI Skincare Product Simulator** is an intelligent platform that leverages 
 - **🔄 Real-time Updates**: Live progress tracking and status updates
 - **🛡️ Error Handling**: Comprehensive retry logic and graceful degradation
 - **📈 Analytics**: User behavior tracking and simulation metrics
-- **🔐 Authentication**: JWT-based auth with Google OAuth integration
+- **🔐 Authentication**: Session-based authentication with Google OAuth integration
 - **📊 Rate Limiting**: Tier-based quotas (Free, Premium, Enterprise)
 
 ## 🛠️ Tech Stack
