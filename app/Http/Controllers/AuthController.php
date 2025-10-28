@@ -34,7 +34,6 @@ class AuthController extends Controller
             'password' => 'required|string|min:8|confirmed',
             'phone' => 'nullable|string|max:20',
             'company' => 'nullable|string|max:255',
-            'terms_accepted' => 'required|boolean|accepted',
         ]);
 
         $user = User::create([
@@ -43,8 +42,8 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
             'phone' => $request->phone,
             'company' => $request->company,
-            'terms_accepted' => $request->terms_accepted,
-            'terms_accepted_at' => now(),
+            'terms_accepted' => false,
+            'terms_accepted_at' => null,
             'subscription_tier' => 'free',
             'permissions' => ['basic'],
             'daily_simulation_count' => 0,

@@ -244,16 +244,16 @@ class ExportService
         $data = [
             'simulation_id' => 'sim_' . str_pad($simulation->id, 16, '0', STR_PAD_LEFT),
             'generated_at' => $simulation->processing_completed_at?->toIso8601String(),
-            'processing_time' => $simulation->processing_duration_seconds . ' seconds',
+            'processing_time' => ($simulation->processing_duration_seconds ?? 0) . ' seconds',
         ];
 
         // Product Overview
         if (in_array('product_overview', $sections)) {
             $data['product_overview'] = [
-                'product_name' => $outputData['product_name'] ?? 'N/A',
-                'tagline' => $outputData['tagline'] ?? 'N/A',
+                'product_name' => $outputData['selected_name'] ?? $outputData['product_name'] ?? 'N/A',
+                'tagline' => $outputData['selected_tagline'] ?? $outputData['tagline'] ?? 'N/A',
                 'description' => $outputData['description'] ?? 'N/A',
-                'alternative_names' => $outputData['alternative_names'] ?? [],
+                'alternative_names' => $outputData['product_names'] ?? $outputData['alternative_names'] ?? [],
                 'formulation_type' => $inputData['bentuk_formulasi'] ?? 'N/A',
                 'volume' => ($inputData['volume'] ?? 'N/A') . ' ' . ($inputData['volume_unit'] ?? ''),
                 'target_market' => [
@@ -292,9 +292,13 @@ class ExportService
         // Marketing
         if (in_array('marketing', $sections)) {
             $data['marketing'] = [
-                'copy' => $outputData['marketing_copy'] ?? 'N/A',
+                'copy' => $outputData['marketing_copywriting']['body_copy'] ?? $outputData['marketing_copy'] ?? 'N/A',
+                'headline' => $outputData['marketing_copywriting']['headline'] ?? 'N/A',
+                'sub_headline' => $outputData['marketing_copywriting']['sub_headline'] ?? 'N/A',
                 'key_selling_points' => $outputData['marketing_suggestions']['key_selling_points'] ?? [],
                 'target_channels' => $outputData['marketing_suggestions']['target_channels'] ?? [],
+                'social_captions' => $outputData['marketing_copywriting']['social_media_captions'] ?? [],
+                'email_subjects' => $outputData['marketing_copywriting']['email_subject_lines'] ?? [],
                 'whatsapp_cta' => $outputData['cta_whatsapp_url'] ?? null,
             ];
         }
@@ -311,15 +315,293 @@ class ExportService
     protected function generatePdfContent(array $data): string
     {
         try {
-            // Generate PDF using DomPDF with Blade template
-            $pdf = Pdf::loadView('exports.simulation', $data);
+            // Create comprehensive HTML content
+            $html = '<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Simulation Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        h1 { color: #2c3e50; font-size: 28px; margin-bottom: 10px; }
+        h2 { color: #34495e; font-size: 20px; margin: 25px 0 15px 0; border-bottom: 2px solid #ecf0f1; padding-bottom: 8px; }
+        h3 { color: #34495e; font-size: 16px; margin: 20px 0 10px 0; }
+        .info { margin: 8px 0; }
+        .section { margin-bottom: 25px; page-break-inside: avoid; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f8f9fa; font-weight: bold; }
+        .pricing-grid { display: table; width: 100%; margin: 15px 0; }
+        .pricing-item { display: table-cell; width: 33.33%; padding: 15px; text-align: center; border: 1px solid #ddd; }
+        .pricing-label { font-size: 12px; color: #666; text-transform: uppercase; }
+        .pricing-value { font-size: 18px; font-weight: bold; margin: 5px 0; }
+        .list-item { margin: 5px 0; padding-left: 15px; }
+        .trending-item { border: 1px solid #ddd; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .trend-status { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; }
+        .status-peak { background: #fee; color: #c00; }
+        .status-rising { background: #ffe4cc; color: #d84315; }
+        .status-steady { background: #e3f2fd; color: #1976d2; }
+        .status-declining { background: #f5f5f5; color: #666; }
+    </style>
+</head>
+<body>
+    <h1>AI Skincare Product Simulator</h1>
+    <h2>Simulation Report</h2>
+    
+    <div class="section">
+        <h3>Simulation Details</h3>
+        <div class="info"><strong>Simulation ID:</strong> ' . htmlspecialchars($data['simulation_id'] ?? 'N/A') . '</div>
+        <div class="info"><strong>Generated At:</strong> ' . htmlspecialchars($data['generated_at'] ?? 'N/A') . '</div>
+        <div class="info"><strong>Processing Time:</strong> ' . htmlspecialchars($data['processing_time'] ?? 'N/A') . '</div>
+    </div>';
+            
+            // Product Overview
+            if (isset($data['product_overview'])) {
+                $po = $data['product_overview'];
+                $html .= '
+    <div class="section">
+        <h2>Product Overview</h2>
+        <div class="info"><strong>Product Name:</strong> ' . htmlspecialchars($po['product_name'] ?? 'N/A') . '</div>
+        <div class="info"><strong>Tagline:</strong> ' . htmlspecialchars($po['tagline'] ?? 'N/A') . '</div>
+        <div class="info"><strong>Description:</strong><br>' . nl2br(htmlspecialchars($po['description'] ?? 'N/A')) . '</div>';
+                
+                if (isset($po['alternative_names']) && count($po['alternative_names']) > 0) {
+                    $html .= '<div class="info"><strong>Alternative Names:</strong> ' . implode(', ', array_map('htmlspecialchars', $po['alternative_names'])) . '</div>';
+                }
+                
+                if (isset($po['target_market'])) {
+                    $tm = $po['target_market'];
+                    $html .= '
+        <h3>Target Market</h3>
+        <div class="info"><strong>Gender:</strong> ' . htmlspecialchars($tm['gender'] ?? 'N/A') . '</div>
+        <div class="info"><strong>Age Ranges:</strong> ' . htmlspecialchars(implode(', ', $tm['age_ranges'] ?? [])) . '</div>
+        <div class="info"><strong>Country:</strong> ' . htmlspecialchars($tm['country'] ?? 'N/A') . '</div>';
+                }
+                
+                $html .= '</div>';
+            }
+            
+            // Ingredients Analysis
+            if (isset($data['ingredients'])) {
+                $ingredients = $data['ingredients'];
+                $html .= '
+    <div class="section">
+        <h2>Ingredients Analysis</h2>';
+                
+                if (isset($ingredients['active_ingredients']) && count($ingredients['active_ingredients']) > 0) {
+                    $html .= '
+        <h3>Active Ingredients</h3>
+        <table>
+            <tr><th>Ingredient</th><th>INCI Name</th><th>Function</th><th>Concentration</th></tr>';
+                    
+                    foreach ($ingredients['active_ingredients'] as $ingredient) {
+                        $html .= '<tr>
+                            <td>' . htmlspecialchars($ingredient['name'] ?? 'N/A') . '</td>
+                            <td>' . htmlspecialchars($ingredient['inci_name'] ?? 'N/A') . '</td>
+                            <td>' . htmlspecialchars($ingredient['function'] ?? 'N/A') . '</td>
+                            <td>' . htmlspecialchars($ingredient['concentration'] ?? 'N/A') . '</td>
+                        </tr>';
+                    }
+                    
+                    $html .= '</table>';
+                }
+                
+                if (isset($ingredients['compatibility_score'])) {
+                    $html .= '<div class="info"><strong>Compatibility Score:</strong> ' . htmlspecialchars($ingredients['compatibility_score']) . '</div>';
+                }
+                
+                if (isset($ingredients['safety_assessment'])) {
+                    $html .= '<div class="info"><strong>Safety Assessment:</strong> ' . htmlspecialchars($ingredients['safety_assessment']) . '</div>';
+                }
+                
+                $html .= '</div>';
+            }
+            
+            // Market Analysis
+            if (isset($data['market_analysis'])) {
+                $ma = $data['market_analysis'];
+                $html .= '
+    <div class="section">
+        <h2>Market Analysis</h2>';
+                
+                if (isset($ma['target_price_range'])) {
+                    $pricing = $ma['target_price_range'];
+                    $hpp = $pricing['min'] ?? 0;
+                    $srp = $pricing['recommended'] ?? 0;
+                    $margin = $srp > 0 ? round((($srp - $hpp) / $srp) * 100) : 0;
+                    
+                    $html .= '
+        <h3>Pricing Analysis</h3>
+        <div class="pricing-grid">
+            <div class="pricing-item">
+                <div class="pricing-label">HPP (Cost)</div>
+                <div class="pricing-value">IDR ' . number_format($hpp, 0, ',', '.') . '</div>
+            </div>
+            <div class="pricing-item">
+                <div class="pricing-label">SRP (Retail)</div>
+                <div class="pricing-value">IDR ' . number_format($srp, 0, ',', '.') . '</div>
+            </div>
+            <div class="pricing-item">
+                <div class="pricing-label">Margin</div>
+                <div class="pricing-value">' . $margin . '%</div>
+            </div>
+        </div>';
+                }
+                
+                if (isset($ma['competitor_analysis']) && count($ma['competitor_analysis']) > 0) {
+                    $html .= '
+        <h3>Competitor Analysis</h3>
+        <table>
+            <tr><th>Brand</th><th>Marketplace</th><th>Positioning</th><th>Price</th><th>Volume</th></tr>';
+                    
+                    foreach ($ma['competitor_analysis'] as $competitor) {
+                        $html .= '<tr>
+                            <td>' . htmlspecialchars($competitor['brand'] ?? 'N/A') . '</td>
+                            <td>' . htmlspecialchars($competitor['marketplace'] ?? 'N/A') . '</td>
+                            <td>' . htmlspecialchars($competitor['positioning'] ?? 'N/A') . '</td>
+                            <td>IDR ' . number_format($competitor['price'] ?? 0, 0, ',', '.') . '</td>
+                            <td>' . htmlspecialchars($competitor['volume'] ?? 'N/A') . '</td>
+                        </tr>';
+                    }
+                    
+                    $html .= '</table>';
+                }
+                
+                if (isset($data['strategy'])) {
+                    $html .= '<div class="info"><strong>Distribution Strategy:</strong> ' . htmlspecialchars($data['strategy']) . '</div>';
+                }
+                
+                $html .= '</div>';
+            }
+            
+            // Market Potential
+            if (isset($data['market_potential'])) {
+                $mp = $data['market_potential'];
+                $html .= '
+    <div class="section">
+        <h2>Market Potential</h2>';
+                
+                if (isset($mp['total_addressable_market'])) {
+                    $tam = $mp['total_addressable_market'];
+                    $html .= '
+        <h3>Total Addressable Market (TAM)</h3>
+        <div class="info"><strong>Segment:</strong> ' . htmlspecialchars($tam['segment'] ?? 'N/A') . '</div>
+        <div class="info"><strong>Estimated Size:</strong> ' . number_format($tam['estimated_size'] ?? 0) . ' customers</div>
+        <div class="info"><strong>Market Value:</strong> IDR ' . number_format($tam['value_idr'] ?? 0, 0, ',', '.') . '</div>';
+                }
+                
+                if (isset($mp['revenue_projections'])) {
+                    $rp = $mp['revenue_projections'];
+                    $html .= '
+        <h3>Revenue Projections</h3>
+        <div class="info"><strong>Monthly Units:</strong> ' . number_format($rp['monthly_units'] ?? 0) . '</div>
+        <div class="info"><strong>Monthly Revenue:</strong> IDR ' . number_format($rp['monthly_revenue'] ?? 0, 0, ',', '.') . '</div>
+        <div class="info"><strong>Yearly Revenue:</strong> IDR ' . number_format($rp['yearly_revenue'] ?? 0, 0, ',', '.') . '</div>';
+                }
+                
+                if (isset($mp['growth_opportunities']) && count($mp['growth_opportunities']) > 0) {
+                    $html .= '<h3>Growth Opportunities</h3>';
+                    foreach ($mp['growth_opportunities'] as $opportunity) {
+                        $html .= '<div class="list-item">• ' . htmlspecialchars($opportunity) . '</div>';
+                    }
+                }
+                
+                if (isset($mp['risk_factors']) && count($mp['risk_factors']) > 0) {
+                    $html .= '<h3>Risk Factors</h3>';
+                    foreach ($mp['risk_factors'] as $risk) {
+                        $html .= '<div class="list-item">• ' . htmlspecialchars($risk) . '</div>';
+                    }
+                }
+                
+                $html .= '</div>';
+            }
+            
+            // Key Trends
+            if (isset($data['key_trends'])) {
+                $kt = $data['key_trends'];
+                $html .= '
+    <div class="section">
+        <h2>Key Market Trends</h2>';
+                
+                if (isset($kt['trending_ingredients']) && count($kt['trending_ingredients']) > 0) {
+                    $html .= '<h3>Trending Ingredients</h3>';
+                    foreach ($kt['trending_ingredients'] as $ingredient) {
+                        $status = $ingredient['trend_status'] ?? '';
+                        $statusClass = 'status-' . strtolower($status);
+                        $html .= '<div class="trending-item">
+                            <strong>' . htmlspecialchars($ingredient['name'] ?? 'N/A') . '</strong>
+                            <span class="trend-status ' . $statusClass . '">' . htmlspecialchars($status) . '</span><br>
+                            <small>Search Trend: ' . htmlspecialchars($ingredient['google_search_trend'] ?? 'N/A') . ' | 
+                            Awareness: ' . htmlspecialchars($ingredient['consumer_awareness'] ?? 'N/A') . '</small>
+                        </div>';
+                    }
+                }
+                
+                if (isset($kt['market_movements']) && count($kt['market_movements']) > 0) {
+                    $html .= '<h3>Market Movements</h3>';
+                    foreach ($kt['market_movements'] as $movement) {
+                        $html .= '<div class="list-item">• ' . htmlspecialchars($movement) . '</div>';
+                    }
+                }
+                
+                if (isset($kt['competitive_landscape'])) {
+                    $html .= '<h3>Competitive Landscape</h3>
+                    <div class="info">' . htmlspecialchars($kt['competitive_landscape']) . '</div>';
+                }
+                
+                $html .= '</div>';
+            }
+            
+            // Marketing Copywriting
+            if (isset($data['marketing'])) {
+                $marketing = $data['marketing'];
+                $html .= '
+    <div class="section">
+        <h2>Marketing Copywriting</h2>';
+                
+                if (isset($marketing['headline']) && $marketing['headline'] !== 'N/A') {
+                    $html .= '<h3>Headline</h3>
+                    <div class="info" style="font-size: 16px; font-weight: bold; color: #2c3e50;">' . htmlspecialchars($marketing['headline']) . '</div>';
+                }
+                
+                if (isset($marketing['sub_headline']) && $marketing['sub_headline'] !== 'N/A') {
+                    $html .= '<h3>Sub Headline</h3>
+                    <div class="info" style="font-size: 14px; color: #7f8c8d;">' . htmlspecialchars($marketing['sub_headline']) . '</div>';
+                }
+                
+                if (isset($marketing['copy']) && $marketing['copy'] !== 'N/A') {
+                    $html .= '<h3>Main Copy</h3>
+                    <div class="info">' . nl2br(htmlspecialchars($marketing['copy'])) . '</div>';
+                }
+                
+                if (isset($marketing['key_selling_points']) && count($marketing['key_selling_points']) > 0) {
+                    $html .= '<h3>Key Selling Points</h3>';
+                    foreach ($marketing['key_selling_points'] as $point) {
+                        $html .= '<div class="list-item">• ' . htmlspecialchars($point) . '</div>';
+                    }
+                }
+                
+                if (isset($marketing['target_channels']) && count($marketing['target_channels']) > 0) {
+                    $html .= '<h3>Target Channels</h3>
+                    <div class="info">' . implode(', ', array_map('htmlspecialchars', $marketing['target_channels'])) . '</div>';
+                }
+                
+                $html .= '</div>';
+            }
+            
+            $html .= '
+</body>
+</html>';
+
+            // Generate PDF using DomPDF
+            $pdf = Pdf::loadHTML($html);
             
             // Set PDF options
             $pdf->setPaper('A4', 'portrait');
             $pdf->setOptions([
                 'isHtml5ParserEnabled' => true,
-                'isRemoteEnabled' => true,
-                'defaultFont' => 'DejaVu Sans',
+                'isRemoteEnabled' => false,
+                'defaultFont' => 'Arial',
             ]);
             
             return $pdf->output();
@@ -328,6 +610,7 @@ class ExportService
             Log::error('PDF generation failed', [
                 'error' => $e->getMessage(),
                 'data_keys' => array_keys($data),
+                'trace' => $e->getTraceAsString(),
             ]);
             
             // Fallback to simple text content
@@ -400,14 +683,31 @@ class ExportService
             if (isset($data['ingredients'])) {
                 $section->addTitle('Ingredients Analysis', 2);
                 
-                if (isset($data['ingredients']['active_ingredients'])) {
+                if (isset($data['ingredients']['active_ingredients']) && count($data['ingredients']['active_ingredients']) > 0) {
                     $section->addText('Active Ingredients:', ['bold' => true]);
+                    
+                    // Create table for ingredients
+                    $table = $section->addTable([
+                        'borderSize' => 6,
+                        'borderColor' => '999999',
+                        'cellMargin' => 80,
+                    ]);
+                    
+                    $table->addRow();
+                    $table->addCell(2000)->addText('Ingredient', ['bold' => true]);
+                    $table->addCell(2000)->addText('INCI Name', ['bold' => true]);
+                    $table->addCell(3000)->addText('Function', ['bold' => true]);
+                    $table->addCell(1500)->addText('Concentration', ['bold' => true]);
+                    
                     foreach ($data['ingredients']['active_ingredients'] as $ingredient) {
-                        $section->addText('• ' . ($ingredient['name'] ?? 'N/A') . 
-                            ' (' . ($ingredient['concentration'] ?? 'N/A') . ')', [
-                            'indentation' => ['left' => 360],
-                        ]);
+                        $table->addRow();
+                        $table->addCell(2000)->addText($ingredient['name'] ?? 'N/A');
+                        $table->addCell(2000)->addText($ingredient['inci_name'] ?? 'N/A');
+                        $table->addCell(3000)->addText($ingredient['function'] ?? 'N/A');
+                        $table->addCell(1500)->addText($ingredient['concentration'] ?? 'N/A');
                     }
+                    
+                    $section->addTextBreak();
                 }
                 
                 if (isset($data['ingredients']['compatibility_score'])) {
@@ -426,11 +726,194 @@ class ExportService
             // Market Analysis
             if (isset($data['market_analysis'])) {
                 $section->addTitle('Market Analysis', 2);
-                if (isset($data['market_analysis']['competitor_analysis'])) {
-                    $section->addText('Competitor Analysis: ' . $data['market_analysis']['competitor_analysis']);
+                
+                if (isset($data['market_analysis']['target_price_range'])) {
+                    $pricing = $data['market_analysis']['target_price_range'];
+                    $hpp = $pricing['min'] ?? 0;
+                    $srp = $pricing['recommended'] ?? 0;
+                    $margin = $srp > 0 ? round((($srp - $hpp) / $srp) * 100) : 0;
+                    
+                    $section->addText('Pricing Analysis:', ['bold' => true]);
+                    $section->addText('HPP (Cost): IDR ' . number_format($hpp, 0, ',', '.'), [
+                        'indentation' => ['left' => 360],
+                    ]);
+                    $section->addText('SRP (Retail): IDR ' . number_format($srp, 0, ',', '.'), [
+                        'indentation' => ['left' => 360],
+                    ]);
+                    $section->addText('Margin: ' . $margin . '%', [
+                        'indentation' => ['left' => 360],
+                    ]);
                 }
-                if (isset($data['market_analysis']['market_trends'])) {
-                    $section->addText('Market Trends: ' . $data['market_analysis']['market_trends']);
+                
+                if (isset($data['market_analysis']['competitor_analysis']) && count($data['market_analysis']['competitor_analysis']) > 0) {
+                    $section->addTextBreak();
+                    $section->addText('Competitor Analysis:', ['bold' => true]);
+                    
+                    $table = $section->addTable([
+                        'borderSize' => 6,
+                        'borderColor' => '999999',
+                        'cellMargin' => 80,
+                    ]);
+                    
+                    $table->addRow();
+                    $table->addCell(2000)->addText('Brand', ['bold' => true]);
+                    $table->addCell(2000)->addText('Marketplace', ['bold' => true]);
+                    $table->addCell(2500)->addText('Positioning', ['bold' => true]);
+                    $table->addCell(1500)->addText('Price', ['bold' => true]);
+                    $table->addCell(1000)->addText('Volume', ['bold' => true]);
+                    
+                    foreach ($data['market_analysis']['competitor_analysis'] as $competitor) {
+                        $table->addRow();
+                        $table->addCell(2000)->addText($competitor['brand'] ?? 'N/A');
+                        $table->addCell(2000)->addText($competitor['marketplace'] ?? 'N/A');
+                        $table->addCell(2500)->addText($competitor['positioning'] ?? 'N/A');
+                        $table->addCell(1500)->addText('IDR ' . number_format($competitor['price'] ?? 0, 0, ',', '.'));
+                        $table->addCell(1000)->addText($competitor['volume'] ?? 'N/A');
+                    }
+                }
+                
+                if (isset($data['strategy'])) {
+                    $section->addTextBreak();
+                    $section->addText('Distribution Strategy: ' . $data['strategy']);
+                }
+                $section->addTextBreak();
+            }
+            
+            // Market Potential
+            if (isset($data['market_potential'])) {
+                $section->addTitle('Market Potential', 2);
+                
+                if (isset($data['market_potential']['total_addressable_market'])) {
+                    $tam = $data['market_potential']['total_addressable_market'];
+                    $section->addText('Total Addressable Market (TAM):', ['bold' => true]);
+                    $section->addText('Segment: ' . ($tam['segment'] ?? 'N/A'), [
+                        'indentation' => ['left' => 360],
+                    ]);
+                    $section->addText('Estimated Size: ' . number_format($tam['estimated_size'] ?? 0) . ' customers', [
+                        'indentation' => ['left' => 360],
+                    ]);
+                    $section->addText('Market Value: IDR ' . number_format($tam['value_idr'] ?? 0, 0, ',', '.'), [
+                        'indentation' => ['left' => 360],
+                    ]);
+                }
+                
+                if (isset($data['market_potential']['revenue_projections'])) {
+                    $rp = $data['market_potential']['revenue_projections'];
+                    $section->addTextBreak();
+                    $section->addText('Revenue Projections:', ['bold' => true]);
+                    $section->addText('Monthly Units: ' . number_format($rp['monthly_units'] ?? 0), [
+                        'indentation' => ['left' => 360],
+                    ]);
+                    $section->addText('Monthly Revenue: IDR ' . number_format($rp['monthly_revenue'] ?? 0, 0, ',', '.'), [
+                        'indentation' => ['left' => 360],
+                    ]);
+                    $section->addText('Yearly Revenue: IDR ' . number_format($rp['yearly_revenue'] ?? 0, 0, ',', '.'), [
+                        'indentation' => ['left' => 360],
+                    ]);
+                }
+                
+                if (isset($data['market_potential']['growth_opportunities']) && count($data['market_potential']['growth_opportunities']) > 0) {
+                    $section->addTextBreak();
+                    $section->addText('Growth Opportunities:', ['bold' => true]);
+                    foreach ($data['market_potential']['growth_opportunities'] as $opportunity) {
+                        $section->addText('• ' . $opportunity, [
+                            'indentation' => ['left' => 360],
+                        ]);
+                    }
+                }
+                
+                if (isset($data['market_potential']['risk_factors']) && count($data['market_potential']['risk_factors']) > 0) {
+                    $section->addTextBreak();
+                    $section->addText('Risk Factors:', ['bold' => true]);
+                    foreach ($data['market_potential']['risk_factors'] as $risk) {
+                        $section->addText('• ' . $risk, [
+                            'indentation' => ['left' => 360],
+                        ]);
+                    }
+                }
+                $section->addTextBreak();
+            }
+            
+            // Key Trends
+            if (isset($data['key_trends'])) {
+                $section->addTitle('Key Market Trends', 2);
+                
+                if (isset($data['key_trends']['trending_ingredients']) && count($data['key_trends']['trending_ingredients']) > 0) {
+                    $section->addText('Trending Ingredients:', ['bold' => true]);
+                    foreach ($data['key_trends']['trending_ingredients'] as $ingredient) {
+                        $section->addText('• ' . ($ingredient['name'] ?? 'N/A') . 
+                            ' (' . ($ingredient['trend_status'] ?? 'N/A') . ')', [
+                            'indentation' => ['left' => 360],
+                        ]);
+                        $section->addText('  Search Trend: ' . ($ingredient['google_search_trend'] ?? 'N/A') . 
+                            ' | Awareness: ' . ($ingredient['consumer_awareness'] ?? 'N/A'), [
+                            'indentation' => ['left' => 720],
+                            'size' => 10,
+                            'color' => '666666',
+                        ]);
+                    }
+                }
+                
+                if (isset($data['key_trends']['market_movements']) && count($data['key_trends']['market_movements']) > 0) {
+                    $section->addTextBreak();
+                    $section->addText('Market Movements:', ['bold' => true]);
+                    foreach ($data['key_trends']['market_movements'] as $movement) {
+                        $section->addText('• ' . $movement, [
+                            'indentation' => ['left' => 360],
+                        ]);
+                    }
+                }
+                
+                if (isset($data['key_trends']['competitive_landscape'])) {
+                    $section->addTextBreak();
+                    $section->addText('Competitive Landscape: ' . $data['key_trends']['competitive_landscape']);
+                }
+                $section->addTextBreak();
+            }
+            
+            // Marketing Copywriting
+            if (isset($data['marketing'])) {
+                $section->addTitle('Marketing Copywriting', 2);
+                
+                if (isset($data['marketing']['headline']) && $data['marketing']['headline'] !== 'N/A') {
+                    $section->addText('Headline:', ['bold' => true]);
+                    $section->addText($data['marketing']['headline'], [
+                        'indentation' => ['left' => 360],
+                        'size' => 14,
+                        'color' => '2c3e50',
+                    ]);
+                }
+                
+                if (isset($data['marketing']['sub_headline']) && $data['marketing']['sub_headline'] !== 'N/A') {
+                    $section->addText('Sub Headline:', ['bold' => true]);
+                    $section->addText($data['marketing']['sub_headline'], [
+                        'indentation' => ['left' => 360],
+                        'size' => 12,
+                        'color' => '7f8c8d',
+                    ]);
+                }
+                
+                if (isset($data['marketing']['copy']) && $data['marketing']['copy'] !== 'N/A') {
+                    $section->addTextBreak();
+                    $section->addText('Main Copy:', ['bold' => true]);
+                    $section->addText($data['marketing']['copy'], [
+                        'indentation' => ['left' => 360],
+                    ]);
+                }
+                
+                if (isset($data['marketing']['key_selling_points']) && count($data['marketing']['key_selling_points']) > 0) {
+                    $section->addTextBreak();
+                    $section->addText('Key Selling Points:', ['bold' => true]);
+                    foreach ($data['marketing']['key_selling_points'] as $point) {
+                        $section->addText('• ' . $point, [
+                            'indentation' => ['left' => 360],
+                        ]);
+                    }
+                }
+                
+                if (isset($data['marketing']['target_channels']) && count($data['marketing']['target_channels']) > 0) {
+                    $section->addTextBreak();
+                    $section->addText('Target Channels: ' . implode(', ', $data['marketing']['target_channels']));
                 }
                 $section->addTextBreak();
             }

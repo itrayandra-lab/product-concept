@@ -23,6 +23,32 @@
                 AI Skincare Simulator
             </a>
             <div class="mt-10 space-y-8">
+                @guest
+                    <div class="space-y-3">
+                        <a href="{{ route('login') }}" class="block w-full rounded-xl border border-slate-200 px-4 py-2 text-center text-sm font-semibold text-slate-700 transition hover:border-slate-300">
+                            Masuk
+                        </a>
+                        <a href="{{ route('register') }}" class="block w-full rounded-xl bg-orange-500 px-4 py-2 text-center text-sm font-semibold text-white transition hover:bg-orange-600">
+                            Daftar
+                        </a>
+                    </div>
+                @endguest
+
+                @auth
+                    <div class="space-y-3">
+                        <div class="rounded-xl bg-slate-50 p-3">
+                            <p class="text-xs font-semibold text-slate-500">Selamat datang</p>
+                            <p class="text-sm font-medium text-slate-900">{{ auth()->user()->name }}</p>
+                        </div>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="block w-full rounded-xl border border-slate-200 px-4 py-2 text-center text-sm font-semibold text-slate-700 transition hover:border-slate-300">
+                                Keluar
+                            </button>
+                        </form>
+                    </div>
+                @endauth
+
                 <div>
                     <p class="text-sm uppercase tracking-wide text-slate-400">Langkah Simulasi</p>
                     <ul class="mt-4 space-y-3 text-sm text-slate-600">
@@ -35,7 +61,7 @@
                 <div class="rounded-2xl bg-slate-50 p-4">
                     <p class="text-sm font-semibold text-slate-700">Butuh bantuan?</p>
                     <p class="mt-2 text-sm text-slate-500">Hubungi tim R&D kami via WhatsApp untuk konsultasi cepat.</p>
-                    <a href="https://wa.me/6281111111" class="mt-4 inline-flex items-center justify-center rounded-xl bg-emerald-500 px-4 py-2 text-sm font-medium text-white">Hubungi Kami</a>
+                    <a href="https://wa.me/6289510431269" class="mt-4 inline-flex items-center justify-center rounded-xl bg-emerald-500 px-4 py-2 text-sm font-medium text-white">Hubungi Kami</a>
                 </div>
             </div>
             <p class="mt-auto text-xs text-slate-400">&copy; {{ date('Y') }} AI Skincare Simulator</p>
@@ -45,6 +71,35 @@
             {{ $slot ?? '' }}
             @yield('content')
         </main>
+    </div>
+
+    <!-- Mobile Auth Buttons (visible on small screens) -->
+    <div class="fixed bottom-4 left-4 right-4 z-50 lg:hidden">
+        @guest
+            <div class="flex gap-3">
+                <a href="{{ route('login') }}" class="flex-1 rounded-xl border border-slate-200 bg-white px-4 py-3 text-center text-sm font-semibold text-slate-700 shadow-lg">
+                    Masuk
+                </a>
+                <a href="{{ route('register') }}" class="flex-1 rounded-xl bg-orange-500 px-4 py-3 text-center text-sm font-semibold text-white shadow-lg">
+                    Daftar
+                </a>
+            </div>
+        @endguest
+
+        @auth
+            <div class="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-3 shadow-lg">
+                <div class="flex-1">
+                    <p class="text-xs text-slate-500">Selamat datang</p>
+                    <p class="text-sm font-medium text-slate-900">{{ auth()->user()->name }}</p>
+                </div>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700">
+                        Keluar
+                    </button>
+                </form>
+            </div>
+        @endauth
     </div>
 
     <x-common.toast-stack />

@@ -23,15 +23,26 @@
 
         <div class="hidden items-center gap-6 text-sm font-medium text-slate-600 md:flex">
             <a href="{{ route('simulator') }}" class="hover:text-slate-900">Simulator</a>
-            <a href="{{ route('simulations.history') }}" class="hover:text-slate-900">Riwayat</a>
-            <a href="{{ route('ingredients.index') }}" class="hover:text-slate-900">Database Bahan</a>
-            <a href="{{ route('docs.index') }}" class="hover:text-slate-900">Dokumentasi</a>
         </div>
 
-        <div class="hidden items-center gap-3 md:flex">
-            <a href="{{ route('login') }}" class="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300">Masuk</a>
-            <a href="{{ route('register') }}" class="inline-flex items-center rounded-xl bg-orange-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-orange-600">Daftar</a>
-        </div>
+        @guest
+            <div class="hidden items-center gap-3 md:flex">
+                <a href="{{ route('login') }}" class="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300">Masuk</a>
+                <a href="{{ route('register') }}" class="inline-flex items-center rounded-xl bg-orange-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-orange-600">Daftar</a>
+            </div>
+        @endguest
+
+        @auth
+            <div class="hidden items-center gap-3 md:flex">
+                <span class="text-sm text-slate-600">{{ auth()->user()->name }}</span>
+                <form method="POST" action="{{ route('logout') }}" class="inline">
+                    @csrf
+                    <button type="submit" class="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300">
+                        Keluar
+                    </button>
+                </form>
+            </div>
+        @endauth
     </div>
 
     <div
@@ -44,13 +55,27 @@
     >
         <div class="space-y-3 border-t border-slate-100 bg-white px-4 py-4 text-sm font-medium text-slate-600">
             <a href="{{ route('simulator') }}" class="block rounded-2xl px-3 py-2 hover:bg-slate-50">Simulator</a>
-            <a href="{{ route('simulations.history') }}" class="block rounded-2xl px-3 py-2 hover:bg-slate-50">Riwayat</a>
-            <a href="{{ route('ingredients.index') }}" class="block rounded-2xl px-3 py-2 hover:bg-slate-50">Database Bahan</a>
-            <a href="{{ route('docs.index') }}" class="block rounded-2xl px-3 py-2 hover:bg-slate-50">Dokumentasi</a>
-            <div class="flex flex-col gap-3 pt-3">
-                <a href="{{ route('login') }}" class="rounded-2xl border border-slate-200 px-4 py-2 text-center text-sm font-semibold text-slate-700 transition hover:border-slate-300">Masuk</a>
-                <a href="{{ route('register') }}" class="rounded-2xl bg-orange-500 px-4 py-2 text-center text-sm font-semibold text-white transition hover:bg-orange-600">Daftar</a>
-            </div>
+            
+            @guest
+                <div class="flex flex-col gap-3 pt-3">
+                    <a href="{{ route('login') }}" class="rounded-2xl border border-slate-200 px-4 py-2 text-center text-sm font-semibold text-slate-700 transition hover:border-slate-300">Masuk</a>
+                    <a href="{{ route('register') }}" class="rounded-2xl bg-orange-500 px-4 py-2 text-center text-sm font-semibold text-white transition hover:bg-orange-600">Daftar</a>
+                </div>
+            @endguest
+
+            @auth
+                <div class="flex flex-col gap-3 pt-3">
+                    <div class="rounded-2xl px-3 py-2 text-center text-sm text-slate-600">
+                        {{ auth()->user()->name }}
+                    </div>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="w-full rounded-2xl border border-slate-200 px-4 py-2 text-center text-sm font-semibold text-slate-700 transition hover:border-slate-300">
+                            Keluar
+                        </button>
+                    </form>
+                </div>
+            @endauth
         </div>
     </div>
 </nav>

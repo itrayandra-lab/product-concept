@@ -37,9 +37,9 @@ class SimulationRateLimit
             $dailyCount = $user->daily_simulation_count;
             
             $limits = [
-                'free' => 50,
-                'premium' => 200,
-                'enterprise' => 1000,
+                'free' => 99999,
+                'premium' => 99999,
+                'enterprise' => 99999,
             ];
 
             $limit = $limits[$tier] ?? 3;

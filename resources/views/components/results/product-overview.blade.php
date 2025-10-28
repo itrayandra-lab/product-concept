@@ -7,7 +7,6 @@
 <section class="card space-y-6">
     <header class="flex flex-wrap items-center justify-between gap-4">
         <div>
-            <p class="text-sm uppercase tracking-[0.3em] text-orange-400">Hasil AI</p>
             <h2 class="text-2xl font-semibold text-slate-900">{{ data_get($result, 'selected_name', 'Nama Produk Belum Tersedia') }}</h2>
             <p class="mt-2 text-base text-slate-600">{{ data_get($result, 'selected_tagline', 'Tagline akan muncul setelah simulasi selesai.') }}</p>
         </div>
@@ -36,22 +35,6 @@
                 :aria-busy="$store.export.isExporting"
             >
                 <span x-show="!$store.export.isExporting">Download Word</span>
-                <span x-show="$store.export.isExporting" class="inline-flex items-center gap-2">
-                    <svg class="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" />
-                        <path class="opacity-75" fill="currentColor" d="M12 2a10 10 0 00-10 10h4a6 6 0 016-6V2z" />
-                    </svg>
-                    Menyiapkan...
-                </span>
-            </button>
-            <button
-                type="button"
-                class="btn-secondary"
-                x-on:click="$store.export.export({{ $simulationId ?? 'null' }}, 'png')"
-                x-bind:disabled="$store.export.isExporting"
-                :aria-busy="$store.export.isExporting"
-            >
-                <span x-show="!$store.export.isExporting">Download PNG</span>
                 <span x-show="$store.export.isExporting" class="inline-flex items-center gap-2">
                     <svg class="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" />

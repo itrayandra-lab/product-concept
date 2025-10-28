@@ -9,12 +9,6 @@
             <label class="text-sm font-semibold text-slate-600">Nama Lengkap</label>
             <input type="text" class="input-field mt-1" x-model="form.name" required>
         </div>
-        <div class="flex items-start gap-3 text-sm text-slate-600">
-            <input type="checkbox" class="mt-1 h-4 w-4 rounded border-slate-300 text-orange-500 focus:ring-orange-400" x-model="form.terms" id="terms">
-            <label for="terms">
-                Saya menyetujui <a href="#" class="font-semibold text-orange-600 hover:text-orange-500">Syarat & Ketentuan</a> serta kebijakan privasi.
-            </label>
-        </div>
         <div>
             <label class="text-sm font-semibold text-slate-600">Email</label>
             <input type="email" class="input-field mt-1" x-model="form.email" required>

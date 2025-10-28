@@ -558,7 +558,7 @@ class SimulationController extends Controller
 
         // Validate export format
         $format = $request->input('format', 'pdf');
-        if (!in_array($format, ['pdf', 'docx', 'json', 'png'])) {
+        if (!in_array($format, ['pdf', 'docx', 'json'])) {
             return response()->json([
                 'success' => false,
                 'message' => 'Invalid export format. Supported: pdf, docx, json',
@@ -584,7 +584,6 @@ class SimulationController extends Controller
                 'pdf' => $this->exportService->exportPdf($simulation, $options),
                 'docx' => $this->exportService->exportWord($simulation, $options),
                 'json' => $this->exportService->exportJson($simulation, $options),
-                'png' => $this->exportService->exportImage($simulation, $options),
             };
 
             Log::info('Simulation exported', [
