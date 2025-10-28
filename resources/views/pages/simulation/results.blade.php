@@ -13,25 +13,12 @@
             </div>
             <div class="flex gap-3 no-print">
                 <button type="button" class="btn-secondary" onclick="window.location.href='{{ url('/simulator') }}'">Buat Simulasi Baru</button>
-                <div class="relative" x-data="{ open: false }">
-                    <button type="button" class="btn-primary" @click="open = !open">
-                        Download
-                        <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <div x-show="open" @click.away="open = false" x-transition class="absolute right-0 mt-2 w-48 rounded-xl border border-slate-200 bg-white py-2 shadow-lg z-50">
-                        <button type="button" class="block w-full px-4 py-2 text-left text-sm text-slate-700 hover:bg-slate-50" onclick="exportSimulation('pdf')">
-                            📄 Download PDF
-                        </button>
-                        <button type="button" class="block w-full px-4 py-2 text-left text-sm text-slate-700 hover:bg-slate-50" onclick="exportSimulation('docx')">
-                            📝 Download Word
-                        </button>
-                        <button type="button" class="block w-full px-4 py-2 text-left text-sm text-slate-700 hover:bg-slate-50" onclick="exportSimulation('json')">
-                            📊 Download JSON
-                        </button>
-                    </div>
-                </div>
+                <button type="button" class="btn-primary" onclick="exportSimulation('pdf')">
+                    <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    Download PDF
+                </button>
                 <button type="button" class="btn-secondary" onclick="window.print()">Print</button>
             </div>
         </header>
@@ -62,7 +49,7 @@
                                 Export PDF/Word untuk dibagikan ke stakeholder internal.
                             </li>
                         </ul>
-                        <a href="https://wa.me/6289510431269?text=Halo%20tim%20Skincare%20Simulator%2C%20saya%20butuh%20konsultasi%20untuk%20Simulasi%20ID%20{{ $simulation->id }}" class="btn-primary w-full justify-center" target="_blank">
+                        <a href="https://wa.me/{{ config('services.whatsapp.business_number') }}?text=Halo%20tim%20Skincare%20Simulator%2C%20saya%20butuh%20konsultasi%20untuk%20Simulasi%20ID%20{{ $simulation->id }}" class="btn-primary w-full justify-center" target="_blank">
                             Konsultasi via WhatsApp
                         </a>
                     </section>

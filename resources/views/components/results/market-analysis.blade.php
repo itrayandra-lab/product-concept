@@ -14,7 +14,7 @@
         <span class="chip">Segment: PREMIUM</span>
     </div>
 
-    <div class="grid gap-4 md:grid-cols-3">
+    <div class="grid gap-4 grid-cols-1">
         <div class="rounded-2xl border border-slate-100 bg-orange-50/60 p-4">
             <p class="text-xs uppercase tracking-[0.3em] text-orange-400">HPP</p>
             <p class="mt-2 text-2xl font-semibold text-slate-900">IDR {{ number_format(data_get($pricing, 'min', 0)) }}</p>

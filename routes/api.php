@@ -80,7 +80,23 @@ Route::prefix('exports')->name('api.exports.')->group(function () {
             ], 404);
         }
         
-        return Storage::disk('local')->download($path);
+        // Determine MIME type based on file extension
+        $extension = pathinfo($filename, PATHINFO_EXTENSION);
+        $mimeTypes = [
+            'pdf' => 'application/pdf',
+            'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'doc' => 'application/msword',
+            'json' => 'application/json',
+            'png' => 'image/png',
+            'jpg' => 'image/jpeg',
+            'jpeg' => 'image/jpeg',
+        ];
+        
+        $mimeType = $mimeTypes[$extension] ?? 'application/octet-stream';
+        
+        return Storage::disk('local')->download($path, $filename, [
+            'Content-Type' => $mimeType,
+        ]);
     })->middleware('auth:sanctum')->name('download');
 });
 
