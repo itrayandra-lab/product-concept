@@ -61,7 +61,7 @@
                 <div class="rounded-2xl bg-slate-50 p-4">
                     <p class="text-sm font-semibold text-slate-700">Butuh bantuan?</p>
                     <p class="mt-2 text-sm text-slate-500">Hubungi tim R&D kami via WhatsApp untuk konsultasi cepat.</p>
-                    <a href="https://wa.me/6289510431269" class="mt-4 inline-flex items-center justify-center rounded-xl bg-emerald-500 px-4 py-2 text-sm font-medium text-white">Hubungi Kami</a>
+                    <a href="https://wa.me/{{ config('services.whatsapp.business_number') }}" class="mt-4 inline-flex items-center justify-center rounded-xl bg-emerald-500 px-4 py-2 text-sm font-medium text-white">Hubungi Kami</a>
                 </div>
             </div>
             <p class="mt-auto text-xs text-slate-400">&copy; {{ date('Y') }} AI Skincare Simulator</p>
