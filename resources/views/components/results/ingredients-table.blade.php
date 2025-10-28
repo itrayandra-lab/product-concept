@@ -50,14 +50,6 @@
                 <div class="rounded-2xl border border-slate-100 p-4 text-sm">
                     <p class="font-semibold text-slate-900">{{ data_get($reference, 'title') }}</p>
                     <p class="text-xs text-slate-500">{{ implode(', ', data_get($reference, 'authors', [])) }} · {{ data_get($reference, 'year') }}</p>
-                    @if ($doi = data_get($reference, 'doi'))
-                        <a href="https://doi.org/{{ $doi }}" target="_blank" class="mt-1 inline-flex items-center gap-2 text-xs font-semibold text-orange-600">
-                            DOI {{ $doi }}
-                            <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5h10m0 0v10m0-10L9 15" />
-                            </svg>
-                        </a>
-                    @endif
                 </div>
             @empty
                 <p class="text-sm text-slate-500">Referensi ilmiah akan muncul setelah simulasi selesai.</p>

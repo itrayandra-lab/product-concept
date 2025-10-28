@@ -40,6 +40,14 @@ The **AI Skincare Product Simulator** is an intelligent platform that leverages 
 - **💾 Auto-Save**: Intelligent form persistence with guest session support
 - **📄 Export System**: PDF, Word, and JSON export capabilities
 
+### Market Analysis Features
+- **📊 Potensi Pasar**: Total Addressable Market (TAM) analysis with revenue projections
+- **📈 Tren Kunci**: Real-time market trends and trending ingredients analysis
+- **✍️ Marketing Copywriting**: Ready-to-use marketing content with copy-to-clipboard functionality
+- **💰 Revenue Forecasting**: Monthly and yearly revenue projections with growth opportunities
+- **⚠️ Risk Assessment**: Market risk factors and competitive landscape analysis
+- **📱 Social Media Ready**: Platform-specific captions for Instagram, TikTok, and Facebook
+
 ### Advanced Features
 - **⚡ Asynchronous Processing**: Queue-based job processing for scalability
 - **🔄 Real-time Updates**: Live progress tracking and status updates

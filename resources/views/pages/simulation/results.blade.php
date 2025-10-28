@@ -50,8 +50,47 @@
                     </section>
                 </div>
             </div>
+
+            {{-- New Market Analysis Sections --}}
+            <div class="space-y-6">
+                {{-- Market Potential Section --}}
+                <x-results.market-potential :result="$result" />
+                
+                {{-- Key Trends Section --}}
+                <x-results.key-trends :result="$result" />
+                
+                {{-- Marketing Copywriting Section --}}
+                <x-results.marketing-copywriting :result="$result" />
+            </div>
         @else
             <x-results.processing-placeholder :simulation="$simulation" />
         @endif
     </div>
 @endsection
+
+@push('scripts')
+<script>
+// Data formatting helpers for market analysis
+function formatCurrency(amount) {
+    return new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    }).format(amount);
+}
+
+function formatNumber(num) {
+    if (num >= 1000000) {
+        return (num / 1000000).toFixed(1) + 'M';
+    } else if (num >= 1000) {
+        return (num / 1000).toFixed(1) + 'K';
+    }
+    return num.toString();
+}
+
+function formatPercentage(num) {
+    return num.toFixed(1) + '%';
+}
+</script>
+@endpush

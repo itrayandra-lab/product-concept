@@ -29,7 +29,7 @@
         <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <div>
                 <p class="text-sm font-semibold uppercase tracking-[0.2em] text-orange-500">Simulasi Produk</p>
-                <h1 class="mt-2 text-3xl font-semibold text-slate-900">Brief Produk` Kosmetik</h1>
+                <h1 class="mt-2 text-3xl font-semibold text-slate-900">Brief Produk Kosmetik</h1>
                 <p class="mt-3 text-sm text-slate-600">Isi 18 parameter formulasi untuk mendapatkan rekomendasi AI yang lengkap.</p>
             </div>
             <div class="w-full max-w-sm rounded-2xl border border-orange-100 bg-white p-4">
