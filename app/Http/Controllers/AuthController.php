@@ -215,7 +215,7 @@ class AuthController extends Controller
     /**
      * Handle Google OAuth callback
      */
-    public function handleGoogleCallback(): JsonResponse
+    public function handleGoogleCallback(): \Illuminate\Http\RedirectResponse
     {
         try {
             $googleUser = Socialite::driver('google')->user();
@@ -248,22 +248,16 @@ class AuthController extends Controller
                 $isNewUser = true;
             }
 
-            $token = $user->createToken('auth-token', ['*'])->plainTextToken;
+            // Log user in with session (remember me = true)
+            Auth::login($user, true);
 
             // Log Google OAuth event
-            $this->auditLogService->logGoogleOAuth($user, $request, $isNewUser);
+            $this->auditLogService->logGoogleOAuth($user, request(), $isNewUser);
 
-            return response()->json([
-                'message' => 'Google authentication successful',
-                'user' => $user,
-                'token' => $token,
-            ]);
+            return redirect()->to('/simulator')->with('success', 'Login dengan Google berhasil!');
 
         } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Google authentication failed',
-                'error' => $e->getMessage(),
-            ], 400);
+            return redirect()->to('/login')->with('error', 'Login dengan Google gagal: ' . $e->getMessage());
         }
     }
 

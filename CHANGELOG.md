@@ -2,7 +2,58 @@
 
 ## 2025-01-28
 
+### Changed
+
+#### **Google OAuth Integration** - Migrated from API-based to web-based authentication flow
+- **Route Migration** - Moved Google OAuth routes from `api.php` to `web.php`
+  - Changed from `/api/auth/google` to `/auth/google`
+  - Changed from `/api/auth/google/callback` to `/auth/google/callback`
+  - Enables session-based authentication instead of token-based
+
+- **Authentication Flow** - Updated `AuthController::handleGoogleCallback()`
+  - Return type changed from `JsonResponse` to `RedirectResponse`
+  - Uses `Auth::login()` for session-based login instead of API tokens
+  - Redirects to `/simulator` on success, `/login` on failure
+  - Displays success/error messages via session flash
+
+- **Configuration Updates**
+  - Updated `config/services.php` redirect URI to remove `/api/` prefix
+  - Updated login form button to use new web route
+  - Google Cloud Console redirect URI should be updated accordingly
+
 ### Added
+
+#### **Shared Hosting Deployment Documentation** - Complete implementation of shared hosting deployment guides and workarounds
+- **Comprehensive Documentation Suite** - 8 modular deployment guides for shared hosting environments
+  - Main deployment guide with architecture overview and cost analysis
+  - Pre-deployment setup guide for Hostinger cPanel configuration
+  - Application configuration guide with Laravel environment modifications
+  - Step-by-step deployment process with multiple upload methods
+  - n8n integration guide with Cloud and simplified API approaches
+  - Performance optimization guide for shared hosting constraints
+  - Workarounds guide for shared hosting limitations
+  - Maintenance guide for ongoing management and monitoring
+
+- **Shared Hosting Adaptations** - Complete workarounds for shared hosting limitations
+  - File-based cache instead of Redis with optimization strategies
+  - Synchronous queue processing with pseudo-queue system
+  - n8n Cloud integration instead of self-hosted n8n
+  - Web-based maintenance tools instead of SSH commands
+  - Application-level monitoring instead of system monitoring
+  - Unified maintenance tasks to work within cron limitations
+
+- **Cost-Effective Solutions** - Detailed cost analysis and recommendations
+  - Hostinger Business plan: $3.99-$9.99/month vs VPS $20-100+/month
+  - n8n Cloud: $20/month (recommended) or $0 (simplified approach)
+  - Total cost: $25-35/month vs $100+/month for VPS
+  - Clear migration path from shared hosting to VPS when needed
+
+- **Production-Ready Implementation** - All features functional with documented workarounds
+  - Complete deployment guide from zero to production
+  - All current features functional with shared hosting adaptations
+  - Practical troubleshooting for common issues
+  - Reusable for similar shared hosting providers
+  - Web-based admin interfaces for ongoing management
 
 #### **Market Analysis Features** - Complete implementation of market intelligence and copywriting features for simulation results
 - **Market Potential Analysis** - Comprehensive market opportunity assessment

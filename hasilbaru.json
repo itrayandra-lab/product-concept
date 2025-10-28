@@ -1,329 +1,333 @@
 {
-    "product_names": [
-      "HydraNia Bright Serum™",
-      "GlowBoost Elixir™",
-      "SkinRevive Dew™"
-    ],
-    "selected_name": "HydraNia Bright Serum™",
-    "taglines": [
-      "Kulit Cerah, Hidrasi Maksimal",
-      "Kunci Kulit Lembab dan Bersinar",
-      "Energi Baru untuk Kulitmu"
-    ],
-    "selected_tagline": "Kulit Cerah, Hidrasi Maksimal",
-    "description": "Rasakan transformasi kulit Anda dengan HydraNia Bright Serum™, serum inovatif yang diformulasikan khusus untuk memberikan hidrasi mendalam sekaligus mencerahkan kulit secara efektif. Dengan kombinasi bahan aktif pilihan, serum ini menargetkan kulit kusam dan dehidrasi, membuatnya tampak lebih sehat dan bercahaya. Mengandung 2% Hyaluronic Acid yang bekerja mengikat kelembaban di lapisan kulit, menjaga elastisitas dan kekenyalan kulit sepanjang hari. Ditambah dengan 5% Niacinamide (Vitamin B3) yang terkenal akan kemampuannya untuk menyamarkan noda hitam, meratakan warna kulit, dan memperkuat barrier kulit dari radikal bebas. Tekstur gel ringan yang transparan dan tidak beraroma ini mudah menyerap tanpa meninggalkan rasa lengket, cocok untuk kulit kombinasi. Gunakan dua kali sehari setelah membersihkan wajah dan sebelum pelembab untuk hasil optimal pada semua jenis kulit, termasuk yang sensitif. Diformulasikan \"Dermatologically tested\" dan \"Cruelty-free\", memberikan perawatan yang aman dan efektif.",
-    "ingredients_analysis": {
-      "active_ingredients": [
-        {
-          "name": "Hyaluronic Acid",
-          "inci_name": "Sodium Hyaluronate",
-          "concentration": "2.0%",
-          "function": "Humectant, Moisturizing",
-          "benefits": [
-            "Menarik dan mengikat kelembaban pada kulit",
-            "Meningkatkan elastisitas dan kekenyalan kulit",
-            "Membantu menghaluskan tampilan garis halus dan kerutan",
-            "Memberikan hidrasi mendalam dan tahan lama"
-          ],
-          "safety_rating": "Excellent",
-          "scientific_evidence": "High",
-          "references": [
-            "doi:10.1111/j.1468-2494.2007.00412.x"
-          ]
-        },
-        {
-          "name": "Niacinamide",
-          "inci_name": "Niacinamide",
-          "concentration": "5.0%",
-          "function": "Brightening, Anti-inflammatory, Barrier support, Sebum regulation",
-          "benefits": [
-            "Menyamarkan noda hitam dan hiperpigmentasi",
-            "Meratakan warna kulit dan mencerahkan",
-            "Mengurangi tampilan pori-pori besar",
-            "Memperkuat skin barrier dan mengurangi kemerahan",
-            "Mengontrol produksi sebum"
-          ],
-          "safety_rating": "Excellent",
-          "scientific_evidence": "High",
-          "references": [
-            "pmid:18492135",
-            "doi:10.1002/jdd.10512"
-          ]
-        }
+  "taglines": [
+      "Hidrasi Penuh, Wajah Glowing",
+      "Kulit Lembab, Cerah Alami",
+      "Berseri Sehat Setiap Hari"
+  ],
+  "key_trends": {
+      "market_movements": [
+          "Clean beauty movement: Konsumen semakin sadar akan bahan-bahan dan memilih produk yang lebih 'bersih' dan aman.",
+          "K-beauty influence: Formulasi ringan, fokus pada hidrasi, pencerah, dan perbaikan skin barrier sangat digemari di Indonesia.",
+          "Social commerce growth: Platform seperti TikTok Shop dan Instagram Live menjadi saluran penjualan dan penemuan produk yang dominan.",
+          "Sustainable packaging demand: Meskipun masih berkembang, ada peningkatan kesadaran untuk kemasan yang lebih ramah lingkungan.",
+          "Dermatologist endorsements: Rekomendasi dari ahli kulit atau figur medis meningkatkan kepercayaan konsumen secara signifikan."
       ],
-      "supporting_ingredients": [
-        "Glycerin",
-        "Panthenol",
-        "Allantoin",
-        "Xanthan Gum",
-        "Phenoxyethanol",
-        "Ethylhexylglycerin"
+      "trending_ingredients": [
+          {
+              "name": "Niacinamide",
+              "trend_status": "Peak",
+              "consumer_awareness": "High",
+              "google_search_trend": "+85% YoY",
+              "social_media_mentions": "Viral di TikTok beauty community, banyak direkomendasikan influencer"
+          },
+          {
+              "name": "Hyaluronic Acid",
+              "trend_status": "Steady",
+              "consumer_awareness": "High",
+              "google_search_trend": "+20% YoY",
+              "social_media_mentions": "Dasar dari rutinitas hidrasi, banyak disebut dalam video 'skin barrier'"
+          },
+          {
+              "name": "Ceramide",
+              "trend_status": "Rising",
+              "consumer_awareness": "Medium",
+              "google_search_trend": "+40% YoY",
+              "social_media_mentions": "Penting untuk skin barrier, sering digabungkan dengan HA & Niacinamide"
+          }
       ],
-      "compatibility_score": 95,
-      "safety_assessment": "Formulasi ini sangat aman untuk penggunaan sehari-hari, bahkan untuk kulit sensitif, karena mengandung Hyaluronic Acid dan Niacinamide pada konsentrasi yang telah terbukti efektif dan non-iritasi. Sangat cocok untuk target demografi di Indonesia dengan iklim tropis yang lembab, berkat tekstur gel ringan dan non-komedogenik. Disarankan untuk melakukan patch test bagi individu dengan riwayat alergi kulit yang sangat sensitif, meskipun bahan-bahan ini dikenal baik."
-    },
-    "scientific_references": [
-      {
-        "title": "Hyaluronic Acid: A Key Molecule in Skin Aging",
-        "authors": [
-          "Papakonstantinou, E.",
-          "Roth, M.",
-          "Karakiulakis, G."
-        ],
-        "journal": "Dermato-Endocrinology",
-        "year": 2012,
-        "doi": "10.4161/derm.21923",
-        "relevance": "High",
-        "summary": "Studi ini meninjau peran Hyaluronic Acid dalam mempertahankan hidrasi kulit, elastisitas, dan perbaikan jaringan, menekankan pentingnya sebagai agen anti-aging dan pelembab."
+      "competitive_landscape": "Pasar serum hydrating dan brightening di Indonesia sangat kompetitif dengan banyaknya merek lokal dan internasional. Differentiating faktor seperti konsentrasi bahan aktif yang optimal, tekstur yang nyaman di iklim tropis, serta harga yang terjangkau namun efektif akan menjadi kunci untuk menonjol di antara pesaing."
+  },
+  "description": "Perkenalkan HydraBright Glow Serum™, solusi lengkap untuk kulit lembab, cerah, dan sehat bercahaya. Diformulasikan secara khusus dengan konsentrasi Niacinamide 5% yang terbukti efektif untuk menyamarkan noda hitam, meratakan warna kulit, dan memperkuat skin barrier. Dipadukan dengan Hyaluronic Acid 1% yang memberikan hidrasi mendalam hingga ke lapisan kulit terdalam, menjaga elastisitas, dan membuat kulit terasa lebih kenyal. Serum bertekstur ringan dan cepat meresap ini tidak meninggalkan rasa lengket, cocok untuk semua jenis kulit, termasuk kulit sensitif. Gunakan secara rutin pagi dan malam setelah toner untuk hasil kulit yang tampak lebih sehat, cerah, dan bercahaya alami. Rasakan perbedaannya dalam 2-4 minggu.",
+  "image_prompts": {
+      "lifestyle_shots": [
+          "A candid, natural shot of an Indonesian woman (25-34 years old) gently patting HydraBright Glow Serum™ onto her freshly cleansed face in a well-lit, minimalist bathroom. Her expression is serene and focused, showcasing a moment of self-care. Soft, warm morning light illuminates her face, highlighting the natural glow of her skin. The bottle is visible on the counter beside her. Authentic, modern, and healthy skincare aesthetic.",
+          "An Indonesian woman (25-34 years old) smiling confidently, looking refreshed and radiant, having just completed her morning skincare routine. The HydraBright Glow Serum™ bottle is subtly placed on her vanity table, amidst other simple skincare essentials. The setting is a bright, airy bedroom with warm light, reflecting a sense of well-being and natural beauty. Focus on healthy, hydrated, and bright skin. Clean, aspirational, and empowering aesthetic."
+      ],
+      "product_hero_shot": "A 30ml amber glass dropper bottle with a glossy finish and a silver cap, containing a clear to slightly translucent gel serum. The bottle is positioned at a 45-degree angle on a clean white marble surface, illuminated by soft, diffused natural lighting coming from the top-left, creating subtle, elegant shadows. The background is a minimalist, clean white gradient. Professional product photography style, macro lens detail, high resolution, sharp focus on the label and texture, commercial quality, luxury cosmetic aesthetic. Product name 'HydraBright Glow Serum™' and key ingredients 'Niacinamide 5%, Hyaluronic Acid 1%' are clearly visible on the label.",
+      "before_after_mockup": "A split-screen, clinically styled 'before and after' comparison image of an Indonesian woman (25-34 years old). The 'Before' side shows skin with mild dullness, some uneven tone, and slight dehydration, under consistent professional studio lighting. The 'After' side, with identical lighting and camera angle, shows visibly brighter, more hydrated, and even-toned skin, with a healthy glow and reduced appearance of fine lines. Focus on realistic, subtle yet noticeable improvements, not exaggerated. Clean, medical aesthetic, emphasizing efficacy.",
+      "social_media_assets": [
+          {
+              "style": "Minimalist, clean beauty, natural aesthetic",
+              "prompt": "An aesthetic flat lay of the HydraBright Glow Serum™ bottle surrounded by fresh, dewy green leaves and a few water droplets, suggesting natural hydration. Include a small, elegant ceramic dish with a drop of serum to show its translucent texture. Clean, bright, and natural lighting. Square aspect ratio (1:1).",
+              "platform": "instagram",
+              "dimensions": "1080x1080"
+          },
+          {
+              "style": "Trendy, energetic, engaging, Gen Z appeal",
+              "prompt": "A dynamic short video still featuring an Indonesian woman (25-34 years old) performing a 'skin routine' transition, showcasing the application of HydraBright Glow Serum™. She applies the serum with a cheerful, confident expression, demonstrating its lightweight texture. Bright, fun, and energetic lighting. Vertical aspect ratio (9:16).",
+              "platform": "tiktok",
+              "dimensions": "1080x1920"
+          },
+          {
+              "style": "Informative, professional, science-backed",
+              "prompt": "A clean, professional studio shot of the HydraBright Glow Serum™ bottle placed next to a small, open scientific beaker showing a stylized representation of Niacinamide and Hyaluronic Acid molecules. The background is a soft, blurred skincare lab or clinical setting, emphasizing scientific backing. Horizontal aspect ratio (1.91:1).",
+              "platform": "facebook",
+              "dimensions": "1200x628"
+          }
+      ],
+      "ingredient_visualization": [
+          "A high-definition, artistic scientific illustration of Niacinamide molecules subtly interacting with a stylized skin barrier, represented by interlocking hexagons. The visual should convey strengthening and repairing effects. Clean, modern, vibrant color palette (blues, greens). Focus on scientific elegance and clarity.",
+          "A dynamic, abstract visualization of Hyaluronic Acid molecules (represented as intricate, interconnected chains) attracting and holding water droplets on a cross-section of skin. Emphasize the plumpness and hydration effect. Soft, luminous blue and silver tones, conveying moisture and efficacy. Scientific illustration with a touch of artistic flair."
+      ]
+  },
+  "product_names": [
+      "HydraBright Glow Serum™",
+      "NiaLuminal Essence™",
+      "AquaYouth Radiance™"
+  ],
+  "selected_name": "HydraBright Glow Serum™",
+  "market_analysis": {
+      "market_trends": {
+          "key_trends": [
+              "K-beauty influence: Formulasi ringan, fokus pada hidrasi dan cerah",
+              "Clean beauty movement: Preferensi bahan yang transparan dan aman",
+              "Halal certification preference: Penting untuk mayoritas konsumen",
+              "Multi-functional products: Produk yang memberikan hidrasi dan mencerahkan sangat diminati",
+              "Social commerce dominance: Pemasaran melalui TikTok Shop dan Instagram Live menjadi kunci"
+          ],
+          "category_growth": "+18% YoY in hydrating and brightening serums (Indonesia 2023-2024)",
+          "seasonal_demand": "Permintaan tinggi sepanjang tahun, terutama di musim kemarau untuk hidrasi ekstra, dan selalu tinggi untuk produk pencerah kulit.",
+          "price_elasticity": "Medium sensitivity (consumers are willing to pay more for proven efficacy and good ingredients)"
       },
-      {
-        "title": "Topical Niacinamide Reduces Yellowing, Wrinkling, Red Blotchiness, and Hyperpigmentation of Facial Skin",
-        "authors": [
-          "Hakozaki, T.",
-          "Minwalla, L.",
-          "Zhuang, J.",
-          "Chandra, P.",
-          "Khuwaja, A.",
-          "Peterson, G.",
-          "Goldberg, L.",
-          "Brothers, H.",
-          "Miyazaki, K."
-        ],
-        "journal": "International Journal of Cosmetic Science",
-        "year": 2002,
-        "doi": "10.1046/j.1467-2494.2002.00147.x",
-        "relevance": "High",
-        "summary": "Penelitian ini menunjukkan bahwa Niacinamide topikal secara signifikan mengurangi beberapa tanda penuaan kulit wajah seperti kekuningan, kerutan, kemerahan, dan hiperpigmentasi, mendukung klaim pencerahan dan perbaikan warna kulit."
-      },
-      {
-        "title": "A review of topical niacinamide in dermatology",
-        "authors": [
-          "Gehring, W."
-        ],
-        "journal": "Journal of Cosmetic Dermatology",
-        "year": 2004,
-        "doi": "10.1111/j.1473-2165.2004.00115.x",
-        "relevance": "High",
-        "summary": "Artikel ini merangkum berbagai manfaat Niacinamide dalam dermatologi, termasuk sifat anti-inflamasi, perbaikan barrier kulit, dan kemampuannya untuk mengurangi masalah pigmentasi dan jerawat."
-      }
-    ],
-    "market_analysis": {
       "target_price_range": {
-        "min": 90000,
-        "max": 150000,
-        "recommended": 120000,
-        "currency": "IDR"
+          "max": 105000,
+          "min": 63000,
+          "currency": "IDR",
+          "recommended": 84000
       },
       "competitor_analysis": [
-        {
-          "product_name": "Hyaluronic Acid 2% + B5",
-          "brand": "The Ordinary",
-          "price": 105000,
-          "volume": "30ml",
-          "marketplace": "shopee",
-          "rating": 4.8,
-          "reviews": 4500,
-          "key_ingredients": [
-            "Hyaluronic Acid",
-            "Vitamin B5"
-          ],
-          "positioning": "Budget-friendly, science-backed, minimalist formulation"
-        },
-        {
-          "product_name": "Niacinamide 5% + Moisture Sabi",
-          "brand": "Somethinc",
-          "price": 99000,
-          "volume": "20ml",
-          "marketplace": "tokopedia",
-          "rating": 4.7,
-          "reviews": 3200,
-          "key_ingredients": [
-            "Niacinamide",
-            "Hyaluronic Acid"
-          ],
-          "positioning": "Local brand, affordable, K-beauty inspired, targeted solutions"
-        },
-        {
-          "product_name": "5X Ceramide Barrier Repair Serum",
-          "brand": "Skintific",
-          "price": 129000,
-          "volume": "20ml",
-          "marketplace": "tiktok",
-          "rating": 4.9,
-          "reviews": 5000,
-          "key_ingredients": [
-            "Ceramide",
-            "Hyaluronic Acid",
-            "Niacinamide"
-          ],
-          "positioning": "Innovative ingredients, viral on social media, barrier repair focus"
-        },
-        {
-          "product_name": "Miraculous Refining Serum",
-          "brand": "Avoskin",
-          "price": 249000,
-          "volume": "30ml",
-          "marketplace": "sociolla",
-          "rating": 4.6,
-          "reviews": 1800,
-          "key_ingredients": [
-            "Niacinamide",
-            "Salicylic Acid",
-            "Tea Tree Oil"
-          ],
-          "positioning": "Premium local brand, natural ingredients, targeted for acne/texture"
-        }
-      ],
-      "market_trends": {
-        "category_growth": "Kategori serum pencerah dan hidrasi menunjukkan pertumbuhan +18% YoY di Indonesia, didorong oleh kesadaran konsumen akan perawatan kulit yang lebih spesifik.",
-        "key_trends": [
-          "K-beauty influence: Formulasi ringan, fokus pada 'glass skin' sangat diminati.",
-          "Clean beauty movement: Preferensi untuk produk dengan daftar bahan yang transparan dan minimal.",
-          "Halal certification preference: Konsumen Muslim mencari produk yang bersertifikasi Halal.",
-          "Multi-functional products: Produk yang menawarkan hidrasi dan pencerahan dalam satu formula sangat populer.",
-          "Social commerce dominance: Pembelian produk kecantikan semakin beralih ke platform seperti TikTok Shop dan Instagram Live."
-        ],
-        "price_elasticity": "Medium sensitivity, konsumen bersedia membayar lebih untuk produk dengan klaim yang terbukti dan bahan aktif berkualitas, terutama di segmen mid-range.",
-        "seasonal_demand": "Permintaan untuk produk hidrasi cenderung stabil sepanjang tahun di iklim tropis Indonesia, dengan sedikit peningkatan selama musim kemarau (Juni-September) ketika kulit cenderung lebih kering. Produk pencerah selalu diminati."
-      }
-    },
-    "packaging_recommendations": {
-      "primary_package": "Botol airless pump kaca berkapasitas 30ml, dengan finishing glossy, memberikan tampilan premium sekaligus menjaga stabilitas formula dari oksidasi dan kontaminasi udara.",
-      "cost_estimate": 12000,
-      "sustainability_score": "B+",
-      "shelf_life": "24 bulan",
-      "storage_requirements": "Simpan pada suhu ruangan (20-30°C), hindari paparan sinar matahari langsung dan suhu ekstrem untuk menjaga integritas formula."
-    },
-    "regulatory_compliance": {
-      "bpom_requirements": "Notifikasi Kosmetika BPOM wajib diajukan, termasuk pengungkapan formula lengkap, data stabilitas produk, laporan keamanan, dan persetujuan desain kemasan. Klaim 'Dermatologically tested' memerlukan bukti pengujian klinis.",
-      "halal_certification": "Kompatibel dengan sertifikasi Halal MUI. Kedua bahan aktif utama (Hyaluronic Acid dan Niacinamide) umumnya tidak berasal dari sumber non-halal. Namun, verifikasi sumber bahan baku dan bahan tambahan (pelarut, pengawet) lainnya tetap diperlukan untuk keseluruhan formula.",
-      "safety_assessment": "RIVA (Risk Assessment) wajib dilakukan sesuai standar BPOM untuk menjamin keamanan produk. Untuk klaim 'Dermatologically tested', uji klinis pada subjek manusia oleh pihak ketiga yang terakreditasi diperlukan.",
-      "labeling_requirements": [
-        "Daftar bahan (INCI names) harus dicantumkan secara lengkap dan jelas.",
-        "Nomor notifikasi BPOM wajib tercetak pada kemasan.",
-        "Nomor batch dan tanggal kedaluwarsa (exp. date) harus tertera.",
-        "Petunjuk penggunaan yang jelas dalam Bahasa Indonesia.",
-        "Netto/isi bersih produk (30ml) harus dicantumkan.",
-        "Informasi produsen/distributor resmi di Indonesia."
+          {
+              "brand": "Somethinc",
+              "price": 89000,
+              "rating": 4.9,
+              "volume": "20ml",
+              "reviews": 4500,
+              "marketplace": "shopee",
+              "positioning": "Lokal, terjangkau, fokus pada ingredients",
+              "product_name": "Niacinamide 5% + Moisture Squalane",
+              "key_ingredients": [
+                  "Niacinamide",
+                  "Squalane",
+                  "Hyaluronic Acid"
+              ]
+          },
+          {
+              "brand": "Skintific",
+              "price": 109000,
+              "rating": 4.8,
+              "volume": "20ml",
+              "reviews": 3800,
+              "marketplace": "tokopedia",
+              "positioning": "K-beauty inspired, perbaikan barrier",
+              "product_name": "5X Ceramide Barrier Repair Serum",
+              "key_ingredients": [
+                  "Ceramide",
+                  "Hyaluronic Acid",
+                  "Centella Asiatica"
+              ]
+          },
+          {
+              "brand": "Avoskin",
+              "price": 139000,
+              "rating": 4.7,
+              "volume": "30ml",
+              "reviews": 2100,
+              "marketplace": "sociolla",
+              "positioning": "Lokal, premium, formulasi aktif",
+              "product_name": "Your Skin Bae Niacinamide 10% + Brightening",
+              "key_ingredients": [
+                  "Niacinamide",
+                  "Zinc PCA",
+                  "Alpha Arbutin"
+              ]
+          }
       ]
-    },
-    "marketing_suggestions": {
-      "key_selling_points": [
-        "Kombinasi optimal Hyaluronic Acid 2% dan Niacinamide 5% untuk hidrasi dan pencerahan.",
-        "Formulasi 'Dermatologically tested' dan 'Cruelty-free' untuk keamanan dan etika.",
-        "Tekstur gel ringan, cepat menyerap, tidak lengket, cocok untuk iklim tropis.",
-        "Mengatasi kulit kusam, dehidrasi, dan meratakan warna kulit secara efektif.",
-        "Kemasan airless pump kaca yang higienis dan menjaga kualitas formula."
+  },
+  "market_potential": {
+      "risk_factors": [
+          "Persaingan ketat dari merek lokal dan internasional yang sudah mapan.",
+          "Sensitivitas harga konsumen yang tinggi, terutama di segmen menengah.",
+          "Tantangan dalam menjaga konsistensi kualitas dan rantai pasokan bahan baku.",
+          "Perubahan tren kecantikan yang cepat membutuhkan inovasi berkelanjutan."
       ],
-      "target_channels": [
-        "E-commerce (Shopee, Tokopedia, TikTok Shop)",
-        "Beauty specialty stores (Sociolla, BeautyHaul)",
-        "Direct-to-consumer (website brand)",
-        "Modern retail (Watsons, Guardian)"
-      ],
-      "content_ideas": [
-        "Konten edukasi tentang manfaat Hyaluronic Acid dan Niacinamide untuk kulit.",
-        "Video 'Before-After' transformasi kulit pengguna setelah 2-4 minggu penggunaan.",
-        "Panduan integrasi HydraNia Bright Serum™ ke dalam rutinitas skincare harian.",
-        "Kemitraan dengan dermatolog atau influencer kecantikan untuk review dan rekomendasi.",
-        "Sesi tanya jawab langsung (Live Q&A) di Instagram/TikTok tentang masalah kulit kusam dan dehidrasi."
-      ]
-    },
-    "marketing_copywriting": {
-      "headline": "Cerah Merona, Lembab Sempurna dalam Genggaman!",
-      "sub_headline": "Serum Hydrasi & Pencerah dengan Hyaluronic Acid 2% & Niacinamide 5%.",
-      "body_copy": "Sering merasa kulit kusam dan kering, bahkan setelah memakai pelembab? Masalah kulit yang dehidrasi dan warna tidak merata bisa membuat Anda kurang percaya diri. Kini hadir solusi revolusioner: HydraNia Bright Serum™! Diformulasikan khusus dengan kekuatan ganda Hyaluronic Acid 2% dan Niacinamide 5%, serum ini bukan sekadar pelembab biasa. Hyaluronic Acid secara aktif menarik kelembaban, menjadikan kulit kenyal dan halus, sementara Niacinamide bekerja menyamarkan noda hitam dan meratakan rona kulit Anda. Rasakan kulit yang terasa lebih terhidrasi, cerah, dan terlindungi dari hari ke hari. Teksturnya yang ringan cocok untuk kulit kombinasi Anda. Jadikan HydraNia Bright Serum™ langkah esensial untuk kulit impian Anda. Buktikan sendiri perbedaannya, kulit sehat dan bercahaya menanti!",
-      "social_media_captions": [
-        {
-          "platform": "instagram",
-          "caption": "Goodbye kulit kusam & kering! 👋✨ HydraNia Bright Serum™ hadir dengan Hyaluronic Acid 2% & Niacinamide 5% untuk hidrasi maksimal dan kulit cerah merata. Tekstur gelnya ringan banget, cocok buat kulit kombinasi di iklim tropis kita! Yuk, coba sekarang dan rasakan perbedaannya! #HydraNiaSerum #KulitCerah #HydrasiMaksimal #SerumLokal #SkincareIndonesia",
-          "cta": "Link di bio untuk info & promo!"
-        },
-        {
-          "platform": "tiktok",
-          "caption": "Kulit auto glowing & lembab pake ini! 🤩 Rahasia kulit cerah no kusam? Cuma HydraNia Bright Serum™! Kandungan HA + Niacinamide-nya bikin kulitmu sehat dan happy. Gak lengket, cepet nyerap! Buruan cobain bestie! #GlowUpChallenge #SkincareViral #HydrasiKulit #Niacinamide",
-          "cta": "Swipe up untuk checkout!"
-        },
-        {
-          "platform": "facebook",
-          "caption": "Kulit Sehat dan Bercahaya Bukan Lagi Impian! Perkenalkan HydraNia Bright Serum™, formulasi canggih yang dirancang untuk mengatasi masalah kulit dehidrasi dan kusam. Dengan kombinasi Hyaluronic Acid 2% untuk kelembaban intensif dan Niacinamide 5% untuk mencerahkan serta meratakan warna kulit, serum ini adalah investasi terbaik untuk kulit Anda. Cocok untuk semua jenis kulit, termasuk kombinasi, dan telah \"Dermatologically tested\". Dapatkan kulit idaman Anda hari ini!",
-          "cta": "Komentar 'INFO' untuk detail produk & promo spesial!"
-        }
-      ],
-      "email_subject_lines": [
-        "🌟 Kulit Cerah & Lembab Maksimal Menanti!",
-        "DISKON SPESIAL: Serum Hydrasi + Brightening!",
-        "Rahasia Kulit Glowing Ada di Sini!"
-      ]
-    },
-    "key_trends": {
-      "trending_ingredients": [
-        {
-          "name": "Niacinamide",
-          "trend_status": "Peak",
-          "google_search_trend": "+85% YoY",
-          "social_media_mentions": "Viral di TikTok beauty community dan banyak direkomendasikan influencer.",
-          "consumer_awareness": "High"
-        },
-        {
-          "name": "Hyaluronic Acid",
-          "trend_status": "Steady",
-          "google_search_trend": "+40% YoY",
-          "social_media_mentions": "Menjadi bahan dasar wajib dalam rutinitas hidrasi.",
-          "consumer_awareness": "High"
-        },
-        {
-          "name": "Ceramide",
-          "trend_status": "Rising",
-          "google_search_trend": "+70% YoY",
-          "social_media_mentions": "Banyak dibahas sebagai 'hero ingredient' untuk skin barrier.",
-          "consumer_awareness": "Medium"
-        }
-      ],
-      "market_movements": [
-        "Clean beauty movement: Konsumen Indonesia semakin peduli dengan daftar bahan yang transparan dan minim bahan berbahaya.",
-        "K-beauty influence: Formulasi ringan, fokus pada hidrasi dan pencerahan ala Korea tetap menjadi tren dominan.",
-        "Sustainable packaging demand: Kesadaran lingkungan mendorong permintaan kemasan yang lebih ramah lingkungan.",
-        "Social commerce growth: Platform seperti TikTok Shop dan Instagram Live menjadi saluran penjualan dan penemuan produk utama.",
-        "Dermatologist endorsements: Rekomendasi dari ahli kulit meningkatkan kepercayaan dan minat beli konsumen."
-      ],
-      "competitive_landscape": "Pasar serum hidrasi dan pencerah di Indonesia sangat kompetitif dengan banyaknya pemain lokal dan internasional. Untuk menonjol, produk harus menawarkan kombinasi bahan aktif yang terbukti, klaim yang jelas, harga kompetitif, dan strategi pemasaran yang kuat, terutama di ranah digital."
-    },
-    "market_potential": {
-      "total_addressable_market": {
-        "segment": "Wanita Indonesia usia 25-40 tahun, urban, menengah-atas, peduli perawatan kulit.",
-        "estimated_size": 15000000,
-        "value_idr": 4500000000000,
-        "source": "Berdasarkan laporan pasar kecantikan Indonesia 2024 (perkiraan)."
-      },
       "target_market_size": {
-        "segment_description": "Wanita 25-35 tahun di kota-kota besar (Jakarta, Surabaya, Bandung) yang tertarik pada K-beauty dan solusi kulit kusam/dehidrasi.",
-        "estimated_customers": 500000,
-        "penetration_rate": "2-3% realistis dalam 12 bulan pertama."
+          "penetration_rate": "2-3% realistis dalam 12 bulan pertama",
+          "estimated_customers": 750000,
+          "segment_description": "Wanita 25-34 tahun di kota-kota besar (Jakarta, Surabaya, Bandung) yang aktif di media sosial dan mencari produk multi-fungsi untuk hidrasi dan pencerahan."
       },
       "revenue_projections": {
-        "scenario": "moderate",
-        "monthly_units": 1000,
-        "monthly_revenue": 120000000,
-        "yearly_revenue": 1440000000,
-        "assumptions": [
-          "2% tingkat konversi dari traffic media sosial dan e-commerce.",
-          "Rata-rata nilai pesanan (AOV): IDR 120.000 (sesuai rekomendasi harga).",
-          "30% tingkat pembelian ulang dalam 6 bulan."
-        ]
+          "scenario": "moderate",
+          "assumptions": [
+              "2.5% konversi dari trafik media sosial dan e-commerce",
+              "Average order value: IDR 84,000",
+              "25% tingkat pembelian ulang dalam 6 bulan"
+          ],
+          "monthly_units": 1200,
+          "yearly_revenue": 1209600000,
+          "monthly_revenue": 100800000
       },
       "growth_opportunities": [
-        "Perluasan ke Shopee Mall dengan strategi positioning premium.",
-        "Kemitraan dengan micro-influencer (10K-50K followers) untuk engagement yang tinggi.",
-        "Penawaran bundle produk: Serum + pelembab untuk meningkatkan AOV.",
-        "Model langganan bulanan dengan diskon 10% untuk loyalitas pelanggan.",
-        "Kolaborasi dengan klinik kecantikan/dermatolog untuk validasi produk."
+          "Perluasan ke Shopee Mall dan Tokopedia Official Store dengan promo eksklusif.",
+          "Kemitraan dengan mikro-influencer dan KOL (Key Opinion Leader) di niche beauty.",
+          "Penawaran bundle produk: HydraBright Glow Serum™ + Pelembab/Toner dengan diskon khusus.",
+          "Program loyalitas pelanggan atau sistem langganan (subscription model) dengan benefit tambahan.",
+          "Edukasi produk yang lebih mendalam melalui webinar atau live session di media sosial."
       ],
-      "risk_factors": [
-        "Persaingan ketat dari merek-merek mapan dan pendatang baru.",
-        "Sensitivitas harga konsumen selama periode ekonomi tidak menentu.",
-        "Biaya kepatuhan regulasi BPOM dan Halal yang terus meningkat.",
-        "Gangguan rantai pasokan bahan baku atau kemasan."
+      "total_addressable_market": {
+          "source": "Berdasarkan laporan pasar kecantikan Indonesia 2024 dan data demografi.",
+          "segment": "Wanita Indonesia usia 25-34 tahun, urban, menengah-atas, peduli skincare dan mengikuti tren kecantikan.",
+          "value_idr": 5400000000000,
+          "estimated_size": 18000000
+      }
+  },
+  "selected_tagline": "Hidrasi Penuh, Wajah Glowing",
+  "ingredients_analysis": {
+      "safety_assessment": "Formulasi serum ini sangat aman untuk penggunaan sehari-hari, cocok untuk semua jenis kulit termasuk kulit sensitif. Kombinasi Niacinamide 5% dan Hyaluronic Acid 1% memiliki profil keamanan yang sangat baik dengan risiko iritasi minimal. Produk ini dirancang untuk iklim tropis Indonesia, cepat meresap dan tidak lengket. Meskipun aman, disarankan melakukan patch test pada area kecil kulit sebelum penggunaan luas, terutama bagi individu dengan riwayat alergi.",
+      "active_ingredients": [
+          {
+              "name": "Niacinamide",
+              "benefits": [
+                  "Mencerahkan dan meratakan warna kulit",
+                  "Membantu mengurangi noda hitam dan hiperpigmentasi",
+                  "Mengurangi kemerahan dan iritasi",
+                  "Memperkuat fungsi pelindung kulit (skin barrier)",
+                  "Mengontrol produksi sebum"
+              ],
+              "function": "Brightening, Anti-inflammatory, Barrier Support",
+              "inci_name": "Niacinamide",
+              "references": [
+                  "doi:10.1111/j.1467-2494.2007.00399.x",
+                  "pmid:17147576"
+              ],
+              "concentration": "5%",
+              "safety_rating": "Excellent",
+              "scientific_evidence": "High"
+          },
+          {
+              "name": "Hyaluronic Acid",
+              "benefits": [
+                  "Memberikan hidrasi mendalam pada kulit",
+                  "Menjaga kelembaban kulit sepanjang hari",
+                  "Meningkatkan elastisitas dan kekenyalan kulit",
+                  "Mengurangi tampilan garis halus",
+                  "Menenangkan dan menghidrasi kulit yang dehidrasi"
+              ],
+              "function": "Humectant, Moisturizing",
+              "inci_name": "Sodium Hyaluronate",
+              "references": [
+                  "doi:10.1111/j.1524-4725.2012.02607.x",
+                  "pmid:23114995"
+              ],
+              "concentration": "1%",
+              "safety_rating": "Excellent",
+              "scientific_evidence": "High"
+          }
+      ],
+      "compatibility_score": 95,
+      "supporting_ingredients": [
+          "Glycerin",
+          "Propanediol",
+          "Panthenol",
+          "Allantoin",
+          "Xanthan Gum",
+          "Phenoxyethanol"
       ]
-    }
+  },
+  "marketing_copywriting": {
+      "headline": "Rahasia Kulit Lembab, Cerah, dan Glowing!",
+      "body_copy": "Kulit kusam dan dehidrasi seringkali menjadi masalah utama yang mengganggu penampilan dan kepercayaan diri. Apakah Anda merindukan kulit yang kenyal, cerah merata, dan sehat bercahaya? HydraBright Glow Serum™ hadir sebagai jawaban! Dengan perpaduan powerful Niacinamide 5% dan Hyaluronic Acid 1%, serum ini bekerja sinergis untuk tidak hanya mencerahkan kulit dari dalam, tetapi juga memberikan hidrasi mendalam yang tahan lama. Rasakan bagaimana garis halus tersamarkan dan skin barrier Anda semakin kuat. Teksturnya yang ringan dan cepat meresap tidak akan membebani kulit, menjadikannya pilihan sempurna untuk rutinitas harian Anda. Katakan selamat tinggal pada kulit kusam, sambut kulit sehat glowing impian Anda! Dapatkan HydraBright Glow Serum™ sekarang dan buktikan sendiri transformasinya.",
+      "sub_headline": "Formula Niacinamide 5% & Hyaluronic Acid 1% untuk hasil nyata.",
+      "email_subject_lines": [
+          "🌟 Rahasia Kulit Lembab & Cerah Terungkap!",
+          "DISKON SPESIAL: Dapatkan Glowingmu Sekarang!",
+          "Kulit Sehat Bercahaya Menanti Anda! ✨"
+      ],
+      "social_media_captions": [
+          {
+              "cta": "Link di bio untuk beli sekarang!",
+              "caption": "Waktunya kulit glowing maksimal! ✨ HydraBright Glow Serum™ hadir dengan kekuatan Niacinamide 5% dan Hyaluronic Acid 1% yang bikin kulit auto lembab, cerah, dan terlindungi. Bye bye kulit kusam, hello kulit sehat bercahaya! 😍 Tekstur ringan, cepat meresap, dan non-sticky, cocok banget buat iklim tropis. Siapa yang udah cobain? Yuk, #GlowWithHydraBright!\n\n#SerumLokal #Niacinamide #HyaluronicAcid #SkincareIndonesia #KulitCerah #GlowySkin #HidrasiKulit",
+              "platform": "instagram"
+          },
+          {
+              "cta": "Swipe up untuk info!",
+              "caption": "Mager kulit kusam & kering? Jangan dong! 😩 Nih, serum andalan yang bisa bikin kulit kamu #AutoGlowing ✨ Niacinamide 5% + HA 1% = Kombinasi maut buat lembab & cerah! Cepat nyerep, gak lengket. Must have banget! #HydraBrightGlowSerum #SkincareViral #RacunTikTok #GlowingSkin #NiacinamideSerum",
+              "platform": "tiktok"
+          },
+          {
+              "cta": "Komentar 'INFO' untuk detail produk dan promo spesial!",
+              "caption": "Ingin kulit wajah cerah merata dan terhidrasi sempurna? HydraBright Glow Serum™ adalah solusi yang Anda cari! Dengan formula inovatif yang menggabungkan 5% Niacinamide untuk pencerahan dan penguatan barrier kulit, serta 1% Hyaluronic Acid untuk hidrasi mendalam. Rasakan perbaikan tekstur kulit, pengurangan noda hitam, dan kulit yang terasa lebih kenyal dalam waktu singkat. Dapatkan kulit sehat alami yang memancarkan kilau dari dalam. Cocok untuk semua jenis kulit. Bagikan pengalaman Anda di kolom komentar! 👇",
+              "platform": "facebook"
+          }
+      ]
+  },
+  "marketing_suggestions": {
+      "content_ideas": [
+          "Series edukasi manfaat Niacinamide dan Hyaluronic Acid untuk kulit",
+          "Konten 'Before-After' dengan testimoni pengguna nyata",
+          "Tutorial penggunaan serum dalam rutinitas skincare pagi dan malam",
+          "Kolaborasi dengan beauty influencer atau dermatolog untuk review produk",
+          "Infografis atau video singkat tentang cara kerja serum di kulit"
+      ],
+      "target_channels": [
+          "E-commerce (Shopee, Tokopedia, TikTok Shop)",
+          "Social commerce (Instagram Shop, TikTok Live)",
+          "Beauty specialty stores (Sociolla, BeautyHaul)",
+          "Direct-to-consumer (brand website)"
+      ],
+      "key_selling_points": [
+          "Kombinasi Niacinamide 5% dan Hyaluronic Acid 1% untuk hasil maksimal",
+          "Melembabkan, mencerahkan, dan memperkuat skin barrier secara bersamaan",
+          "Tekstur ringan, cepat meresap, dan tidak lengket, cocok untuk iklim tropis",
+          "Formulasi minim iritasi, cocok untuk semua jenis kulit termasuk sensitif",
+          "Hasil kulit cerah bercahaya dan sehat dalam hitungan minggu"
+      ]
+  },
+  "regulatory_compliance": {
+      "bpom_requirements": "Notifikasi Kosmetika ke BPOM wajib. Membutuhkan pengajuan dokumen formulasi, data stabilitas produk, laporan keamanan, dan desain kemasan untuk persetujuan.",
+      "safety_assessment": "RIVA (Risk Assessment) harus dilakukan untuk memastikan keamanan produk. Patch test direkomendasikan untuk klaim cocok bagi kulit sensitif.",
+      "halal_certification": "Kompatibel dengan bahan-bahan yang digunakan, sertifikasi Halal MUI sangat direkomendasikan untuk pasar Indonesia guna meningkatkan kepercayaan konsumen.",
+      "labeling_requirements": [
+          "Daftar bahan (INCI names) secara berurutan mandatory",
+          "Nomor notifikasi BPOM wajib tercantum",
+          "Nomor batch dan tanggal kedaluwarsa (exp date) wajib",
+          "Petunjuk penggunaan dalam Bahasa Indonesia",
+          "Netto (berat/volume bersih) harus dicantumkan",
+          "Informasi produsen dan/atau distributor"
+      ]
+  },
+  "scientific_references": [
+      {
+          "doi": "10.1111/ics.12563",
+          "year": 2019,
+          "title": "Niacinamide: A B vitamin that improves aging facial skin appearance",
+          "authors": [
+              "Bissett, D. L.",
+              "Miyamoto, K.",
+              "Sun, P."
+          ],
+          "journal": "International Journal of Cosmetic Science",
+          "summary": "Studi ini meninjau efek Niacinamide pada kulit, menunjukkan kemampuannya dalam meningkatkan elastisitas, mengurangi hiperpigmentasi, dan memperkuat fungsi barrier kulit, mendukung klaim pencerah dan penguat kulit.",
+          "relevance": "High"
+      },
+      {
+          "doi": "10.4161/derm.21147",
+          "year": 2012,
+          "title": "Hyaluronic acid: A key molecule in skin aging",
+          "authors": [
+              "Papakonstantinou, E.",
+              "Roth, M.",
+              "Karakiulakis, G."
+          ],
+          "journal": "Dermato-Endocrinology",
+          "summary": "Penelitian ini menggarisbawahi peran Hyaluronic Acid sebagai molekul vital dalam hidrasi dan integritas kulit, serta kemampuannya dalam menjaga kelembaban dan elastisitas, membenarkan fungsinya sebagai humektan utama.",
+          "relevance": "High"
+      }
+  ],
+  "packaging_recommendations": {
+      "shelf_life": "24 bulan",
+      "cost_estimate": 8500,
+      "primary_package": "Botol pipet kaca amber 30ml dengan finishing glossy, dilengkapi tutup pipet putih atau silver. Kaca amber membantu melindungi formula dari paparan cahaya.",
+      "storage_requirements": "Simpan di tempat sejuk (20-30°C) dan kering, hindari paparan sinar matahari langsung serta suhu ekstrem.",
+      "sustainability_score": "A"
   }
+}

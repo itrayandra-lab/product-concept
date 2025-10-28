@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SimulatorPageController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/simulator');
@@ -15,6 +16,12 @@ Route::get('/simulations/{simulation}/results', [SimulatorPageController::class,
 Route::view('/login', 'pages.auth.login')->name('login');
 Route::view('/register', 'pages.auth.register')->name('register');
 Route::view('/forgot-password', 'pages.auth.password-reset')->name('password.request');
+
+// Google OAuth routes
+Route::prefix('auth')->group(function () {
+    Route::get('/google', [AuthController::class, 'redirectToGoogle'])->name('auth.google');
+    Route::get('/google/callback', [AuthController::class, 'handleGoogleCallback'])->name('auth.google.callback');
+});
 
 // Logout route
 Route::post('/logout', function () {

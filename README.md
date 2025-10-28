@@ -83,14 +83,23 @@ The **AI Skincare Product Simulator** is an intelligent platform that leverages 
 ## 🚀 Installation
 
 ### Prerequisites
+
+#### For VPS/Dedicated Server
 - PHP 8.3+
 - Composer
 - Node.js 18+
 - MySQL/PostgreSQL
 - Redis
 
+#### For Shared Hosting (Hostinger)
+- PHP 8.3+ (via cPanel)
+- MySQL database (via phpMyAdmin)
+- File Manager access (via cPanel)
+- Domain and SSL certificate
+
 ### Setup Instructions
 
+#### Option 1: VPS/Dedicated Server
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
@@ -129,8 +138,38 @@ The **AI Skincare Product Simulator** is an intelligent platform that leverages 
    php artisan serve
    ```
 
+#### Option 2: Shared Hosting (Hostinger)
+1. **Follow the complete shared hosting deployment guide**
+   - Start with [Shared Hosting Setup](docs/shared-hosting-setup.md)
+   - Configure [Application Settings](docs/shared-hosting-config.md)
+   - Deploy using [Deployment Process](docs/shared-hosting-deployment-process.md)
+
+2. **Quick start for shared hosting**
+   ```bash
+   # Compile assets locally
+   npm run build
+   
+   # Upload files via cPanel File Manager or FTP
+   # Configure database via phpMyAdmin
+   # Set up n8n Cloud integration
+   ```
+
+### Deployment Options
+
+#### 💰 Cost Comparison
+| Option | Monthly Cost | Features | Best For |
+|--------|-------------|----------|----------|
+| **Shared Hosting** | $25-35 | Basic features, limited control | Small projects, testing |
+| **VPS/Dedicated** | $50-200+ | Full control, advanced features | Production, scaling |
+
+#### 🚀 Choose Your Deployment
+- **[Shared Hosting Guide](docs/shared-hosting-deployment.md)** - Cost-effective, easy setup
+- **[VPS Deployment](docs/production-deployment.md)** - Full control, advanced features
+- **[Docker Deployment](docs/docker-deployment.md)** - Containerized, scalable
+
 ### Environment Variables
 
+#### VPS/Dedicated Server Configuration
 ```env
 # Database
 DB_CONNECTION=mysql
@@ -145,10 +184,43 @@ REDIS_HOST=127.0.0.1
 REDIS_PASSWORD=null
 REDIS_PORT=6379
 
+# Cache & Session
+CACHE_DRIVER=redis
+SESSION_DRIVER=redis
+QUEUE_CONNECTION=database
+
 # n8n Integration
 N8N_BASE_URL=https://n8n-gczfssttvtzs.nasgor.sumopod.my.id
 N8N_WEBHOOK_URL=https://n8n-gczfssttvtzs.nasgor.sumopod.my.id/webhook/lbf_product
 N8N_API_KEY=your_api_key
+N8N_TIMEOUT=150
+N8N_MOCK_ENABLED=false
+
+# AI Providers
+OPENAI_API_KEY=your_openai_key
+GOOGLE_AI_API_KEY=your_google_key
+ANTHROPIC_API_KEY=your_anthropic_key
+```
+
+#### Shared Hosting Configuration
+```env
+# Database (from Hostinger cPanel)
+DB_CONNECTION=mysql
+DB_HOST=localhost
+DB_PORT=3306
+DB_DATABASE=username_skincare_simulator
+DB_USERNAME=username_skincare_user
+DB_PASSWORD=your_database_password
+
+# Cache & Session (shared hosting compatible)
+CACHE_DRIVER=file
+SESSION_DRIVER=file
+QUEUE_CONNECTION=sync
+
+# n8n Integration (n8n Cloud)
+N8N_BASE_URL=https://your-instance.n8n.cloud
+N8N_WEBHOOK_URL=https://your-instance.n8n.cloud/webhook/lbf_product
+N8N_API_KEY=your_n8n_cloud_key
 N8N_TIMEOUT=150
 N8N_MOCK_ENABLED=false
 
@@ -182,7 +254,7 @@ php artisan test --coverage
 
 ## 📚 Documentation
 
-### Comprehensive Documentation (5,000+ lines)
+### Comprehensive Documentation (8,000+ lines)
 - **[Requirements Specification](docs/requirements-specification.md)** - Complete functional & non-functional requirements
 - **[API Specifications](docs/api-specifications.md)** - All endpoints, authentication, data models
 - **[UI Specifications](docs/ui-specifications.md)** - UI components, forms, auto-save functionality
@@ -190,6 +262,22 @@ php artisan test --coverage
 - **[n8n Workflow Specification](docs/n8n-workflow-specification.md)** - AI processing pipeline, external APIs
 - **[n8n Production Integration](docs/n8n-production-integration.md)** - Production deployment guide
 - **[OpenSpec Implementation Guide](docs/openspec-implementation-guide.md)** - Implementation methodology
+
+### Deployment Guides
+- **[Deployment Guide](docs/deployment-guide.md)** - General deployment strategies and options
+- **[Production Deployment](docs/production-deployment.md)** - VPS/dedicated server deployment
+- **[Docker Deployment](docs/docker-deployment.md)** - Containerized deployment with Docker
+- **[Monitoring & Maintenance](docs/monitoring-maintenance.md)** - Production monitoring and maintenance
+
+### Shared Hosting Deployment (NEW!)
+- **[Shared Hosting Deployment](docs/shared-hosting-deployment.md)** - Complete shared hosting deployment guide
+- **[Hostinger Setup](docs/shared-hosting-setup.md)** - Hostinger account and cPanel configuration
+- **[Application Configuration](docs/shared-hosting-config.md)** - Laravel configuration for shared hosting
+- **[Deployment Process](docs/shared-hosting-deployment-process.md)** - Step-by-step deployment procedures
+- **[n8n Integration](docs/shared-hosting-n8n-integration.md)** - n8n Cloud and API integration
+- **[Performance Optimization](docs/shared-hosting-optimization.md)** - Shared hosting performance tuning
+- **[Workarounds & Limitations](docs/shared-hosting-workarounds.md)** - Solutions for shared hosting constraints
+- **[Maintenance Guide](docs/shared-hosting-maintenance.md)** - Ongoing management and monitoring
 
 ### Quick Start Guides
 - **[Ingredient API](docs/ingredient-api.md)** - API documentation with curl examples
@@ -237,6 +325,7 @@ php artisan test --coverage
 - **Testing**: 57 tests passing (100% success rate)
 - **Performance**: Load testing passed for 50+ concurrent users
 - **Documentation**: Complete integration and deployment documentation
+- **Shared Hosting Support**: Complete deployment guides for shared hosting environments
 
 ### 🎯 Ready for Production
 The AI Skincare Simulator is **production-ready** with:
@@ -245,6 +334,12 @@ The AI Skincare Simulator is **production-ready** with:
 - Complete test coverage
 - Comprehensive documentation
 - Performance optimization
+- **Multiple deployment options** (VPS, Docker, Shared Hosting)
+
+### 💰 Deployment Options
+- **Shared Hosting**: $25-35/month (Hostinger, easy setup)
+- **VPS/Dedicated**: $50-200+/month (full control, advanced features)
+- **Docker**: Containerized deployment for scalability
 
 ## 📄 License
 

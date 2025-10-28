@@ -45,178 +45,107 @@ You MUST return ONLY a valid JSON object with this EXACT structure. No additiona
 
 ```json
 {
-  "product_names": [
-    "Product Name 1™",
-    "Product Name 2™",
-    "Product Name 3™"
-  ],
-  "selected_name": "Product Name 1™",
-  "taglines": [
-    "Tagline Indonesian 1",
-    "Tagline Indonesian 2",
-    "Tagline Indonesian 3"
-  ],
-  "selected_tagline": "Tagline Indonesian 1",
-  "description": "Product description in Indonesian, 150-200 words, covering key benefits, ingredients, usage instructions, and suitable skin types...",
-  "ingredients_analysis": {
-    "active_ingredients": [
+  "product_names": [...],
+  "selected_name": "...",
+  "taglines": [...],
+  "selected_tagline": "...",
+  "description": "...",
+  "ingredients_analysis": {...},
+  "scientific_references": [...],
+  "market_analysis": {...},
+  "packaging_recommendations": {...},
+  "regulatory_compliance": {...},
+  "marketing_suggestions": {...},
+  
+  "marketing_copywriting": {
+    "headline": "Attention-grabbing headline",
+    "sub_headline": "Supporting headline explaining the benefit",
+    "body_copy": "Persuasive body copy 100-150 words...",
+    "social_media_captions": [
       {
-        "name": "Active Ingredient Name",
-        "inci_name": "INCI Standard Name",
-        "concentration": "X.X%",
-        "function": "Primary function category",
-        "benefits": [
-          "Specific benefit 1",
-          "Specific benefit 2",
-          "Specific benefit 3"
-        ],
-        "safety_rating": "Excellent",
-        "scientific_evidence": "High",
-        "references": [
-          "doi:10.XXXX/journal.XXXX.XXXXX",
-          "pmid:XXXXXXXX"
-        ]
-      }
-    ],
-    "supporting_ingredients": [
-      "Supporting ingredient 1",
-      "Supporting ingredient 2",
-      "Supporting ingredient 3",
-      "Supporting ingredient 4"
-    ],
-    "compatibility_score": 95,
-    "safety_assessment": "Detailed safety assessment text explaining suitability for daily use, skin types, and any precautions..."
-  },
-  "scientific_references": [
-    {
-      "title": "Study title in English",
-      "authors": [
-        "Author Last Name, First Initial",
-        "Author Last Name, First Initial"
-      ],
-      "journal": "Journal Name",
-      "year": 2023,
-      "doi": "10.XXXX/journal.year.article",
-      "relevance": "High",
-      "summary": "Brief summary of key findings relevant to the formulation (2-3 sentences)..."
-    }
-  ],
-  "market_analysis": {
-    "target_price_range": {
-      "min": 80000,
-      "max": 150000,
-      "currency": "IDR",
-      "recommended": 120000
-    },
-    "competitor_analysis": [
+        "platform": "instagram",
+        "caption": "Caption with emojis and hashtags...",
+        "cta": "Link di bio!"
+      },
       {
-        "product_name": "Competitor Product Name",
-        "brand": "Brand Name",
-        "price": 95000,
-        "volume": "30ml",
-        "marketplace": "shopee",
-        "rating": 4.6,
-        "reviews": 1250,
-        "key_ingredients": [
-          "Key ingredient 1",
-          "Key ingredient 2"
-        ],
-        "positioning": "Brief positioning description (e.g., Budget-friendly, science-backed)"
+        "platform": "tiktok",
+        "caption": "Short casual caption...",
+        "cta": "Swipe up untuk info!"
+      },
+      {
+        "platform": "facebook",
+        "caption": "Informative community-focused caption...",
+        "cta": "Komentar 'INFO' untuk detail"
       }
     ],
-    "market_trends": {
-      "category_growth": "+15% YoY in [category name]",
-      "key_trends": [
-        "Trend 1 description",
-        "Trend 2 description",
-        "Trend 3 description"
-      ],
-      "price_elasticity": "Medium sensitivity",
-      "seasonal_demand": "Demand pattern description (e.g., Peak in dry season Jun-Sep)"
-    }
-  },
-  "packaging_recommendations": {
-    "primary_package": "Detailed package description (e.g., 30ml amber glass bottle with dropper)",
-    "cost_estimate": 15000,
-    "sustainability_score": "B+",
-    "shelf_life": "24 months",
-    "storage_requirements": "Storage instructions (e.g., Room temperature, avoid direct sunlight)"
-  },
-  "regulatory_compliance": {
-    "bpom_requirements": "Notification requirements description",
-    "halal_certification": "Compatibility status and considerations",
-    "safety_assessment": "Required safety assessments (e.g., RIVA required for Indonesia market)",
-    "labeling_requirements": [
-      "Labeling requirement 1",
-      "Labeling requirement 2",
-      "Labeling requirement 3"
+    "email_subject_lines": [
+      "Subject line 1 max 50 chars",
+      "Subject line 2 max 50 chars",
+      "Subject line 3 max 50 chars"
     ]
   },
-  "marketing_suggestions": {
-    "key_selling_points": [
-      "Unique selling point 1",
-      "Unique selling point 2",
-      "Unique selling point 3",
-      "Unique selling point 4"
-    ],
-    "target_channels": [
-      "Distribution channel 1",
-      "Distribution channel 2",
-      "Distribution channel 3"
-    ],
-    "content_ideas": [
-      "Content marketing idea 1",
-      "Content marketing idea 2",
-      "Content marketing idea 3"
-    ]
-  },
-  "potensi_pasar": {
-    "ringkasan": "Ringkasan singkat potensi pasar (100-150 kata) yang mencakup pertumbuhan pasar, peluang, dan positioning produk...",
-    "cagr": "8-9%",
-    "periode": "2024-2029",
-    "segmentasi_harga": {
-      "menengah": {
-        "range": "Rp80.000 - Rp160.000",
-        "probabilitas": "60%",
-        "deskripsi": "Segmen utama dengan konsumen usia 25-35 tahun"
-      },
-      "premium": {
-        "range": "Rp160.000 - Rp300.000",
-        "probabilitas": "20%",
-        "deskripsi": "Target konsumen premium yang peduli kualitas"
-      },
-      "ekonomis": {
-        "range": "Rp40.000 - Rp80.000",
-        "probabilitas": "20%",
-        "deskripsi": "Pasar mass market dengan sensitivitas harga tinggi"
+  
+  "key_trends": {
+    "trending_ingredients": [
+      {
+        "name": "Niacinamide",
+        "trend_status": "Peak",
+        "google_search_trend": "+85% YoY",
+        "social_media_mentions": "Viral di TikTok beauty community",
+        "consumer_awareness": "High"
       }
-    },
-    "persona_target": {
-      "usia": "26-35 tahun",
-      "karakteristik": "Pria/wanita aktif yang peduli kesehatan kulit dan kualitas produk",
-      "prioritas": "Efektivitas produk, tekstur nyaman, hasil terlihat, harga wajar"
-    },
-    "tren_pendorong": [
-      "Peningkatan kesadaran skincare di kalangan muda urban",
-      "Pengaruh K-beauty dan J-beauty yang kuat",
-      "Tren clean beauty dan natural ingredients",
-      "Pertumbuhan e-commerce dan social commerce"
     ],
-    "risiko_pasar": [
-      "Persaingan ketat dengan brand internasional mapan",
-      "Tekanan regulasi BPOM yang semakin ketat",
-      "Fluktuasi harga bahan baku impor",
-      "Perubahan preferensi konsumen yang cepat"
+    "market_movements": [
+      "Clean beauty movement description",
+      "K-beauty influence description",
+      "Social commerce growth description"
+    ],
+    "competitive_landscape": "2-3 sentences about market saturation and opportunities..."
+  },
+  
+  "market_potential": {
+    "total_addressable_market": {
+      "segment": "Indonesian women 25-40, urban, middle-upper class",
+      "estimated_size": 15000000,
+      "value_idr": 4500000000000,
+      "source": "Based on Indonesia beauty market reports 2024"
+    },
+    "target_market_size": {
+      "segment_description": "Women 25-35 in Jakarta, Surabaya, Bandung interested in K-beauty",
+      "estimated_customers": 500000,
+      "penetration_rate": "2-3% realistic within 12 months"
+    },
+    "revenue_projections": {
+      "scenario": "moderate",
+      "monthly_units": 1000,
+      "monthly_revenue": 120000000,
+      "yearly_revenue": 1440000000,
+      "assumptions": [
+        "2% conversion rate from social media traffic",
+        "Average order value: IDR 120,000",
+        "30% repeat purchase rate within 6 months"
+      ]
+    },
+    "growth_opportunities": [
+      "Expand to Shopee Mall with premium positioning",
+      "Micro-influencer partnerships (10K-50K followers)",
+      "Bundle deals: Serum + Moisturizer",
+      "Subscription model with 10% discount"
+    ],
+    "risk_factors": [
+      "High competition from established brands",
+      "Price sensitivity during economic uncertainty",
+      "Regulatory compliance costs"
     ]
   },
-  "tren_kunci": [
-    "Permintaan tinggi untuk serum brightening dengan CAGR 8-9% didorong iklim tropis dan aktivitas outdoor",
-    "Konsumen usia 26-35 prefer tekstur ringan, finish matte, tanpa white cast, tahan keringat",
-    "Tren produk multi-fungsional: kombinasikan Niacinamide, Panthenol, Centella untuk results maksimal",
-    "Segmentasi harga menengah Rp80-160k dengan kesediaan bayar lebih jika klaim terbukti",
-    "Marketing via digital penetration (e-commerce, influencer) dan regulatory compliance menjadi kunci sukses"
-  ],
-  "copywriting": "Produk serum ini mengintegrasikan advanced brightening technology dengan Niacinamide 5% dan Hyaluronic Acid 2%. Niacinamide berperan mencerahkan kulit dan memperbaiki tekstur dengan mengurangi hyperpigmentasi dan meningkatkan kelembaban. Sementara Hyaluronic Acid memberikan hidrasi mendalam dan memperbaiki skin barrier, mencegah kehilangan air dan merangsang produksi kolagen. Kombinasi bahan aktif ini menciptakan efek sinergis yang tidak hanya mencerahkan kulit tetapi juga memperbaiki kondisi kulit secara keseluruhan, memberikan manfaat klinis seperti kulit lebih cerah, terhidrasi, dan terlihat sehat."
+  
+  "image_prompts": {
+    "product_hero_shot": "Detailed prompt for main product image...",
+    "lifestyle_shots": [...],
+    "ingredient_visualization": [...],
+    "before_after_mockup": "...",
+    "social_media_assets": [...]
+  }
 }
 ```
 
@@ -473,111 +402,194 @@ Suggest 3-5 content marketing approaches:
 - "Behind-the-scenes formulation process"
 - "Comparison with international brands"
 
-## 12. POTENSI PASAR (Market Potential Analysis)
+## 12. MARKETING COPYWRITING
 
-### ringkasan (String, 100-150 words)
-Comprehensive market analysis covering:
-- Market size and growth potential
-- Key opportunities and positioning
-- Competitive landscape overview
-- Target market characteristics
-- Market entry strategy recommendations
+### headline (String)
+- Attention-grabbing headline in Indonesian
+- Maximum 10 words
+- Emphasize main benefit or transformation
+- Examples:
+  * "Rahasia Kulit Glowing dalam 14 Hari"
+  * "Serum Anti-Aging yang Benar-Benar Bekerja"
+  * "Cerahkan Wajah Tanpa Bahan Berbahaya"
 
-Language: Bahasa Indonesia
-Focus: Indonesian skincare market specifically
-Include: CAGR data, market trends, consumer behavior
+### sub_headline (String)
+- Supporting headline in Indonesian
+- Maximum 15 words
+- Elaborate on the promise or explain how it works
+- Examples:
+  * "Formula science-backed dengan 3 bahan aktif proven mencerahkan dan melembabkan"
+  * "Teknologi Korea terkini untuk hasil maksimal tanpa iritasi"
 
-### cagr (String)
-- Format: "X-X%" (e.g., "8-9%", "12-15%")
-- Based on product category and market segment
-- Consider Indonesian market growth rates
-- Realistic range for skincare category
+### body_copy (String)
+- Persuasive body copy in Indonesian, 100-150 words
+- Structure:
+  1. Hook: Relatable problem/pain point (2-3 sentences)
+  2. Solution: How this product solves it (3-4 sentences)
+  3. Proof: Ingredient benefits or results (3-4 sentences)
+  4. Call-to-action: Encourage trial/purchase (1-2 sentences)
+- Tone: Conversational, confident, aspirational
+- Use storytelling and emotional triggers
 
-### periode (String)
-- Format: "2024-2029" or "2024-2030"
-- 5-year projection period
-- Align with business planning cycles
+### social_media_captions (Array of Objects)
+Generate 3 caption variations for different platforms:
+- **platform**: "instagram", "tiktok", or "facebook"
+- **caption**: Caption text in Indonesian (varies by platform)
+  * Instagram: 100-150 words, include emojis, 3-5 hashtags
+  * TikTok: 50-80 words, casual tone, trending phrases
+  * Facebook: 80-120 words, informative, community-focused
+- **cta**: Clear call-to-action (e.g., "Link di bio!", "Swipe up!", "Komentar 'INFO'")
 
-### segmentasi_harga (Object)
-Three price segments with:
-- **menengah**: Main target segment (60% probability)
-  - Range: Rp80.000 - Rp160.000
-  - Target: Urban middle class, age 25-35
-- **premium**: High-end segment (20% probability)
-  - Range: Rp160.000 - Rp300.000
-  - Target: Affluent consumers, quality-focused
-- **ekonomis**: Mass market segment (20% probability)
-  - Range: Rp40.000 - Rp80.000
-  - Target: Price-sensitive consumers
+### email_subject_lines (Array of Strings)
+- Generate 3 email subject line variations
+- Maximum 50 characters each
+- Create urgency, curiosity, or exclusivity
+- Examples:
+  * "🌟 Kulit Cerah Alami dalam 2 Minggu?"
+  * "DISKON 30% untuk Early Birds - Terbatas!"
+  * "Serum Best-Seller Kami Akhirnya Restocked!"
 
-Each segment includes:
-- **range**: Price range in IDR
-- **probabilitas**: Market share percentage
-- **deskripsi**: Target consumer description
+## 13. KEY TRENDS ANALYSIS
 
-### persona_target (Object)
-- **usia**: Target age range (e.g., "26-35 tahun")
-- **karakteristik**: Consumer profile description
-- **prioritas**: Key purchase considerations
+### trending_ingredients (Array of Objects)
+Identify 3-4 trending ingredients relevant to this product:
+- **name**: Ingredient name
+- **trend_status**: "Rising" (new/emerging), "Peak" (currently hot), "Steady" (established favorite)
+- **google_search_trend**: "+X% YoY" (estimated search volume growth)
+- **social_media_mentions**: Description (e.g., "Viral di TikTok beauty community")
+- **consumer_awareness**: "High" (>60% aware), "Medium" (30-60%), "Low" (<30%)
 
-### tren_pendorong (Array of 4 strings)
-Market growth drivers:
-- Consumer behavior trends
-- Technology adoption
-- Regulatory changes
-- Economic factors
-- Cultural shifts
+### market_movements (Array of Strings)
+List 3-5 current market movements affecting this category:
+- Examples:
+  * "Clean beauty movement: Consumers prefer transparent ingredient lists"
+  * "K-beauty dominance: Korean formulations highly trusted"
+  * "Sustainable packaging demand: 45% willing to pay premium"
+  * "Social commerce growth: 70% discover products via Instagram/TikTok"
+  * "Dermatologist endorsements valued: Increases purchase intent by 3x"
 
-### risiko_pasar (Array of 4 strings)
-Market risks and challenges:
-- Competitive threats
-- Regulatory risks
-- Economic factors
-- Consumer behavior changes
-- Supply chain issues
+### competitive_landscape (String)
+2-3 sentences describing competitive dynamics:
+- Market saturation level
+- Key differentiators needed to stand out
+- Opportunities or white spaces
 
-## 13. TREN KUNCI (Key Trends Analysis)
+## 14. MARKET POTENTIAL
 
-Generate exactly 5 trend statements (Array of 5 strings):
-- Each statement: 60-80 words maximum
-- Cover different aspects: demand, consumer preferences, product trends, pricing, marketing
-- Focus on Indonesian market context
-- Include specific data points when possible
-- Language: Bahasa Indonesia
+### total_addressable_market (Object)
+- **segment**: Market segment description (e.g., "Indonesian women 25-40, urban, middle-upper class")
+- **estimated_size**: Integer (total potential customers)
+- **value_idr**: Integer (total market value in IDR)
+- **source**: Data source note (e.g., "Based on Indonesia beauty market reports 2024")
 
-Structure per trend:
-1. **Market Demand & Growth**: Market size, growth rates, category performance
-2. **Consumer Preferences**: Age group preferences, texture, finish, application
-3. **Product & Formulation Trends**: Multi-functional products, ingredient combinations
-4. **Pricing & Competition**: Price sensitivity, competitive positioning
-5. **Marketing & Distribution**: Digital channels, influencer marketing, regulatory compliance
+### target_market_size (Object)
+- **segment_description**: Refined target segment
+- **estimated_customers**: Integer (realistic target customer count)
+- **penetration_rate**: String percentage (e.g., "2-3% market penetration realistic")
+
+### revenue_projections (Object)
+- **scenario**: "conservative", "moderate", or "optimistic"
+- **monthly_units**: Integer (estimated monthly sales units)
+- **monthly_revenue**: Integer (in IDR)
+- **yearly_revenue**: Integer (in IDR)
+- **assumptions**: Array of 2-3 assumption strings
+  * Examples:
+    - "2% conversion rate from social media traffic"
+    - "Average order value: Recommended price"
+    - "30% repeat purchase rate within 6 months"
+
+### growth_opportunities (Array of Strings)
+List 3-5 growth opportunity strategies:
+- Examples:
+  * "Expand to Shopee/Tokopedia Mall with 20% higher AOV"
+  * "Influencer partnerships: Micro-influencers (10K-50K followers)"
+  * "Bundle deals: Serum + Moisturizer at 15% discount"
+  * "Subscription model: Monthly delivery with 10% savings"
+  * "International expansion: Malaysia, Singapore after local success"
+
+### risk_factors (Array of Strings)
+List 2-4 realistic risk factors:
+- Examples:
+  * "High competition from established brands (Somethinc, Skintific)"
+  * "Price sensitivity in economic downturn"
+  * "Regulatory changes: BPOM stricter enforcement"
+  * "Supply chain disruptions affecting raw materials"
+
+## 15. IMAGE PROMPTS
+
+Generate detailed AI image generation prompts for various marketing assets. These prompts will be used by users to generate images using AI tools like Midjourney, DALL-E, or Stable Diffusion.
+
+### product_hero_shot (String)
+Main product image prompt (200-300 words):
+- **Structure**: "A [product type] in [packaging description], [lighting setup], [background], [style], [technical specs]"
+- **Include**: 
+  * Exact packaging details from `packaging_recommendations`
+  * Product color from `form_data.warna`
+  * Texture hints from `form_data.tekstur`
+  * Professional photography style
+  * Lighting (soft, natural, studio)
+  * Background (clean, minimal, gradient)
+  * Camera angle and composition
+- **Style**: Professional product photography, commercial quality
+- **Technical**: High resolution, sharp focus, clean composition
+
+Example: "A 30ml amber glass airless pump bottle with glossy finish containing clear gel serum, positioned at 45-degree angle on white marble surface, soft natural lighting from left side, clean white gradient background, professional product photography style, macro lens detail, high resolution, commercial quality, minimal shadows, luxury cosmetic aesthetic"
+
+### lifestyle_shots (Array of Strings)
+Generate 2-3 lifestyle/usage scene prompts (150-200 words each):
+- **Scene 1**: Application/usage moment
+- **Scene 2**: Skincare routine context  
+- **Scene 3**: Results/after-use glow (optional)
+
+Each prompt should include:
+- Indonesian/Asian model demographics matching `target_gender` and `target_usia`
+- Natural, authentic moments
+- Good lighting (golden hour, soft natural)
+- Clean, modern Indonesian home setting
+- Product naturally integrated into scene
+
+### ingredient_visualization (Array of Strings)
+Generate 2-3 ingredient-focused visual prompts (100-150 words each):
+- **Scientific illustration style** for key active ingredients
+- **Molecular/microscopic aesthetic** 
+- **Clean, educational visual**
+- Based on `ingredients_analysis.active_ingredients`
 
 Examples:
-- "Permintaan tinggi untuk serum brightening dengan CAGR 8-9% didorong iklim tropis dan aktivitas outdoor"
-- "Konsumen usia 26-35 prefer tekstur ringan, finish matte, tanpa white cast, tahan keringat"
-- "Tren produk multi-fungsional: kombinasikan Niacinamide, Panthenol, Centella untuk results maksimal"
+- "Hyaluronic Acid molecules visualization"
+- "Niacinamide crystal structure artistic representation"
+- "Skin hydration process infographic style"
 
-## 14. COPYWRITING (Marketing Copy)
+### before_after_mockup (String)
+Split-screen comparison prompt (150-200 words):
+- **Left side**: Skin concerns (dull, dehydrated)
+- **Right side**: Improved skin (glowing, hydrated)
+- **Style**: Clean, medical/clinical aesthetic
+- **Focus**: Realistic improvement, not exaggerated
+- **Lighting**: Consistent, professional
+- **Model**: Indonesian/Asian, matching target demographic
 
-Generate persuasive marketing copy (String, 100-150 words):
-- **Language**: Bahasa Indonesia
-- **Tone**: Professional yet approachable, scientific but accessible
-- **Structure**:
-  1. Opening: Product introduction and key benefit
-  2. Middle: Ingredient explanation and synergistic effects
-  3. Closing: Clinical benefits and results promise
+### social_media_assets (Array of Objects)
+Generate 3 social media specific prompts:
 
-**Requirements**:
-- Highlight key active ingredients with concentrations
-- Explain how ingredients work together (synergistic effects)
-- Include clinical/scientific benefits
-- Mention texture and application experience
-- End with results promise
-- No medical claims (cosmetic language only)
-- Natural, flowing paragraph (no bullets or lists)
+Each object contains:
+- **platform**: "instagram", "tiktok", or "facebook"
+- **prompt**: Detailed image generation prompt (100-150 words)
+- **style**: Platform-appropriate aesthetic
+- **dimensions**: Recommended aspect ratio
 
-**Example Structure**:
-"Produk [product_name] mengintegrasikan [technology] dengan [ingredient1] [concentration]% dan [ingredient2] [concentration]%. [Ingredient1] berperan [function] dengan [mechanism]. Sementara [ingredient2] memberikan [benefit] dan [mechanism]. Kombinasi bahan aktif ini menciptakan efek sinergis yang [result], memberikan manfaat klinis seperti [specific_benefits]."
+**Instagram**: Square/vertical, aesthetic flat lay, lifestyle
+**TikTok**: Vertical, dynamic, trendy, Gen Z appeal
+**Facebook**: Horizontal, informative, professional
+
+### packaging_mockup (String)
+3D packaging visualization prompt (150-200 words):
+- **Multiple angles**: Front, side, top view
+- **Context**: Luxury display setting
+- **Materials**: Realistic glass/plastic textures
+- **Branding**: Space for logo/text placement
+- **Lighting**: Studio quality, professional
+- **Background**: Neutral, premium
 
 # QUALITY CONTROL CHECKLIST
 
@@ -589,9 +601,6 @@ Before outputting, verify:
   * taglines: exactly 3
   * active_ingredients: matches input count
   * supporting_ingredients: 3-6 items
-  * tren_kunci: exactly 5
-  * tren_pendorong: exactly 4
-  * risiko_pasar: exactly 4
 - [ ] selected_name is one of the product_names
 - [ ] selected_tagline is one of the taglines
 - [ ] All numeric values are numbers (not strings) except:
@@ -603,10 +612,18 @@ Before outputting, verify:
 - [ ] Price recommendations realistic for Indonesian market
 - [ ] Description is 150-200 words in Indonesian
 - [ ] Taglines are ≤6 words in Indonesian
-- [ ] Potensi pasar ringkasan is 100-150 words in Indonesian
-- [ ] Tren kunci has exactly 5 statements, each 60-80 words
-- [ ] Copywriting is 100-150 words in Indonesian
-- [ ] All new fields (potensi_pasar, tren_kunci, copywriting) are present
+- [ ] marketing_copywriting.headline ≤10 words in Indonesian
+- [ ] marketing_copywriting.social_media_captions has 3 items (instagram, tiktok, facebook)
+- [ ] marketing_copywriting.email_subject_lines has 3 items, each ≤50 characters
+- [ ] key_trends.trending_ingredients has 3-4 items
+- [ ] market_potential.revenue_projections.yearly_revenue = monthly_revenue × 12
+- [ ] All market_potential numbers are integers (no decimals)
+- [ ] image_prompts.product_hero_shot is 200-300 words
+- [ ] image_prompts.lifestyle_shots has 2-3 items, each 150-200 words
+- [ ] image_prompts.ingredient_visualization has 2-3 items, each 100-150 words
+- [ ] image_prompts.before_after_mockup is 150-200 words
+- [ ] image_prompts.social_media_assets has 3 items (instagram, tiktok, facebook)
+- [ ] image_prompts.packaging_mockup is 150-200 words
 
 # ERROR HANDLING & CONSTRAINTS
 
@@ -724,9 +741,10 @@ You have access to 9 knowledge documents. Use them when you need:
 9. packaging_recommendations (object)
 10. regulatory_compliance (object)
 11. marketing_suggestions (object)
-12. potensi_pasar (object with ringkasan, cagr, periode, segmentasi_harga, persona_target, tren_pendorong, risiko_pasar)
-13. tren_kunci (array of 5 strings)
-14. copywriting (string, 100-150 words)
+12. marketing_copywriting (object)
+13. key_trends (object)
+14. market_potential (object)
+15. image_prompts (object)
 
 ## Example of CORRECT output format:
 ```
@@ -742,9 +760,10 @@ You have access to 9 knowledge documents. Use them when you need:
   "packaging_recommendations": {...},
   "regulatory_compliance": {...},
   "marketing_suggestions": {...},
-  "potensi_pasar": {...},
-  "tren_kunci": [...],
-  "copywriting": "..."
+  "marketing_copywriting": {...},
+  "key_trends": {...},
+  "market_potential": {...},
+  "image_prompts": {...}
 }
 ```
 

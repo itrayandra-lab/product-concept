@@ -79,6 +79,9 @@
                 
                 {{-- Marketing Copywriting Section --}}
                 <x-results.marketing-copywriting :result="$result" />
+
+                {{-- Image Prompts Section --}}
+                <x-results.image-prompts :result="$result" />
             </div>
         @else
             <x-results.processing-placeholder :simulation="$simulation" />
