@@ -34,7 +34,6 @@ class AuthController extends Controller
             'password' => 'required|string|min:8|confirmed',
             'phone' => 'nullable|string|max:20',
             'company' => 'nullable|string|max:255',
-            'terms_accepted' => 'required|boolean|accepted',
         ]);
 
         $user = User::create([
@@ -43,8 +42,8 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
             'phone' => $request->phone,
             'company' => $request->company,
-            'terms_accepted' => $request->terms_accepted,
-            'terms_accepted_at' => now(),
+            'terms_accepted' => false,
+            'terms_accepted_at' => null,
             'subscription_tier' => 'free',
             'permissions' => ['basic'],
             'daily_simulation_count' => 0,
@@ -216,7 +215,7 @@ class AuthController extends Controller
     /**
      * Handle Google OAuth callback
      */
-    public function handleGoogleCallback(): JsonResponse
+    public function handleGoogleCallback(): \Illuminate\Http\RedirectResponse
     {
         try {
             $googleUser = Socialite::driver('google')->user();
@@ -249,22 +248,16 @@ class AuthController extends Controller
                 $isNewUser = true;
             }
 
-            $token = $user->createToken('auth-token', ['*'])->plainTextToken;
+            // Log user in with session (remember me = true)
+            Auth::login($user, true);
 
             // Log Google OAuth event
-            $this->auditLogService->logGoogleOAuth($user, $request, $isNewUser);
+            $this->auditLogService->logGoogleOAuth($user, request(), $isNewUser);
 
-            return response()->json([
-                'message' => 'Google authentication successful',
-                'user' => $user,
-                'token' => $token,
-            ]);
+            return redirect()->to('/simulator')->with('success', 'Login dengan Google berhasil!');
 
         } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Google authentication failed',
-                'error' => $e->getMessage(),
-            ], 400);
+            return redirect()->to('/login')->with('error', 'Login dengan Google gagal: ' . $e->getMessage());
         }
     }
 

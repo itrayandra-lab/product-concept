@@ -97,9 +97,9 @@ class AuthTokenService
         $dailyCount = $user->daily_simulation_count;
         
         $limits = [
-            'free' => 3,
-            'premium' => 20,
-            'enterprise' => 100,
+            'free' => 99999,
+            'premium' => 99999,
+            'enterprise' => 99999,
         ];
 
         return $dailyCount < ($limits[$tier] ?? 3);

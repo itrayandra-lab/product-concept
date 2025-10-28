@@ -29,6 +29,7 @@ class SimulationHistory extends Model
         'processing_completed_at',
         'processing_duration_seconds',
         'error_details',
+        'progress_metadata',
     ];
 
     /**
@@ -45,6 +46,7 @@ class SimulationHistory extends Model
             'processing_started_at' => 'datetime',
             'processing_completed_at' => 'datetime',
             'processing_duration_seconds' => 'integer',
+            'progress_metadata' => 'array',
         ];
     }
 
@@ -96,4 +98,3 @@ class SimulationHistory extends Model
         return $query->where('user_id', $userId);
     }
 }
-

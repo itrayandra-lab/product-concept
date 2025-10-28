@@ -12,11 +12,16 @@ class GuestSession extends Model
     protected $fillable = [
         'session_id',
         'form_data',
+        'form_step',
+        'completed_steps',
+        'form_progress',
         'expires_at',
     ];
 
     protected $casts = [
         'form_data' => 'array',
+        'completed_steps' => 'array',
+        'form_progress' => 'float',
         'expires_at' => 'datetime',
     ];
 

@@ -105,6 +105,27 @@ class AuditLogService
     }
 
     /**
+     * Log simulation creation
+     */
+    public function logSimulationCreated($simulation, Request $request): AuditLog
+    {
+        return AuditLog::create([
+            'user_id' => $simulation->user_id,
+            'event_type' => 'simulation_created',
+            'table_name' => 'simulation_histories',
+            'record_id' => $simulation->id,
+            'old_values' => null,
+            'new_values' => [
+                'simulation_id' => $simulation->id,
+                'status' => $simulation->status,
+                'has_guest_session' => $simulation->guest_session_id !== null,
+            ],
+            'ip_address' => $request?->ip(),
+            'user_agent' => $request?->userAgent(),
+        ]);
+    }
+
+    /**
      * Log simulation rate limit hit
      */
     public function logRateLimitHit(User $user, Request $request, string $endpoint): AuditLog
