@@ -19,7 +19,7 @@
     <div class="flex min-h-screen flex-col lg:flex-row">
         <aside class="hidden w-full max-w-sm border-r border-slate-100 bg-white px-6 py-8 lg:flex lg:flex-col">
             <a href="{{ url('/') }}" class="mb-8 inline-flex items-center gap-3 text-lg font-semibold text-slate-900">
-                <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-orange-500/10 text-orange-600">AI</span>
+                <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-500/10 text-blue-600">AI</span>
                 AI Skincare Simulator
             </a>
             <div class="mt-10 space-y-8">
@@ -28,7 +28,7 @@
                         <a href="{{ route('login') }}" class="block w-full rounded-xl border border-slate-200 px-4 py-2 text-center text-sm font-semibold text-slate-700 transition hover:border-slate-300">
                             Masuk
                         </a>
-                        <a href="{{ route('register') }}" class="block w-full rounded-xl bg-orange-500 px-4 py-2 text-center text-sm font-semibold text-white transition hover:bg-orange-600">
+                        <a href="{{ route('register') }}" class="block w-full rounded-xl bg-blue-500 px-4 py-2 text-center text-sm font-semibold text-white transition hover:bg-blue-600">
                             Daftar
                         </a>
                     </div>
@@ -52,10 +52,10 @@
                 <div>
                     <p class="text-sm uppercase tracking-wide text-slate-400">Langkah Simulasi</p>
                     <ul class="mt-4 space-y-3 text-sm text-slate-600">
-                        <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-orange-500"></span> Detail Produk</li>
-                        <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-orange-500"></span> Target Pasar</li>
-                        <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-orange-500"></span> Komposisi</li>
-                        <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-orange-500"></span> Konfigurasi Lanjut</li>
+                        <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-blue-500"></span> Detail Produk</li>
+                        <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-blue-500"></span> Target Pasar</li>
+                        <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-blue-500"></span> Komposisi</li>
+                        <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-blue-500"></span> Konfigurasi Lanjut</li>
                     </ul>
                 </div>
                 <div class="rounded-2xl bg-slate-50 p-4">
@@ -80,7 +80,7 @@
                 <a href="{{ route('login') }}" class="flex-1 rounded-xl border border-slate-200 bg-white px-4 py-3 text-center text-sm font-semibold text-slate-700 shadow-lg">
                     Masuk
                 </a>
-                <a href="{{ route('register') }}" class="flex-1 rounded-xl bg-orange-500 px-4 py-3 text-center text-sm font-semibold text-white shadow-lg">
+                <a href="{{ route('register') }}" class="flex-1 rounded-xl bg-blue-500 px-4 py-3 text-center text-sm font-semibold text-white shadow-lg">
                     Daftar
                 </a>
             </div>

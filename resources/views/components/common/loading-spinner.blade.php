@@ -6,7 +6,7 @@
     x-cloak
 >
     <div class="flex flex-col items-center gap-4">
-        <span class="inline-flex h-14 w-14 animate-spin items-center justify-center rounded-full border-4 border-orange-200 border-t-orange-500"></span>
+        <span class="inline-flex h-14 w-14 animate-spin items-center justify-center rounded-full border-4 border-blue-200 border-t-blue-500"></span>
         <p class="text-sm font-semibold text-slate-600">Memuat data simulasi...</p>
     </div>
 </div>

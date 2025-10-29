@@ -18,7 +18,7 @@
         <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">Alternatif Nama Produk</p>
         <div class="mt-3 flex flex-wrap gap-3">
             @forelse ($names as $name)
-                <button type="button" class="rounded-2xl border border-orange-200 bg-orange-50 px-4 py-2 text-sm font-semibold text-orange-600 hover:border-orange-300">
+                <button type="button" class="rounded-2xl border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-600 hover:border-blue-300">
                     {{ $name }}
                 </button>
             @empty

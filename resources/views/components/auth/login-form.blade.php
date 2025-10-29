@@ -33,7 +33,7 @@
                 <input type="checkbox" class="rounded" x-model="form.remember">
                 Ingat saya
             </label>
-            <a href="{{ url('/forgot-password') }}" class="font-semibold text-orange-600 hover:text-orange-500">Lupa password?</a>
+            <a href="{{ url('/forgot-password') }}" class="font-semibold text-blue-600 hover:text-blue-500">Lupa password?</a>
         </div>
 
         <template x-if="errors.general">
@@ -54,6 +54,6 @@
 
     <p class="text-center text-sm text-slate-500">
         Belum punya akun?
-        <a href="{{ url('/register') }}" class="font-semibold text-orange-600 hover:text-orange-500">Daftar sekarang</a>
+        <a href="{{ url('/register') }}" class="font-semibold text-blue-600 hover:text-blue-500">Daftar sekarang</a>
     </p>
 </div>

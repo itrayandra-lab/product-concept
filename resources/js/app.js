@@ -89,7 +89,6 @@ const createSimulationStore = () => ({
             'bentuk_formulasi',
             'target_gender',
             'target_usia',
-            'target_negara',
             'deskripsi_formula',
             'bahan_aktif',
             'volume',
@@ -427,7 +426,6 @@ window.simulationFormComponent = function simulationFormComponent() {
                     return Boolean(
                         this.formData.target_gender &&
                             this.formData.target_usia.length &&
-                            this.formData.target_negara &&
                             this.formData.volume,
                     );
                 case 'ingredients':
@@ -467,7 +465,6 @@ window.simulationFormComponent = function simulationFormComponent() {
                 case 'market':
                     if (!this.formData.target_gender) addError('target_gender', 'Pilih target gender.');
                     if (!this.formData.target_usia.length) addError('target_usia', 'Pilih minimal satu rentang usia.');
-                    if (!this.formData.target_negara) addError('target_negara', 'Pilih negara target.');
                     if (!this.formData.volume || Number(this.formData.volume) <= 0) {
                         addError('volume', 'Masukkan volume produk yang valid.');
                     }

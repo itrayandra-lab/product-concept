@@ -1,7 +1,7 @@
 <nav x-data="{ mobileOpen: false }" class="sticky top-0 z-30 w-full border-b border-white/60 bg-white/80 backdrop-blur-md no-print" aria-label="Navigasi utama">
     <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <a href="{{ route('simulator') }}" class="flex items-center gap-2 text-lg font-semibold tracking-tight text-slate-900" aria-label="Beranda AI Skincare Simulator">
-            <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-orange-500/10 text-orange-600">AI</span>
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-500/10 text-blue-600">AI</span>
             AI Skincare Simulator
         </a>
 
@@ -28,7 +28,7 @@
         @guest
             <div class="hidden items-center gap-3 md:flex">
                 <a href="{{ route('login') }}" class="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300">Masuk</a>
-                <a href="{{ route('register') }}" class="inline-flex items-center rounded-xl bg-orange-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-orange-600">Daftar</a>
+                <a href="{{ route('register') }}" class="inline-flex items-center rounded-xl bg-blue-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-600">Daftar</a>
             </div>
         @endguest
 
@@ -59,7 +59,7 @@
             @guest
                 <div class="flex flex-col gap-3 pt-3">
                     <a href="{{ route('login') }}" class="rounded-2xl border border-slate-200 px-4 py-2 text-center text-sm font-semibold text-slate-700 transition hover:border-slate-300">Masuk</a>
-                    <a href="{{ route('register') }}" class="rounded-2xl bg-orange-500 px-4 py-2 text-center text-sm font-semibold text-white transition hover:bg-orange-600">Daftar</a>
+                    <a href="{{ route('register') }}" class="rounded-2xl bg-blue-500 px-4 py-2 text-center text-sm font-semibold text-white transition hover:bg-blue-600">Daftar</a>
                 </div>
             @endguest
 

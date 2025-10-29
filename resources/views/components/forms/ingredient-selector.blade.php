@@ -1,7 +1,7 @@
 <div class="card space-y-6">
     <div>
         <h3 class="section-title">
-            <span class="inline-flex h-8 w-8 items-center justify-center rounded-2xl bg-orange-100 text-orange-600">3</span>
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-2xl bg-blue-100 text-blue-600">3</span>
             Bahan Aktif & Konsentrasi
         </h3>
         <p class="mt-2 text-sm text-slate-500">Cari bahan di database atau masukkan manual untuk memastikan keamanan formulasi.</p>
@@ -15,7 +15,7 @@
             x-model.debounce.300ms="ingredientSearch"
             x-on:input.debounce.400ms="searchIngredient"
         >
-        <svg class="pointer-events-none absolute left-3 top-3 h-5 w-5 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg class="pointer-events-none absolute left-3 top-3 h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-5.2-5.2M11 19a8 8 0 100-16 8 8 0 000 16z" />
         </svg>
 
@@ -27,7 +27,7 @@
             <template x-for="ingredient in ingredientResults" :key="ingredient.id">
                 <button
                     type="button"
-                    class="flex w-full items-start justify-between rounded-xl px-3 py-2 text-left hover:bg-orange-50"
+                    class="flex w-full items-start justify-between rounded-xl px-3 py-2 text-left hover:bg-blue-50"
                     x-on:click.prevent="addIngredient(ingredient)"
                 >
                     <div>
