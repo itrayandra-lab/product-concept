@@ -32,6 +32,6 @@
 
     <p class="text-center text-sm text-slate-500">
         Sudah ingat password?
-        <a href="{{ url('/login') }}" class="font-semibold text-orange-600 hover:text-orange-500">Kembali ke login</a>
+        <a href="{{ url('/login') }}" class="font-semibold text-blue-600 hover:text-blue-500">Kembali ke login</a>
     </p>
 </div>

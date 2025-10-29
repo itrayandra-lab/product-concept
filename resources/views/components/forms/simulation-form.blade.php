@@ -25,32 +25,32 @@
     <!-- Safe data passing using script tag -->
     <script type="text/data" x-ref="initialData">@json($initialData)</script>
     <script type="text/data" x-ref="lookups">@json($lookups)</script>
-    <header class="rounded-3xl bg-gradient-to-br from-orange-50 via-white to-white p-8 shadow-sm shadow-orange-500/10">
+    <header class="rounded-3xl bg-gradient-to-br from-blue-50 via-white to-white p-8 shadow-sm shadow-blue-500/10">
         <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <div>
-                <p class="text-sm font-semibold uppercase tracking-[0.2em] text-orange-500">Simulasi Produk</p>
+                <p class="text-sm font-semibold uppercase tracking-[0.2em] text-blue-500">Simulasi Produk</p>
                 <h1 class="mt-2 text-3xl font-semibold text-slate-900">Brief Produk Kosmetik</h1>
                 <p class="mt-3 text-sm text-slate-600">Isi 18 parameter formulasi untuk mendapatkan rekomendasi AI yang lengkap.</p>
             </div>
-            <div class="w-full max-w-sm rounded-2xl border border-orange-100 bg-white p-4">
+            <div class="w-full max-w-sm rounded-2xl border border-blue-100 bg-white p-4">
                 <p class="text-sm font-semibold text-slate-900">Progress Pengisian</p>
                 <div class="mt-2 flex items-center gap-3">
                     <div class="h-2 flex-1 rounded-full bg-slate-100">
-                        <div class="h-full rounded-full bg-orange-500 transition-all" :style="`width: ${progress}%`"></div>
+                        <div class="h-full rounded-full bg-blue-500 transition-all" :style="`width: ${progress}%`"></div>
                     </div>
-                    <span class="text-sm font-semibold text-orange-600" x-text="`${progress}%`"></span>
+                    <span class="text-sm font-semibold text-blue-600" x-text="`${progress}%`"></span>
                 </div>
                 <p class="mt-1 text-xs text-slate-500" x-text="$store.simulationForm.steps[$store.simulationForm.currentStep - 1]?.label"></p>
             </div>
         </div>
     </header>
 
-    <nav class="grid gap-3 rounded-3xl bg-white p-4 shadow-sm shadow-orange-500/5 md:grid-cols-4">
+    <nav class="grid gap-3 rounded-3xl bg-white p-4 shadow-sm shadow-blue-500/5 md:grid-cols-4">
         <template x-for="step in $store.simulationForm.steps" :key="step.id">
             <button
                 type="button"
                 class="flex flex-col rounded-2xl border px-4 py-3 text-left transition"
-                :class="$store.simulationForm.currentStep === step.id ? 'border-orange-200 bg-orange-50 text-orange-600' : 'border-slate-100 bg-white text-slate-600'"
+                :class="$store.simulationForm.currentStep === step.id ? 'border-blue-200 bg-blue-50 text-blue-600' : 'border-slate-100 bg-white text-slate-600'"
                 x-on:click="goToStep(step.id)"
             >
                 <span class="text-xs font-semibold uppercase tracking-wide" x-text="`Langkah ${step.id}`"></span>
@@ -69,8 +69,8 @@
                 </div>
                 <div class="grid gap-3 sm:grid-cols-2">
                     @foreach ($lookups['productTypes'] as $type)
-                        <label class="flex cursor-pointer items-center gap-3 rounded-2xl border border-slate-200 p-3 text-sm font-medium text-slate-700 hover:border-orange-200"
-                            :class="formData.bentuk_formulasi === '{{ $type['name'] }}' ? 'border-orange-300 bg-orange-50 text-orange-600' : ''">
+                        <label class="flex cursor-pointer items-center gap-3 rounded-2xl border border-slate-200 p-3 text-sm font-medium hover:border-blue-200"
+                            :class="formData.bentuk_formulasi === '{{ $type['name'] }}' ? 'border-blue-300 bg-blue-50 text-blue-600' : 'text-slate-700'">
                             <input type="radio" name="bentuk_formulasi" value="{{ $type['name'] }}" class="hidden" x-model="formData.bentuk_formulasi">
                             {{ $type['name'] }}
                         </label>
@@ -88,7 +88,7 @@
                         <button
                             type="button"
                             class="rounded-2xl border px-4 py-2 text-sm font-medium transition"
-                            :class="formData.fungsi_produk.includes('{{ $function['name'] }}') ? 'border-orange-200 bg-orange-50 text-orange-600' : 'border-slate-200 text-slate-600'"
+                            :class="formData.fungsi_produk.includes('{{ $function['name'] }}') ? 'border-blue-200 bg-blue-50 text-blue-600' : 'border-slate-200 text-slate-600'"
                             x-on:click="toggleArrayValue('fungsi_produk', '{{ $function['name'] }}')"
                         >
                             {{ $function['name'] }}
@@ -119,7 +119,7 @@
                     <div class="mt-3 grid grid-cols-2 gap-2">
                         @foreach ($lookups['targetGenders'] as $gender)
                             <label class="rounded-2xl border px-4 py-2 text-center text-sm font-medium"
-                                :class="formData.target_gender === '{{ $gender['label'] }}' ? 'border-orange-200 bg-orange-50 text-orange-600' : 'border-slate-200 text-slate-600'">
+                                :class="formData.target_gender === '{{ $gender['label'] }}' ? 'border-blue-200 bg-blue-50 text-blue-600' : 'border-slate-200 text-slate-600'">
                                 <input type="radio" name="target_gender" value="{{ $gender['label'] }}" class="hidden" x-model="formData.target_gender">
                                 {{ $gender['label'] }}
                             </label>
@@ -131,7 +131,7 @@
                     <div class="mt-3 flex flex-wrap gap-2">
                         @foreach ($lookups['ageRanges'] as $age)
                             <button type="button" class="rounded-2xl border px-3 py-1 text-xs font-semibold"
-                                :class="formData.target_usia.includes('{{ $age['label'] }}') ? 'border-orange-200 bg-orange-50 text-orange-600' : 'border-slate-200 text-slate-600'"
+                                :class="formData.target_usia.includes('{{ $age['label'] }}') ? 'border-blue-200 bg-blue-50 text-blue-600' : 'border-slate-200 text-slate-600'"
                                 x-on:click="toggleArrayValue('target_usia', '{{ $age['label'] }}')">
                                 {{ $age['label'] }}
                             </button>
@@ -142,15 +142,6 @@
 
             <div class="card space-y-4">
                 <h3 class="section-title">Parameter Pasar</h3>
-                <div>
-                    <label class="text-xs font-semibold uppercase text-slate-400">Negara target</label>
-                    <select class="input-field mt-1" x-model="formData.target_negara">
-                        @foreach ($lookups['countries'] as $country)
-                            <option value="{{ $country }}">{{ $country }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
                 <div>
                     <label class="text-xs font-semibold uppercase text-slate-400">Volume produk</label>
                     <div class="mt-1 flex gap-3">
@@ -197,7 +188,7 @@
                     <div class="mt-2 flex flex-wrap gap-2">
                         @foreach ($lookups['finishingOptions'] as $finish)
                             <button type="button" class="rounded-2xl border px-3 py-1 text-xs font-semibold"
-                                :class="formData.finishing_kemasan === '{{ $finish }}' ? 'border-orange-200 bg-orange-50 text-orange-600' : 'border-slate-200 text-slate-600'"
+                                :class="formData.finishing_kemasan === '{{ $finish }}' ? 'border-blue-200 bg-blue-50 text-blue-600' : 'border-slate-200 text-slate-600'"
                                 x-on:click="formData.finishing_kemasan = '{{ $finish }}'">
                                 {{ $finish }}
                             </button>
@@ -211,9 +202,9 @@
             </div>
 
             <div class="card space-y-4">
-                <h3 class="section-title">Parameter Produksi</h3>
+                <h3 class="section-title">Target Harga & Produksi</h3>
                 <div>
-                    <label class="text-xs font-semibold uppercase text-slate-400">Target HPP</label>
+                    <label class="text-xs font-semibold uppercase text-slate-400">Target Harga Produk</label>
                     <div class="mt-1 flex gap-2">
                         <select class="input-field w-28" x-model="formData.target_hpp_currency">
                             <option value="IDR">IDR</option>
@@ -310,7 +301,7 @@
         </div>
     </section>
 
-    <div class="sticky bottom-4 flex flex-col gap-3 rounded-3xl border border-slate-100 bg-white/90 p-4 shadow-lg shadow-orange-500/10 md:flex-row md:items-center md:justify-between">
+    <div class="sticky bottom-4 flex flex-col gap-3 rounded-3xl border border-slate-100 bg-white/90 p-4 shadow-lg shadow-blue-500/10 md:flex-row md:items-center md:justify-between">
         <template x-if="Object.keys($store.simulationForm.errors).length">
             <div class="rounded-2xl border border-rose-100 bg-rose-50 p-3 text-sm text-rose-700" role="alert" aria-live="assertive">
                 <p class="font-semibold">Perlu diperbaiki:</p>
@@ -328,7 +319,7 @@
             <span class="inline-flex h-8 w-8 items-center justify-center rounded-full"
                 :class="{
                     'bg-emerald-100 text-emerald-600': autoSaveStatus === 'saved',
-                    'bg-orange-100 text-orange-600': autoSaveStatus === 'saving',
+                    'bg-blue-100 text-blue-600': autoSaveStatus === 'saving',
                     'bg-rose-100 text-rose-600': autoSaveStatus === 'error'
                 }">
                 <template x-if="autoSaveStatus === 'saving'">

@@ -51,8 +51,8 @@
                 <p class="mt-2 text-2xl font-semibold text-slate-900">IDR {{ number_format(data_get($revenueProjections, 'monthly_revenue', 0), 0, ',', '.') }}</p>
                 <p class="text-xs text-slate-500">Pendapatan bulanan</p>
             </div>
-            <div class="rounded-2xl border border-slate-100 bg-orange-50/60 p-4">
-                <p class="text-xs uppercase tracking-[0.3em] text-orange-500">Yearly Revenue</p>
+            <div class="rounded-2xl border border-slate-100 bg-blue-50/60 p-4">
+                <p class="text-xs uppercase tracking-[0.3em] text-blue-500">Yearly Revenue</p>
                 <p class="mt-2 text-2xl font-semibold text-slate-900">IDR {{ number_format(data_get($revenueProjections, 'yearly_revenue', 0), 0, ',', '.') }}</p>
                 <p class="text-xs text-slate-500">Proyeksi tahunan</p>
             </div>
@@ -80,8 +80,8 @@
             <h4 class="text-lg font-semibold text-slate-900">Faktor Risiko</h4>
             <div class="grid gap-3 md:grid-cols-2">
                 @foreach($riskFactors as $risk)
-                    <div class="flex items-start gap-3 p-4 rounded-xl border border-slate-100 bg-orange-50/30">
-                        <span class="mt-1 h-2 w-2 rounded-full bg-orange-500 shrink-0"></span>
+                    <div class="flex items-start gap-3 p-4 rounded-xl border border-slate-100 bg-blue-50/30">
+                        <span class="mt-1 h-2 w-2 rounded-full bg-blue-500 shrink-0"></span>
                         <p class="text-sm text-slate-700">{{ $risk }}</p>
                     </div>
                 @endforeach

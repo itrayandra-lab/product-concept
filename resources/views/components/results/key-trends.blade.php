@@ -26,7 +26,7 @@
                         $trendStatus = data_get($ingredient, 'trend_status', '');
                         $statusColor = match($trendStatus) {
                             'Peak' => 'bg-red-100 text-red-800 border-red-200',
-                            'Rising' => 'bg-orange-100 text-orange-800 border-orange-200',
+                            'Rising' => 'bg-blue-100 text-blue-800 border-blue-200',
                             'Steady' => 'bg-blue-100 text-blue-800 border-blue-200',
                             'Declining' => 'bg-gray-100 text-gray-800 border-gray-200',
                             default => 'bg-slate-100 text-slate-800 border-slate-200'
@@ -73,7 +73,7 @@
 
     {{-- Competitive Landscape --}}
     @if($competitiveLandscape)
-        <div class="rounded-2xl border border-slate-100 bg-orange-50/30 p-4">
+        <div class="rounded-2xl border border-slate-100 bg-blue-50/30 p-4">
             <h4 class="text-sm font-semibold text-slate-900 mb-2">Landscape Kompetitif</h4>
             <p class="text-sm text-slate-700">{{ $competitiveLandscape }}</p>
         </div>

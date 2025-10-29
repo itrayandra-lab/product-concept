@@ -44,7 +44,7 @@
                                         {{ optional($simulation->created_at)->format('d M Y · H:i') }}
                                     </td>
                                     <td class="px-4 py-3 text-right">
-                                        <a href="{{ route('simulations.results', $simulation) }}" class="text-sm font-semibold text-orange-600 hover:text-orange-500">
+                                        <a href="{{ route('simulations.results', $simulation) }}" class="text-sm font-semibold text-blue-600 hover:text-blue-500">
                                             Lihat hasil
                                         </a>
                                     </td>

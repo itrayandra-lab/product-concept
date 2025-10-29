@@ -5,16 +5,16 @@
     x-init="init()"
     x-show="status !== 'completed'"
     x-cloak
-    class="rounded-3xl border border-dashed border-orange-200 bg-orange-50/80 p-6 text-sm text-slate-700"
+    class="rounded-3xl border border-dashed border-blue-200 bg-blue-50/80 p-6 text-sm text-slate-700"
 >
     <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.3em] text-orange-500">Status Simulasi</p>
+            <p class="text-xs font-semibold uppercase tracking-[0.3em] text-blue-500">Status Simulasi</p>
             <h2 class="mt-2 text-2xl font-semibold text-slate-900" x-text="friendlyStatus()"></h2>
             <p class="mt-1 text-sm text-slate-600" x-text="statusDescription()"></p>
         </div>
         <div class="text-right">
-            <p class="text-xs font-semibold uppercase tracking-[0.3em] text-orange-500">Progress</p>
+            <p class="text-xs font-semibold uppercase tracking-[0.3em] text-blue-500">Progress</p>
             <p class="mt-2 text-3xl font-semibold text-slate-900" x-text="progress ? `${progress}%` : '—'"></p>
         </div>
     </div>

@@ -17,12 +17,12 @@
 <body class="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-100 font-sans text-slate-900">
     <a href="#main-content" class="skip-link focus-visible:block">Lewati ke konten utama</a>
     <div class="relative flex min-h-screen flex-col items-center justify-center px-4 py-12">
-        <a href="{{ url('/') }}" class="mb-8 inline-flex items-center gap-2 text-xl font-semibold text-orange-500">
-            <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-orange-100 text-orange-600">AI</span>
+        <a href="{{ url('/') }}" class="mb-8 inline-flex items-center gap-2 text-xl font-semibold text-blue-500">
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-blue-600">AI</span>
             Skincare Simulator
         </a>
 
-        <div id="main-content" tabindex="-1" class="w-full max-w-md rounded-3xl bg-white p-8 shadow-xl shadow-orange-500/5 ring-1 ring-slate-100">
+        <div id="main-content" tabindex="-1" class="w-full max-w-md rounded-3xl bg-white p-8 shadow-xl shadow-blue-500/5 ring-1 ring-slate-100">
             {{ $slot ?? '' }}
             @yield('content')
         </div>

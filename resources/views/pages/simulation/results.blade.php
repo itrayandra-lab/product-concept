@@ -37,15 +37,15 @@
                         <h3 class="section-title">Langkah Selanjutnya</h3>
                         <ul class="space-y-3 text-sm text-slate-600">
                             <li class="flex items-start gap-3">
-                                <span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>
+                                <span class="mt-1 h-2 w-2 rounded-full bg-blue-500"></span>
                                 Hubungkan dengan tim R&D kami untuk validasi formulasi akhir.
                             </li>
                             <li class="flex items-start gap-3">
-                                <span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>
+                                <span class="mt-1 h-2 w-2 rounded-full bg-blue-500"></span>
                                 Gunakan tombol WhatsApp untuk konsultasi cepat dengan product specialist.
                             </li>
                             <li class="flex items-start gap-3">
-                                <span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>
+                                <span class="mt-1 h-2 w-2 rounded-full bg-blue-500"></span>
                                 Export PDF/Word untuk dibagikan ke stakeholder internal.
                             </li>
                         </ul>
