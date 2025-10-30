@@ -259,6 +259,8 @@ class SimulationErrorTest extends TestCase
     protected function simulationPayload(array $overrides = []): array
     {
         $base = [
+            'nama_brand' => 'Test Brand',
+            'nama_produk' => 'Test Product',
             'fungsi_produk' => ['Brightening', 'Hydrating'],
             'bentuk_formulasi' => 'Serum',
             'target_gender' => 'Wanita',
@@ -272,7 +274,6 @@ class SimulationErrorTest extends TestCase
             'benchmark_product' => 'Sample Benchmark',
             'volume' => 30,
             'volume_unit' => 'ml',
-            'warna' => 'Transparan',
             'hex_color' => '#FFFFFF',
             'jenis_kemasan' => 'Dropper',
             'finishing_kemasan' => 'Matte',

@@ -23,6 +23,8 @@ const simulationSteps = [
 ];
 
 const defaultFormData = {
+    nama_brand: '',
+    nama_produk: '',
     fungsi_produk: [],
     bentuk_formulasi: '',
     target_gender: 'Semua Gender',
@@ -32,8 +34,7 @@ const defaultFormData = {
     benchmark_product: '',
     volume: 30,
     volume_unit: 'ml',
-    warna: '',
-    hex_color: '',
+    hex_color: '#FFFFFF',
     jenis_kemasan: 'Airless Pump',
     finishing_kemasan: '',
     bahan_kemasan: '',
@@ -809,15 +810,9 @@ window.authFormComponent = function authFormComponent(mode = 'login') {
 
             if (this.mode === 'register') {
                 endpoint = '/api/auth/register';
-                if (!this.form.terms) {
-                    this.errors.general = ['Harap menyetujui syarat & ketentuan sebelum melanjutkan.'];
-                    this.loading = false;
-                    return;
-                }
                 Object.assign(payload, {
                     name: this.form.name,
                     password_confirmation: this.form.password_confirmation,
-                    terms_accepted: this.form.terms,
                 });
             }
 

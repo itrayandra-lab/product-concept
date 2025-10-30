@@ -23,6 +23,10 @@ class StoreSimulationRequest extends FormRequest
     public function rules(): array
     {
         return [
+            // Brand & Product Name
+            'nama_brand' => ['required', 'string', 'max:255'],
+            'nama_produk' => ['required', 'string', 'max:255'],
+            
             // Core Fields (Required)
             'fungsi_produk' => ['required', 'array', 'min:1', 'max:6'],
             'fungsi_produk.*' => ['required', 'string', 'max:100'],
@@ -54,8 +58,7 @@ class StoreSimulationRequest extends FormRequest
             'volume' => ['required', 'numeric', 'min:0.1'],
             'volume_unit' => ['required', 'string', Rule::in(['ml', 'gram', 'oz', 'unit'])],
             
-            'warna' => ['nullable', 'string', 'max:255'],
-            'hex_color' => ['nullable', 'string', 'regex:/^#[0-9A-Fa-f]{6}$/'],
+            'hex_color' => ['required', 'string', 'regex:/^#[0-9A-Fa-f]{6}$/'],
             
             'jenis_kemasan' => ['required', 'string', 'max:255'],
             'finishing_kemasan' => ['nullable', 'string', Rule::in([
@@ -91,6 +94,9 @@ class StoreSimulationRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'nama_brand.required' => 'Brand name is required.',
+            'nama_produk.required' => 'Product name is required.',
+            
             'fungsi_produk.required' => 'At least one product function is required.',
             'fungsi_produk.min' => 'At least one product function must be selected.',
             'fungsi_produk.max' => 'Maximum 6 product functions can be selected.',
@@ -123,6 +129,7 @@ class StoreSimulationRequest extends FormRequest
             
             'jenis_kemasan.required' => 'Packaging type is required.',
             
+            'hex_color.required' => 'Product color code is required.',
             'hex_color.regex' => 'Color code must be in hex format (e.g., #FFFFFF).',
             
             'target_hpp.min' => 'Target HPP must be at least 1000.',
@@ -138,6 +145,8 @@ class StoreSimulationRequest extends FormRequest
     public function attributes(): array
     {
         return [
+            'nama_brand' => 'brand name',
+            'nama_produk' => 'product name',
             'fungsi_produk' => 'product functions',
             'bentuk_formulasi' => 'formulation type',
             'target_gender' => 'target gender',
@@ -147,7 +156,6 @@ class StoreSimulationRequest extends FormRequest
             'bahan_aktif' => 'active ingredients',
             'volume' => 'product volume',
             'volume_unit' => 'volume unit',
-            'warna' => 'color',
             'hex_color' => 'color code',
             'jenis_kemasan' => 'packaging type',
             'finishing_kemasan' => 'packaging finish',
