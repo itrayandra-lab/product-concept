@@ -845,7 +845,7 @@ window.authFormComponent = function authFormComponent(mode = 'login') {
                     return;
                 }
 
-                const token = data.data?.access_token ?? data.data?.token ?? '';
+                const token = data.token ?? data.data?.access_token ?? data.data?.token ?? '';
                 localStorage.setItem('auth_token', token);
 
                 try {

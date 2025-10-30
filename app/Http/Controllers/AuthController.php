@@ -51,6 +51,7 @@ class AuthController extends Controller
         ]);
 
         // Auto-login after registration
+        Auth::login($user, true);
         $token = $user->createToken('auth-token', ['*'])->plainTextToken;
 
         // Log registration event
