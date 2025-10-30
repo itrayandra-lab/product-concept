@@ -62,6 +62,16 @@
     {{-- Step 1 --}}
     <section x-show="$store.simulationForm.currentStep === 1" x-transition>
         <div class="grid gap-6 md:grid-cols-2">
+            <div class="card space-y-3">
+                <label class="section-title mb-2">Nama Brand</label>
+                <input type="text" class="input-field" x-model="formData.nama_brand" placeholder="Contoh: Luminary Beauty">
+            </div>
+
+            <div class="card space-y-3">
+                <label class="section-title mb-2">Nama Produk</label>
+                <input type="text" class="input-field" x-model="formData.nama_produk" placeholder="Contoh: HydraGlow Serum">
+            </div>
+
             <div class="card space-y-4">
                 <div>
                     <h3 class="section-title">Bentuk Formulasi</h3>
@@ -198,6 +208,13 @@
                 <div>
                     <label class="text-xs font-semibold uppercase text-slate-400">Bahan Kemasan</label>
                     <input type="text" class="input-field mt-1" x-model="formData.bahan_kemasan" placeholder="Contoh: PCR Plastic, kaca, aluminium">
+                </div>
+                <div>
+                    <label class="text-xs font-semibold uppercase text-slate-400">Kode Warna Produk</label>
+                    <div class="mt-2 flex items-center gap-3">
+                        <input type="color" class="h-12 w-24 cursor-pointer rounded-lg border-2 border-slate-200" x-model="formData.hex_color">
+                        <input type="text" class="input-field flex-1 font-mono text-sm" x-model="formData.hex_color" placeholder="#FFFFFF" pattern="^#[0-9A-Fa-f]{6}$">
+                    </div>
                 </div>
             </div>
 

@@ -160,13 +160,42 @@ class ProcessSimulationJob implements ShouldQueue
             'simulation_id' => $this->simulation->id,
             'user_id' => $this->simulation->user_id,
             'form_data' => [
+                // New fields
+                'nama_brand' => $formData['nama_brand'] ?? '',
+                'nama_produk' => $formData['nama_produk'] ?? '',
+                
+                // Core fields (existing)
                 'fungsi_produk' => $formData['fungsi_produk'] ?? [],
                 'bentuk_formulasi' => $formData['bentuk_formulasi'] ?? '',
                 'target_gender' => $formData['target_gender'] ?? '',
                 'target_usia' => $formData['target_usia'] ?? [],
                 'target_negara' => $formData['target_negara'] ?? 'Indonesia',
                 'deskripsi_formula' => $formData['deskripsi_formula'] ?? '',
+                'benchmark_product' => $formData['benchmark_product'] ?? null,
+                
+                // Active ingredients (existing)
                 'bahan_aktif' => $formData['bahan_aktif'] ?? [],
+                
+                // Volume & packaging (MISSING - ADD THESE)
+                'volume' => $formData['volume'] ?? null,
+                'volume_unit' => $formData['volume_unit'] ?? 'ml',
+                'hex_color' => $formData['hex_color'] ?? '#FFFFFF',
+                'jenis_kemasan' => $formData['jenis_kemasan'] ?? '',
+                'finishing_kemasan' => $formData['finishing_kemasan'] ?? null,
+                'bahan_kemasan' => $formData['bahan_kemasan'] ?? null,
+                
+                // Pricing & production (MISSING - ADD THESE)
+                'target_hpp' => $formData['target_hpp'] ?? null,
+                'target_hpp_currency' => $formData['target_hpp_currency'] ?? 'IDR',
+                'moq' => $formData['moq'] ?? null,
+                
+                // Product characteristics (MISSING - ADD THESE)
+                'tekstur' => $formData['tekstur'] ?? null,
+                'aroma' => $formData['aroma'] ?? null,
+                
+                // Claims & certifications (MISSING - ADD THESE)
+                'klaim_produk' => $formData['klaim_produk'] ?? [],
+                'sertifikasi' => $formData['sertifikasi'] ?? [],
             ],
             'processing_options' => [
                 'ai_provider_preference' => 'auto',
